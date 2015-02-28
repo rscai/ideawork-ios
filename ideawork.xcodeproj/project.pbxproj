@@ -13,6 +13,33 @@
 		0C26EC161A984E6000927996 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C26EC151A984E6000927996 /* Images.xcassets */; };
 		0C26EC191A984E6000927996 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C26EC171A984E6000927996 /* LaunchScreen.xib */; };
 		0C26EC251A984E6000927996 /* ideaworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26EC241A984E6000927996 /* ideaworkTests.swift */; };
+		0C26EC331A996F3600927996 /* T-shirt.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C26EC321A996F3600927996 /* T-shirt.jpg */; };
+		0C26EC361A99761700927996 /* DesignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26EC351A99761700927996 /* DesignViewController.swift */; };
+		0C26EC391A997A3E00927996 /* DesignViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26EC381A997A3E00927996 /* DesignViewCell.swift */; };
+		0C26EC3B1A999EC200927996 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26EC3A1A999EC200927996 /* EditViewController.swift */; };
+		0C26EC3D1A999F6F00927996 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26EC3C1A999F6F00927996 /* Design.swift */; };
+		0C26EC3F1A99A19700927996 /* DesignTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26EC3E1A99A19700927996 /* DesignTemplate.swift */; };
+		0C26EC411A99A40300927996 /* AbstractDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26EC401A99A40300927996 /* AbstractDesign.swift */; };
+		0C26EC431A99D1B100927996 /* ImportImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26EC421A99D1B100927996 /* ImportImageViewController.swift */; };
+		0C26EC451A9AB78100927996 /* ImportImageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26EC441A9AB78100927996 /* ImportImageDelegate.swift */; };
+		0C6CC5E51A9DA3250016298C /* ObjCam.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0C6CC5E41A9DA3250016298C /* ObjCam.mm */; };
+		0C6CC5E81A9DA3D20016298C /* ImgProcWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0C6CC5E71A9DA3D20016298C /* ImgProcWrapper.mm */; };
+		0C6CC5EE1A9DA8710016298C /* Cam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C6CC5EC1A9DA8710016298C /* Cam.cpp */; };
+		0C6CC5F41A9DB0130016298C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C6CC5F31A9DB0130016298C /* AVFoundation.framework */; };
+		0C6CC5F61A9DB0210016298C /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C6CC5F51A9DB0210016298C /* ImageIO.framework */; };
+		0C6CC5F81A9DB0310016298C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C6CC5F71A9DB0310016298C /* libz.dylib */; };
+		0C6CC5FA1A9DB0540016298C /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C6CC5F91A9DB0540016298C /* CoreVideo.framework */; };
+		0C6CC5FC1A9DB0630016298C /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C6CC5FB1A9DB0630016298C /* CoreMedia.framework */; };
+		0C6CC6071A9DB4E70016298C /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C6CC6061A9DB4E70016298C /* libstdc++.6.0.9.dylib */; };
+		0C6CC6101A9DBBB80016298C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C6CC60F1A9DBBB80016298C /* CoreGraphics.framework */; };
+		0C6CC6121A9DBBC70016298C /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C6CC6111A9DBBC70016298C /* CoreImage.framework */; };
+		0C6CC6141A9DBBE50016298C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C6CC6131A9DBBE50016298C /* QuartzCore.framework */; };
+		0C6CC6161A9DBBF10016298C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C6CC6151A9DBBF10016298C /* Accelerate.framework */; };
+		0C6CC6181A9DBBFD0016298C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C6CC6171A9DBBFD0016298C /* Foundation.framework */; };
+		0C6CC61A1A9DBC050016298C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C6CC6191A9DBC050016298C /* UIKit.framework */; };
+		0C6CC61C1A9DBC0E0016298C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C6CC61B1A9DBC0E0016298C /* AssetsLibrary.framework */; };
+		0C6CC61E1A9DBD2A0016298C /* libopencv_world.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C6CC61D1A9DBD2A0016298C /* libopencv_world.a */; };
+		0C6CC6231A9DBEDC0016298C /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C6CC6221A9DBEDC0016298C /* opencv2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +63,37 @@
 		0C26EC1E1A984E6000927996 /* ideaworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ideaworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C26EC231A984E6000927996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C26EC241A984E6000927996 /* ideaworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ideaworkTests.swift; sourceTree = "<group>"; };
+		0C26EC321A996F3600927996 /* T-shirt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "T-shirt.jpg"; sourceTree = "<group>"; };
+		0C26EC351A99761700927996 /* DesignViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignViewController.swift; sourceTree = "<group>"; };
+		0C26EC381A997A3E00927996 /* DesignViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignViewCell.swift; sourceTree = "<group>"; };
+		0C26EC3A1A999EC200927996 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		0C26EC3C1A999F6F00927996 /* Design.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
+		0C26EC3E1A99A19700927996 /* DesignTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignTemplate.swift; sourceTree = "<group>"; };
+		0C26EC401A99A40300927996 /* AbstractDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractDesign.swift; sourceTree = "<group>"; };
+		0C26EC421A99D1B100927996 /* ImportImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportImageViewController.swift; sourceTree = "<group>"; };
+		0C26EC441A9AB78100927996 /* ImportImageDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportImageDelegate.swift; sourceTree = "<group>"; };
+		0C6CC5DB1A9D65720016298C /* ideawork-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ideawork-Bridging-Header.h"; sourceTree = "<group>"; };
+		0C6CC5E31A9DA3000016298C /* ObjCam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCam.h; sourceTree = "<group>"; };
+		0C6CC5E41A9DA3250016298C /* ObjCam.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ObjCam.mm; sourceTree = "<group>"; };
+		0C6CC5E61A9DA3D20016298C /* ImgProcWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgProcWrapper.h; sourceTree = "<group>"; };
+		0C6CC5E71A9DA3D20016298C /* ImgProcWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImgProcWrapper.mm; sourceTree = "<group>"; };
+		0C6CC5EC1A9DA8710016298C /* Cam.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cam.cpp; sourceTree = "<group>"; };
+		0C6CC5ED1A9DA8710016298C /* Cam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cam.h; sourceTree = "<group>"; };
+		0C6CC5F31A9DB0130016298C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		0C6CC5F51A9DB0210016298C /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		0C6CC5F71A9DB0310016298C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		0C6CC5F91A9DB0540016298C /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		0C6CC5FB1A9DB0630016298C /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		0C6CC6061A9DB4E70016298C /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
+		0C6CC60F1A9DBBB80016298C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		0C6CC6111A9DBBC70016298C /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		0C6CC6131A9DBBE50016298C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0C6CC6151A9DBBF10016298C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		0C6CC6171A9DBBFD0016298C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		0C6CC6191A9DBC050016298C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		0C6CC61B1A9DBC0E0016298C /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		0C6CC61D1A9DBD2A0016298C /* libopencv_world.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_world.a; path = "../../git/ios/build/iPhoneSimulator-x86_64/lib/Release/libopencv_world.a"; sourceTree = "<group>"; };
+		0C6CC6221A9DBEDC0016298C /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../libs/opencv/opencv2.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +101,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C6CC6231A9DBEDC0016298C /* opencv2.framework in Frameworks */,
+				0C6CC61E1A9DBD2A0016298C /* libopencv_world.a in Frameworks */,
+				0C6CC61C1A9DBC0E0016298C /* AssetsLibrary.framework in Frameworks */,
+				0C6CC61A1A9DBC050016298C /* UIKit.framework in Frameworks */,
+				0C6CC6181A9DBBFD0016298C /* Foundation.framework in Frameworks */,
+				0C6CC6161A9DBBF10016298C /* Accelerate.framework in Frameworks */,
+				0C6CC6141A9DBBE50016298C /* QuartzCore.framework in Frameworks */,
+				0C6CC6121A9DBBC70016298C /* CoreImage.framework in Frameworks */,
+				0C6CC6101A9DBBB80016298C /* CoreGraphics.framework in Frameworks */,
+				0C6CC6071A9DB4E70016298C /* libstdc++.6.0.9.dylib in Frameworks */,
+				0C6CC5FC1A9DB0630016298C /* CoreMedia.framework in Frameworks */,
+				0C6CC5FA1A9DB0540016298C /* CoreVideo.framework in Frameworks */,
+				0C6CC5F81A9DB0310016298C /* libz.dylib in Frameworks */,
+				0C6CC5F61A9DB0210016298C /* ImageIO.framework in Frameworks */,
+				0C6CC5F41A9DB0130016298C /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +132,21 @@
 		0C26EC001A984E6000927996 = {
 			isa = PBXGroup;
 			children = (
+				0C6CC6221A9DBEDC0016298C /* opencv2.framework */,
+				0C6CC61D1A9DBD2A0016298C /* libopencv_world.a */,
+				0C6CC61B1A9DBC0E0016298C /* AssetsLibrary.framework */,
+				0C6CC6191A9DBC050016298C /* UIKit.framework */,
+				0C6CC6171A9DBBFD0016298C /* Foundation.framework */,
+				0C6CC6151A9DBBF10016298C /* Accelerate.framework */,
+				0C6CC6131A9DBBE50016298C /* QuartzCore.framework */,
+				0C6CC6111A9DBBC70016298C /* CoreImage.framework */,
+				0C6CC60F1A9DBBB80016298C /* CoreGraphics.framework */,
+				0C6CC6061A9DB4E70016298C /* libstdc++.6.0.9.dylib */,
+				0C6CC5FB1A9DB0630016298C /* CoreMedia.framework */,
+				0C6CC5F91A9DB0540016298C /* CoreVideo.framework */,
+				0C6CC5F71A9DB0310016298C /* libz.dylib */,
+				0C6CC5F51A9DB0210016298C /* ImageIO.framework */,
+				0C6CC5F31A9DB0130016298C /* AVFoundation.framework */,
 				0C26EC0B1A984E6000927996 /* ideawork */,
 				0C26EC211A984E6000927996 /* ideaworkTests */,
 				0C26EC0A1A984E6000927996 /* Products */,
@@ -77,12 +165,15 @@
 		0C26EC0B1A984E6000927996 /* ideawork */ = {
 			isa = PBXGroup;
 			children = (
-				0C26EC0E1A984E6000927996 /* AppDelegate.swift */,
+				0C26EC481A9B220B00927996 /* util */,
+				0C26EC371A997A1300927996 /* view */,
+				0C26EC341A9975D100927996 /* controller */,
+				0C26EC311A996EE600927996 /* resources */,
+				0C26EC2E1A9852B000927996 /* model */,
 				0C26EC101A984E6000927996 /* ViewController.swift */,
 				0C26EC121A984E6000927996 /* Main.storyboard */,
-				0C26EC151A984E6000927996 /* Images.xcassets */,
-				0C26EC171A984E6000927996 /* LaunchScreen.xib */,
 				0C26EC0C1A984E6000927996 /* Supporting Files */,
+				0C6CC5DB1A9D65720016298C /* ideawork-Bridging-Header.h */,
 			);
 			path = ideawork;
 			sourceTree = "<group>";
@@ -90,6 +181,9 @@
 		0C26EC0C1A984E6000927996 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0C26EC0E1A984E6000927996 /* AppDelegate.swift */,
+				0C26EC171A984E6000927996 /* LaunchScreen.xib */,
+				0C26EC151A984E6000927996 /* Images.xcassets */,
 				0C26EC0D1A984E6000927996 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -110,6 +204,72 @@
 				0C26EC231A984E6000927996 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0C26EC2E1A9852B000927996 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				0C26EC3C1A999F6F00927996 /* Design.swift */,
+				0C26EC3E1A99A19700927996 /* DesignTemplate.swift */,
+				0C26EC401A99A40300927996 /* AbstractDesign.swift */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		0C26EC301A996E9A00927996 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				0C26EC321A996F3600927996 /* T-shirt.jpg */,
+			);
+			name = image;
+			sourceTree = "<group>";
+		};
+		0C26EC311A996EE600927996 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				0C26EC301A996E9A00927996 /* image */,
+			);
+			name = resources;
+			sourceTree = "<group>";
+		};
+		0C26EC341A9975D100927996 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				0C26EC351A99761700927996 /* DesignViewController.swift */,
+				0C26EC3A1A999EC200927996 /* EditViewController.swift */,
+				0C26EC421A99D1B100927996 /* ImportImageViewController.swift */,
+				0C26EC441A9AB78100927996 /* ImportImageDelegate.swift */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		0C26EC371A997A1300927996 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				0C26EC381A997A3E00927996 /* DesignViewCell.swift */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		0C26EC481A9B220B00927996 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				0C26EC491A9B221900927996 /* opencv */,
+			);
+			name = util;
+			sourceTree = "<group>";
+		};
+		0C26EC491A9B221900927996 /* opencv */ = {
+			isa = PBXGroup;
+			children = (
+				0C6CC5E61A9DA3D20016298C /* ImgProcWrapper.h */,
+				0C6CC5E71A9DA3D20016298C /* ImgProcWrapper.mm */,
+				0C6CC5E31A9DA3000016298C /* ObjCam.h */,
+				0C6CC5E41A9DA3250016298C /* ObjCam.mm */,
+				0C6CC5EC1A9DA8710016298C /* Cam.cpp */,
+				0C6CC5ED1A9DA8710016298C /* Cam.h */,
+			);
+			name = opencv;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,6 +353,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C26EC141A984E6000927996 /* Main.storyboard in Resources */,
+				0C26EC331A996F3600927996 /* T-shirt.jpg in Resources */,
 				0C26EC191A984E6000927996 /* LaunchScreen.xib in Resources */,
 				0C26EC161A984E6000927996 /* Images.xcassets in Resources */,
 			);
@@ -212,7 +373,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C26EC3B1A999EC200927996 /* EditViewController.swift in Sources */,
+				0C26EC3F1A99A19700927996 /* DesignTemplate.swift in Sources */,
+				0C26EC391A997A3E00927996 /* DesignViewCell.swift in Sources */,
+				0C26EC451A9AB78100927996 /* ImportImageDelegate.swift in Sources */,
+				0C6CC5E51A9DA3250016298C /* ObjCam.mm in Sources */,
+				0C6CC5E81A9DA3D20016298C /* ImgProcWrapper.mm in Sources */,
+				0C26EC361A99761700927996 /* DesignViewController.swift in Sources */,
+				0C26EC431A99D1B100927996 /* ImportImageViewController.swift in Sources */,
+				0C26EC3D1A999F6F00927996 /* Design.swift in Sources */,
+				0C26EC411A99A40300927996 /* AbstractDesign.swift in Sources */,
 				0C26EC111A984E6000927996 /* ViewController.swift in Sources */,
+				0C6CC5EE1A9DA8710016298C /* Cam.cpp in Sources */,
 				0C26EC0F1A984E6000927996 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -335,20 +507,75 @@
 		0C26EC291A984E6000927996 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/kkppccdd/Downloads,
+					/Users/kkppccdd/Documents/git/ios,
+					/Users/kkppccdd/Documents/ios_workspace/libs/opencv/2.4.9,
+					/Users/kkppccdd/Documents/ios_workspace/libs/opencv,
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_INPUT_FILETYPE = automatic;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"/usr/include/c++/4.2.1",
+				);
 				INFOPLIST_FILE = ideawork/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/kkppccdd/Documents/git/ios/build/iPhoneSimulator-x86_64/lib/Release",
+				);
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ideawork/ideawork-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				USER_HEADER_SEARCH_PATHS = "";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
 		};
 		0C26EC2A1A984E6000927996 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/kkppccdd/Downloads,
+					/Users/kkppccdd/Documents/git/ios,
+					/Users/kkppccdd/Documents/ios_workspace/libs/opencv/2.4.9,
+					/Users/kkppccdd/Documents/ios_workspace/libs/opencv,
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_INPUT_FILETYPE = automatic;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"/usr/include/c++/4.2.1",
+				);
 				INFOPLIST_FILE = ideawork/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/kkppccdd/Documents/git/ios/build/iPhoneSimulator-x86_64/lib/Release",
+				);
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ideawork/ideawork-Bridging-Header.h";
+				USER_HEADER_SEARCH_PATHS = "";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -405,6 +632,7 @@
 				0C26EC2A1A984E6000927996 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0C26EC2B1A984E6000927996 /* Build configuration list for PBXNativeTarget "ideaworkTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +641,7 @@
 				0C26EC2D1A984E6000927996 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14C109" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="AbstractDesign" representedClassName="ideawork.AbstractDesign" isAbstract="YES" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbnailData" optional="YES" attributeType="Binary" syncable="YES"/>
+    </entity>
+    <entity name="Design" representedClassName="ideawork.Design" parentEntity="AbstractDesign" syncable="YES">
+        <attribute name="printData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="designTemplate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DesignTemplate" inverseName="designs" inverseEntity="DesignTemplate" syncable="YES"/>
+    </entity>
+    <entity name="DesignTemplate" representedClassName="ideawork.DesignTemplate" parentEntity="AbstractDesign" syncable="YES">
+        <relationship name="designs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Design" inverseName="designTemplate" inverseEntity="Design" syncable="YES"/>
+        <relationship name="layers" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Layer" inverseName="designTemplate" inverseEntity="Layer" syncable="YES"/>
+    </entity>
+    <entity name="Layer" representedClassName="ideawork.Layer" syncable="YES">
+        <attribute name="imageData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="maskData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="positionX" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="positionY" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="designTemplate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DesignTemplate" inverseName="layers" inverseEntity="DesignTemplate" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="AbstractDesign" positionX="-189" positionY="-171" width="128" height="90"/>
+        <element name="Design" positionX="-54" positionY="-45" width="128" height="73"/>
+        <element name="DesignTemplate" positionX="-290" positionY="-31" width="128" height="73"/>
+        <element name="Layer" positionX="-495" positionY="27" width="128" height="133"/>
+    </elements>
+</model>

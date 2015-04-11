@@ -85,11 +85,13 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
         
         dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)){
             let filteredImage = ImgProcWrapper.cartoonizeFilter(self.modifiedImage!)
-            //let filteredImage=ImgProcWrapper.zoom(self.modifiedImage,scale:0.5)
+           
+            // all UI operation should be performed in main queue
+            dispatch_async(dispatch_get_main_queue()){
+                self.modifiedImage=filteredImage
             
-            self.modifiedImage=filteredImage
-            
-            self.hideModal()
+                self.hideModal()
+            }
         }
         
     }

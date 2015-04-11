@@ -88,13 +88,13 @@
                                             <action selector="importImage:" destination="G9P-bJ-1Ia" id="Z18-3v-myw"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem image="fantasy.png" id="OGk-bD-zOC">
+                                    <barButtonItem image="fantasy" id="OGk-bD-zOC">
                                         <connections>
                                             <action selector="doCartoonizeFilter:" destination="G9P-bJ-1Ia" id="BgE-6R-ev2"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="uGv-Pv-vZ8"/>
-                                    <barButtonItem image="visible.png" id="kal-rR-0nK">
+                                    <barButtonItem image="visible" id="kal-rR-0nK">
                                         <connections>
                                             <action selector="doPreview:" destination="G9P-bJ-1Ia" id="9Ou-Mv-Kko"/>
                                             <segue destination="6fp-Uv-Hqe" kind="show" identifier="chooseBaseColor" id="tIZ-Lg-fh4"/>
@@ -157,69 +157,82 @@
                                     <constraint firstAttribute="width" secondItem="zmG-eS-Mb3" secondAttribute="height" multiplier="1:1" id="TMi-fi-bYb"/>
                                 </constraints>
                             </imageView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zGX-2B-CiZ">
-                                <rect key="frame" x="8" y="446" width="199" height="29"/>
-                                <segments>
-                                    <segment title="Red"/>
-                                    <segment title="Blue"/>
-                                    <segment title="White"/>
-                                    <segment title="Black"/>
-                                </segments>
-                                <connections>
-                                    <action selector="doChooseColor:forEvent:" destination="6fp-Uv-Hqe" eventType="valueChanged" id="CuW-W8-ET5"/>
-                                </connections>
-                            </segmentedControl>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rEY-jO-aQp">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="omY-3S-5cm"/>
-                                    <barButtonItem image="put_in.png" id="6Ba-MG-abw">
+                                    <barButtonItem image="put_in" id="6Ba-MG-abw">
                                         <connections>
                                             <action selector="doAddOrderItem:" destination="6fp-Uv-Hqe" id="OW7-et-ocQ"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="BJf-PH-Vat">
-                                <rect key="frame" x="8" y="482" width="194" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="vvP-gJ-X48"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="S"/>
-                                    <segment title="M"/>
-                                    <segment title="L"/>
-                                    <segment title="XL"/>
-                                    <segment title="XXL"/>
-                                </segments>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="颜色：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cU2-5j-bvL">
+                                <rect key="frame" x="8" y="456" width="51" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="尺码：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcU-hP-3zl">
+                                <rect key="frame" x="8" y="493" width="51" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BbR-wD-YC9">
+                                <rect key="frame" x="67" y="452" width="237" height="30"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="颜色名称">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
-                                    <action selector="doChooseSize:forEvent:" destination="6fp-Uv-Hqe" eventType="valueChanged" id="ovn-Y6-rU0"/>
+                                    <action selector="chooseColor:" destination="6fp-Uv-Hqe" eventType="touchUpInside" id="3r7-8M-nIs"/>
                                 </connections>
-                            </segmentedControl>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ML-py-TcV">
+                                <rect key="frame" x="67" y="489" width="237" height="30"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="尺码名称">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="chooseSize:" destination="6fp-Uv-Hqe" eventType="touchUpInside" id="m6G-5A-A2o"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="rGZ-gn-QG0" firstAttribute="top" secondItem="BJf-PH-Vat" secondAttribute="bottom" constant="58" id="2Wj-Uq-ZYU"/>
-                            <constraint firstItem="zGX-2B-CiZ" firstAttribute="leading" secondItem="BUE-Ia-1tM" secondAttribute="leadingMargin" constant="-8" id="3iy-vh-nMs"/>
+                            <constraint firstItem="6ML-py-TcV" firstAttribute="baseline" secondItem="PcU-hP-3zl" secondAttribute="baseline" id="1bT-3d-yAN"/>
+                            <constraint firstItem="cU2-5j-bvL" firstAttribute="baseline" secondItem="BbR-wD-YC9" secondAttribute="baseline" id="3Qc-IP-a2P"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rEY-jO-aQp" secondAttribute="trailing" constant="-16" id="9od-t9-ANh"/>
+                            <constraint firstItem="BbR-wD-YC9" firstAttribute="trailing" secondItem="6ML-py-TcV" secondAttribute="trailing" id="AfK-C0-c24"/>
+                            <constraint firstItem="6ML-py-TcV" firstAttribute="leading" secondItem="PcU-hP-3zl" secondAttribute="trailing" constant="8" symbolic="YES" id="BoY-n5-OOr"/>
                             <constraint firstItem="zmG-eS-Mb3" firstAttribute="top" secondItem="FDY-Ps-tDe" secondAttribute="bottom" constant="10" id="CIo-bV-8qP"/>
                             <constraint firstItem="zmG-eS-Mb3" firstAttribute="leading" secondItem="BUE-Ia-1tM" secondAttribute="leadingMargin" constant="-10" id="I6o-CZ-S4C"/>
                             <constraint firstItem="rGZ-gn-QG0" firstAttribute="top" secondItem="rEY-jO-aQp" secondAttribute="bottom" id="J79-VG-OrX"/>
+                            <constraint firstItem="PcU-hP-3zl" firstAttribute="top" secondItem="cU2-5j-bvL" secondAttribute="bottom" constant="16" id="JAH-t8-JjD"/>
+                            <constraint firstItem="cU2-5j-bvL" firstAttribute="leading" secondItem="PcU-hP-3zl" secondAttribute="leading" id="LnF-8E-2Gg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zmG-eS-Mb3" secondAttribute="trailing" constant="-10" id="P3m-RV-Oyg"/>
-                            <constraint firstItem="BJf-PH-Vat" firstAttribute="leading" secondItem="BUE-Ia-1tM" secondAttribute="leadingMargin" constant="-8" id="SDx-t4-gIy"/>
                             <constraint firstItem="rEY-jO-aQp" firstAttribute="leading" secondItem="BUE-Ia-1tM" secondAttribute="leadingMargin" constant="-16" id="UXs-TR-19f"/>
-                            <constraint firstItem="BJf-PH-Vat" firstAttribute="top" secondItem="zGX-2B-CiZ" secondAttribute="bottom" constant="8" id="j1p-pN-eTr"/>
+                            <constraint firstItem="BbR-wD-YC9" firstAttribute="leading" secondItem="cU2-5j-bvL" secondAttribute="trailing" constant="8" symbolic="YES" id="YvB-3K-lHm"/>
+                            <constraint firstItem="rEY-jO-aQp" firstAttribute="top" secondItem="PcU-hP-3zl" secondAttribute="bottom" constant="10" id="cCu-9V-gqG"/>
+                            <constraint firstItem="PcU-hP-3zl" firstAttribute="leading" secondItem="BUE-Ia-1tM" secondAttribute="leadingMargin" constant="-8" id="jJQ-ay-e4c"/>
+                            <constraint firstItem="6ML-py-TcV" firstAttribute="trailing" secondItem="BUE-Ia-1tM" secondAttribute="trailingMargin" id="jlc-UC-5WT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="ChooseBaseColor" id="gPF-ap-EJo"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="colorButton" destination="BbR-wD-YC9" id="FCe-UD-yPF"/>
                         <outlet property="previewImageView" destination="zmG-eS-Mb3" id="G8M-SS-teJ"/>
+                        <outlet property="sizeButton" destination="6ML-py-TcV" id="YXz-gL-DQb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mDl-hI-fV0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1876" y="-603"/>
+            <point key="canvasLocation" x="1876" y="-670"/>
         </scene>
         <!--Import Image View Controller-->
         <scene sceneID="bP1-NV-Z4M">
@@ -363,8 +376,8 @@
     </scenes>
     <resources>
         <image name="T-shirt.jpg" width="899" height="889"/>
-        <image name="fantasy.png" width="25" height="25"/>
-        <image name="put_in.png" width="25" height="25"/>
-        <image name="visible.png" width="25" height="25"/>
+        <image name="fantasy" width="25" height="25"/>
+        <image name="put_in" width="25" height="25"/>
+        <image name="visible" width="25" height="25"/>
     </resources>
 </document>

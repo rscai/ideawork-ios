@@ -11,4 +11,15 @@
 
 #import "ImgProcWrapper.h"
 
+#import "AbstractActionSheetPicker.h"
+#import "ActionSheetCustomPicker.h"
+#import "ActionSheetCustomPickerDelegate.h"
+#import "ActionSheetDatePicker.h"
+#import "ActionSheetDistancePicker.h"
+#import "ActionSheetLocalePicker.h"
+#import "ActionSheetPicker.h"
+#import "ActionSheetStringPicker.h"
+#import "DistancePickerView.h"
+#import "SWActionSheet.h"
+
 #endif

@@ -1,73 +1,22 @@
 {
     "item":{
-        "itemId":"testItemId",
+        "itemId":"44775785190",
         "sku":[
-               {
-                    "id":"sku-id-1",
-                    "color":{
-                        "name":"红",
-                        "rgbHex":"FF0000"
-                    },
-                    "size":{
-                        "name":"S",
-                        "code":"S"
-                    }
-               },
-               {
-               "id":"sku-id-2",
-               "color":{
-               "name":"红",
-               "rgbHex":"FF0000"
-               },
-               "size":{
-               "name":"M",
-               "code":"M"
-               }
-               },
-               {
-               "id":"sku-id-3",
-               "color":{
-               "name":"红",
-               "rgbHex":"FF0000"
-               },
-               "size":{
-               "name":"L",
-               "code":"L"
-               }
-               },
-               {
-               "id":"sku-id-4",
-               "color":{
-               "name":"黄",
-               "rgbHex":"FFFF00"
-               },
-               "size":{
-               "name":"S",
-               "code":"S"
-               }
-               },
-               {
-               "id":"sku-id-5",
-               "color":{
-               "name":"黄",
-               "rgbHex":"FFFF00"
-               },
-               "size":{
-               "name":"M",
-               "code":"M"
-               }
-               },
-               {
-               "id":"sku-id-6",
-               "color":{
-               "name":"黄",
-               "rgbHex":"FFFF00"
-               },
-               "size":{
-               "name":"L",
-               "code":"L"
-               }
-               },
+               {"id":"8244577016","color":{"name":"白色","rgbHex":"FFFFFF"},"size":{"name":"L","code":"L"}},
+{"id":"82445770163","color":{"name":"白色","rgbHex":"FFFFFF"},"size":{"name":"M","code":"M"}},
+{"id":"82445770164","color":{"name":"白色","rgbHex":"FFFFFF"},"size":{"name":"S","code":"S"}},
+{"id":"82445770165","color":{"name":"黄色","rgbHex":"FFFF00"},"size":{"name":"L","code":"L"}},
+{"id":"82445770166","color":{"name":"黄色","rgbHex":"FFFF00"},"size":{"name":"M","code":"M"}},
+{"id":"82445770167","color":{"name":"黄色","rgbHex":"FFFF00"},"size":{"name":"S","code":"S"}},
+{"id":"82445770168","color":{"name":"红色","rgbHex":"FF0000"},"size":{"name":"L","code":"L"}},
+{"id":"82445770169","color":{"name":"红色","rgbHex":"FF0000"},"size":{"name":"M","code":"M"}},
+{"id":"82445770170","color":{"name":"红色","rgbHex":"FF0000"},"size":{"name":"S","code":"S"}},
+{"id":"82445770171","color":{"name":"黑色","rgbHex":"000000"},"size":{"name":"L","code":"L"}},
+{"id":"82445770172","color":{"name":"黑色","rgbHex":"000000"},"size":{"name":"M","code":"M"}},
+{"id":"82445770173","color":{"name":"黑色","rgbHex":"000000"},"size":{"name":"S","code":"S"}},
+{"id":"82445770174","color":{"name":"天蓝色","rgbHex":"87CEEB"},"size":{"name":"L","code":"L"}},
+{"id":"82445770175","color":{"name":"天蓝色","rgbHex":"87CEEB"},"size":{"name":"M","code":"M"}},
+{"id":"82445770176","color":{"name":"天蓝色","rgbHex":"87CEEB"},"size":{"name":"S","code":"S"}}
             ]
     },
     "orderConfig":{

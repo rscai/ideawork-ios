@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let documentDirectories = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         
         let documentName="design"
-        let documentDirectory = documentDirectories.first as NSURL
+        let documentDirectory = documentDirectories.first as! NSURL
         let url:NSURL = documentDirectory.URLByAppendingPathComponent(documentName,isDirectory:true)
         
         self.document = UIManagedDocument(fileURL:url)
@@ -96,7 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.managedObjectContext = self.document!.managedObjectContext
 
             var storyboard = UIStoryboard(name: "Main", bundle: nil)
-            var viewController: UINavigationController = storyboard.instantiateViewControllerWithIdentifier("MainNavigationController") as UINavigationController
+            var viewController: UINavigationController = storyboard.instantiateViewControllerWithIdentifier("MainNavigationController") as! UINavigationController
             
             window?.rootViewController = viewController
             window?.makeKeyAndVisible()

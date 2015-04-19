@@ -58,7 +58,7 @@ class DesignViewController: UICollectionViewController,UICollectionViewDataSourc
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as DesignViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! DesignViewCell
         
         print("click cell#\(indexPath)")
         
@@ -79,7 +79,7 @@ class DesignViewController: UICollectionViewController,UICollectionViewDataSourc
             var design:Design?
             
             if let template = abstractDesign as? DesignTemplate {
-                let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                 let managedObjectContext = appDelegate.managedObjectContext
                 design = NSEntityDescription.insertNewObjectForEntityForName("Design", inManagedObjectContext: managedObjectContext!) as? Design
                 design?.print=ImgProcWrapper.createImage(210, height: 297)
@@ -109,7 +109,7 @@ class DesignViewController: UICollectionViewController,UICollectionViewDataSourc
     private func loadDesignTemplate()->[DesignTemplate]{
         
         // query coreDatra first
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedObjectContext = appDelegate.managedObjectContext
         
         var error: NSError? = nil
@@ -140,7 +140,7 @@ class DesignViewController: UICollectionViewController,UICollectionViewDataSourc
     
     private func loadDesign()->[Design]{
         // query coreDatra first
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedObjectContext = appDelegate.managedObjectContext
         
         var error: NSError? = nil
@@ -162,40 +162,40 @@ class DesignViewController: UICollectionViewController,UICollectionViewDataSourc
     }
     
     private func constructDefaultDesignTemplate()->DesignTemplate{
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedObjectContext = appDelegate.managedObjectContext
         
-        var defaultDesignTemplate = NSEntityDescription.insertNewObjectForEntityForName("DesignTemplate", inManagedObjectContext: managedObjectContext!) as DesignTemplate
+        var defaultDesignTemplate = NSEntityDescription.insertNewObjectForEntityForName("DesignTemplate", inManagedObjectContext: managedObjectContext!) as! DesignTemplate
 
         let backgroundImage = UIImage(named:"background.png")
         let wrinklesImage = UIImage(named:"wrinkles.png")
         let colorImage = UIImage(named:"color.png")
         
-        var backgroundLayer = NSEntityDescription.insertNewObjectForEntityForName("Layer", inManagedObjectContext: managedObjectContext!) as Layer
+        var backgroundLayer = NSEntityDescription.insertNewObjectForEntityForName("Layer", inManagedObjectContext: managedObjectContext!) as! Layer
         backgroundLayer.name="background"
         backgroundLayer.image=backgroundImage
         backgroundLayer.positionX=0
         backgroundLayer.positionY=0
         
-        var wrinklesLayer = NSEntityDescription.insertNewObjectForEntityForName("Layer", inManagedObjectContext: managedObjectContext!) as Layer
+        var wrinklesLayer = NSEntityDescription.insertNewObjectForEntityForName("Layer", inManagedObjectContext: managedObjectContext!) as! Layer
         wrinklesLayer.name="wrinkles"
         wrinklesLayer.image=wrinklesImage
         wrinklesLayer.positionX=0
         wrinklesLayer.positionY=0
         
-        var colorLayer = NSEntityDescription.insertNewObjectForEntityForName("Layer", inManagedObjectContext: managedObjectContext!) as Layer
+        var colorLayer = NSEntityDescription.insertNewObjectForEntityForName("Layer", inManagedObjectContext: managedObjectContext!) as! Layer
         colorLayer.name="color"
         colorLayer.image=colorImage
         colorLayer.positionX=0
         colorLayer.positionY=0
         
-        var layers = defaultDesignTemplate.layers.mutableCopy() as NSMutableOrderedSet
+        var layers = defaultDesignTemplate.layers.mutableCopy() as! NSMutableOrderedSet
         
         layers.addObject(wrinklesLayer)
         layers.addObject(colorLayer)
         layers.addObject(backgroundLayer)
         
-        defaultDesignTemplate.layers=layers.copy() as NSOrderedSet
+        defaultDesignTemplate.layers=layers.copy() as! NSOrderedSet
         
         let thumbnailImage = UIImage(named:"thumbnail.png")
         

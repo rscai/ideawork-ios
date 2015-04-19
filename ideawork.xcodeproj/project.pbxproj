@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C0DB4831ADBFD5A002566D7 /* postLoadedScript.js in Resources */ = {isa = PBXBuildFile; fileRef = 0C0DB4821ADBFD5A002566D7 /* postLoadedScript.js */; };
 		0C26EC0F1A984E6000927996 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26EC0E1A984E6000927996 /* AppDelegate.swift */; };
 		0C26EC141A984E6000927996 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C26EC121A984E6000927996 /* Main.storyboard */; };
 		0C26EC161A984E6000927996 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C26EC151A984E6000927996 /* Images.xcassets */; };
@@ -27,7 +28,10 @@
 		0C4641D21AD2843000A44D00 /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C4641C91AD2843000A44D00 /* DistancePickerView.m */; };
 		0C4641D31AD2843000A44D00 /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C4641CB1AD2843000A44D00 /* SWActionSheet.m */; };
 		0C4641D91AD2AB8700A44D00 /* SinaStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4641D81AD2AB8700A44D00 /* SinaStorageService.swift */; };
-		0C4641DB1AD2AF3500A44D00 /* SCSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C4641D61AD2A6AF00A44D00 /* SCSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0C4641DE1AD91FBB00A44D00 /* BroughtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4641DD1AD91FBB00A44D00 /* BroughtViewController.swift */; };
+		0C91C5521AE34B5D00F41147 /* SwiftSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91C5511AE34B5D00F41147 /* SwiftSpinner.swift */; };
+		0C91C5541AE3A2C700F41147 /* SCSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C91C5531AE3A2C700F41147 /* SCSwift.framework */; };
+		0C91C5551AE3A2C700F41147 /* SCSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C91C5531AE3A2C700F41147 /* SCSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0CB2D1441AD11B9700C631BB /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB2D1431AD11B9700C631BB /* libstdc++.6.0.9.dylib */; };
 		0CD16AAD1AA49F1300E1C77A /* DesignService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD16AAC1AA49F1300E1C77A /* DesignService.swift */; };
 		0CD16AB51AA49F5100E1C77A /* ChooseBaseColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD16AAE1AA49F5100E1C77A /* ChooseBaseColorViewController.swift */; };
@@ -66,13 +70,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		0C4641DC1AD2AF3600A44D00 /* Embed Frameworks */ = {
+		0C91C5561AE3A2C800F41147 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0C4641DB1AD2AF3500A44D00 /* SCSwift.framework in Embed Frameworks */,
+				0C91C5551AE3A2C700F41147 /* SCSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,6 +84,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0C0DB4821ADBFD5A002566D7 /* postLoadedScript.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = postLoadedScript.js; path = resources/config/postLoadedScript.js; sourceTree = "<group>"; };
 		0C26EC091A984E6000927996 /* ideawork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ideawork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C26EC0D1A984E6000927996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C26EC0E1A984E6000927996 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -113,9 +118,11 @@
 		0C4641C91AD2843000A44D00 /* DistancePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistancePickerView.m; sourceTree = "<group>"; };
 		0C4641CA1AD2843000A44D00 /* SWActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWActionSheet.h; sourceTree = "<group>"; };
 		0C4641CB1AD2843000A44D00 /* SWActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWActionSheet.m; sourceTree = "<group>"; };
-		0C4641D61AD2A6AF00A44D00 /* SCSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SCSwift.framework; path = ../libs/SCSwift.framework; sourceTree = "<group>"; };
 		0C4641D81AD2AB8700A44D00 /* SinaStorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SinaStorageService.swift; path = util/SinaStorageService.swift; sourceTree = "<group>"; };
+		0C4641DD1AD91FBB00A44D00 /* BroughtViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BroughtViewController.swift; path = controller/BroughtViewController.swift; sourceTree = "<group>"; };
 		0C6CC5DB1A9D65720016298C /* ideawork-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ideawork-Bridging-Header.h"; sourceTree = "<group>"; };
+		0C91C5511AE34B5D00F41147 /* SwiftSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSpinner.swift; sourceTree = "<group>"; };
+		0C91C5531AE3A2C700F41147 /* SCSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SCSwift.framework; path = ../libs/SCSwift.framework; sourceTree = "<group>"; };
 		0CB2D1431AD11B9700C631BB /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		0CD16AAC1AA49F1300E1C77A /* DesignService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignService.swift; path = service/DesignService.swift; sourceTree = "<group>"; };
 		0CD16AAE1AA49F5100E1C77A /* ChooseBaseColorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChooseBaseColorViewController.swift; path = controller/ChooseBaseColorViewController.swift; sourceTree = "<group>"; };
@@ -152,6 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C4641911AD11D7800A44D00 /* opencv2.framework in Frameworks */,
+				0C91C5541AE3A2C700F41147 /* SCSwift.framework in Frameworks */,
 				0CB2D1441AD11B9700C631BB /* libstdc++.6.0.9.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -169,7 +177,7 @@
 		0C26EC001A984E6000927996 = {
 			isa = PBXGroup;
 			children = (
-				0C4641D61AD2A6AF00A44D00 /* SCSwift.framework */,
+				0C91C5531AE3A2C700F41147 /* SCSwift.framework */,
 				0C4641901AD11D7800A44D00 /* opencv2.framework */,
 				0CB2D1431AD11B9700C631BB /* libstdc++.6.0.9.dylib */,
 				0C26EC0B1A984E6000927996 /* ideawork */,
@@ -279,6 +287,7 @@
 				0CD16AB21AA49F5100E1C77A /* ImportImageDelegate.swift */,
 				0CD16AB31AA49F5100E1C77A /* ImportImageViewController.swift */,
 				0CD16AB41AA49F5100E1C77A /* ViewController.swift */,
+				0C4641DD1AD91FBB00A44D00 /* BroughtViewController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -293,6 +302,7 @@
 		0C26EC481A9B220B00927996 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				0C91C5501AE34B5D00F41147 /* SwiftSpinner */,
 				0C4641B91AD2843000A44D00 /* Pickers */,
 				0C4641941AD160A000A44D00 /* json */,
 				0C26EC491A9B221900927996 /* opencv */,
@@ -345,6 +355,15 @@
 			path = util/Pickers;
 			sourceTree = "<group>";
 		};
+		0C91C5501AE34B5D00F41147 /* SwiftSpinner */ = {
+			isa = PBXGroup;
+			children = (
+				0C91C5511AE34B5D00F41147 /* SwiftSpinner.swift */,
+			);
+			name = SwiftSpinner;
+			path = util/SwiftSpinner;
+			sourceTree = "<group>";
+		};
 		0CD16A9D1AA49A2100E1C77A /* service */ = {
 			isa = PBXGroup;
 			children = (
@@ -394,6 +413,7 @@
 			isa = PBXGroup;
 			children = (
 				0CEF66F31ACFE0A00063D357 /* taobao-integration-config.json */,
+				0C0DB4821ADBFD5A002566D7 /* postLoadedScript.js */,
 			);
 			name = config;
 			sourceTree = "<group>";
@@ -416,7 +436,7 @@
 				0C26EC051A984E6000927996 /* Sources */,
 				0C26EC061A984E6000927996 /* Frameworks */,
 				0C26EC071A984E6000927996 /* Resources */,
-				0C4641DC1AD2AF3600A44D00 /* Embed Frameworks */,
+				0C91C5561AE3A2C800F41147 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -451,7 +471,7 @@
 		0C26EC011A984E6000927996 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
+				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Ray Cai";
 				TargetAttributes = {
 					0C26EC081A984E6000927996 = {
@@ -490,6 +510,7 @@
 			files = (
 				0CD3D4FB1AC7B519007CBCBC /* wrinkles.png in Resources */,
 				0CD16ADA1AAAC76100E1C77A /* color.png in Resources */,
+				0C0DB4831ADBFD5A002566D7 /* postLoadedScript.js in Resources */,
 				0C26EC141A984E6000927996 /* Main.storyboard in Resources */,
 				0CD16ADD1AAACAF300E1C77A /* thumbnail.png in Resources */,
 				0CD16AD91AAAC76100E1C77A /* background.png in Resources */,
@@ -530,6 +551,8 @@
 				0CD16AD11AA74A5000E1C77A /* Layer+extension.swift in Sources */,
 				0CD16AB91AA49F5100E1C77A /* ImportImageDelegate.swift in Sources */,
 				0CD16AB61AA49F5100E1C77A /* DesignViewCell.swift in Sources */,
+				0C4641DE1AD91FBB00A44D00 /* BroughtViewController.swift in Sources */,
+				0C91C5521AE34B5D00F41147 /* SwiftSpinner.swift in Sources */,
 				0CD16ABA1AA49F5100E1C77A /* ImportImageViewController.swift in Sources */,
 				0CD16AB71AA49F5100E1C77A /* DesignViewController.swift in Sources */,
 				0CD16ACF1AA7490200E1C77A /* Design.swift in Sources */,
@@ -622,7 +645,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -658,7 +681,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -699,9 +722,11 @@
 					"$(inherited)",
 					"/Users/kkppccdd/Documents/git/ios/build/iPhoneSimulator-x86_64/lib/Release",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "ideawork/ideawork-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -743,9 +768,11 @@
 					"$(inherited)",
 					"/Users/kkppccdd/Documents/git/ios/build/iPhoneSimulator-x86_64/lib/Release",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "ideawork/ideawork-Bridging-Header.h";
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -772,7 +799,9 @@
 				);
 				INFOPLIST_FILE = ideaworkTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "ideaworkTests/ideaworkTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ideawork.app/ideawork";
@@ -795,7 +824,9 @@
 				);
 				INFOPLIST_FILE = ideaworkTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "ideaworkTests/ideaworkTests-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ideawork.app/ideawork";
 			};

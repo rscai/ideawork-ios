@@ -10,6 +10,17 @@ import Foundation
 
 import SCSwift
 
+public enum AccessPolicy:String {
+    case access_private = "private",
+    access_public_read = "public-read",
+    access_public_read_write = "public-read-write",
+    access_authenticated_read = "authenticated-read"
+}
+
+public class SCSServiceRequest:ASIS3ServiceRequest {}
+public class SCSBucketRequest:ASIS3BucketRequest {}
+public class SCSObjectRquest:ASIS3ObjectRequest {}
+
 public class SinaStorageService {
     var config:Dictionary<String,Any!>!
     var globleConfig:Dictionary<String,Any!>! = [:]
@@ -24,21 +35,21 @@ public class SinaStorageService {
 
         
         if (cfg["accessKey"] != nil) {
-            request.accessKey = cfg["accessKey"] as String
+            request.accessKey = cfg["accessKey"] as! String
         }
         
         if (cfg["secretKey"] != nil) {
-            request.secretAccessKey = cfg["secretKey"] as String
+            request.secretAccessKey = cfg["secretKey"] as! String
         }
         
-        if (cfg["useSSL"] != nil && cfg["useSSL"] as Bool) {
+        if (cfg["useSSL"] != nil && cfg["useSSL"] as! Bool) {
             request.requestScheme = ASIS3RequestSchemeHTTPS
         }else {
             request.requestScheme = ASIS3RequestSchemeHTTP
         }
         
         if (cfg["maxConcurrentOperationCount"] != nil) {
-            ASIHTTPRequest.sharedQueue().maxConcurrentOperationCount = cfg["maxConcurrentOperationCount"] as Int
+            ASIHTTPRequest.sharedQueue().maxConcurrentOperationCount = cfg["maxConcurrentOperationCount"] as! Int
         }
     }
     
@@ -63,7 +74,7 @@ public class SinaStorageService {
         redirected:((SCSServiceRequest)->Void)! = nil)
     {
         
-        let request = SCSServiceRequest.serviceRequest() as SCSServiceRequest
+        let request = SCSServiceRequest.serviceRequest() as! SCSServiceRequest
         self.configureRequest(request)
         
         if (started != nil) {
@@ -94,7 +105,7 @@ public class SinaStorageService {
         redirected:((SCSBucketRequest)->Void)! = nil)
     {
         
-        let request = SCSBucketRequest.PUTRequestWithBucket(bucket as NSString) as SCSBucketRequest
+        let request = SCSBucketRequest.PUTRequestWithBucket(bucket as NSString as String) as! SCSBucketRequest
         self.configureRequest(request)
         
         if (started != nil) {
@@ -123,7 +134,7 @@ public class SinaStorageService {
         redirected:((SCSBucketRequest)->Void)! = nil)
     {
         
-        let request = SCSBucketRequest.DELETERequestWithBucket(bucket as NSString) as SCSBucketRequest
+        let request = SCSBucketRequest.DELETERequestWithBucket(bucket as NSString as String) as! SCSBucketRequest
         self.configureRequest(request)
         
         if (started != nil) {
@@ -153,11 +164,11 @@ public class SinaStorageService {
         redirected:((SCSBucketRequest)->Void)! = nil)
     {
         
-        let request = SCSBucketRequest.requestWithBucket(param["bucket"] as String) as SCSBucketRequest
-        request.maxResultCount = param["maxKeys"] as Int32
-        request.prefix = param["prefix"]! as String
-        request.delimiter = param["delimiter"]! as String
-        request.marker = param["marker"]! as String
+        let request = SCSBucketRequest.requestWithBucket(param["bucket"] as! String) as! SCSBucketRequest
+        request.maxResultCount = param["maxKeys"] as! Int32
+        request.prefix = param["prefix"]! as! String
+        request.delimiter = param["delimiter"]! as! String
+        request.marker = param["marker"]! as! String
         
         self.configureRequest(request)
         
@@ -180,7 +191,7 @@ public class SinaStorageService {
         request.startAsynchronous()
     }
     
-    public func uploadObject(#data:NSData,bucket:String,key:String, accessPolicy:AccessPolicy,started:((SCSObjectRquest)->Void)! = nil,
+    public func uploadObject(#data:NSData,mimeType:String, bucket:String,key:String,started:((SCSObjectRquest)->Void)! = nil,
         finished:((SCSObjectRquest)->Void)! = nil,
         failed:((SCSObjectRquest)->Void)! = nil,
         headerReceived:((SCSObjectRquest)->Void)! = nil,
@@ -189,7 +200,8 @@ public class SinaStorageService {
     {
         
         //let request = SCSObjectRquest.PUTRequestForFile(param["filePath"], withBucket:param["bucket"], key:param["key"]) as SCSObjectRquest
-        let request = SCSObjectRquest.PUTRequestForData(data, withBucket: bucket, key: key) as SCSObjectRquest
+        let request = SCSObjectRquest.PUTRequestForData(data, withBucket: bucket, key: key) as! SCSObjectRquest
+        request.mimeType = mimeType
         self.configureRequest(request)
         
         if (started != nil) {
@@ -214,7 +226,8 @@ public class SinaStorageService {
         }
         
         request.timeOutSeconds = 60
-        request.accessPolicy = accessPolicy.rawValue
+        // follow the ACL of bucket
+        //request.accessPolicy = accessPolicy.rawValue
         request.addRequestHeader("Expect", value:"100-continue")
         request.showAccurateProgress = true
         
@@ -229,7 +242,7 @@ public class SinaStorageService {
         progress:((SCSObjectRquest, UInt64, UInt64)->Void)! = nil)
     {
         
-        let request = SCSObjectRquest.requestWithBucket(param["bucket"], key: param["key"]) as SCSObjectRquest
+        let request = SCSObjectRquest.requestWithBucket(param["bucket"], key: param["key"]) as! SCSObjectRquest
         self.configureRequest(request)
         
         if (started != nil) {
@@ -265,7 +278,7 @@ public class SinaStorageService {
         redirected:((SCSObjectRquest)->Void)! = nil)
     {
         
-        let request = SCSObjectRquest.COPYRequestFromBucket(param["srcBucket"], key: param["srcKey"], toBucket: param["desBucket"], key: param["desKey"]) as SCSObjectRquest
+        let request = SCSObjectRquest.COPYRequestFromBucket(param["srcBucket"], key: param["srcKey"], toBucket: param["desBucket"], key: param["desKey"]) as! SCSObjectRquest
         self.configureRequest(request)
         
         if (started != nil) {
@@ -294,7 +307,7 @@ public class SinaStorageService {
         redirected:((SCSObjectRquest)->Void)! = nil)
     {
         
-        let request = SCSObjectRquest.DELETERequestWithBucket(param["bucket"], key: param["key"]) as SCSObjectRquest
+        let request = SCSObjectRquest.DELETERequestWithBucket(param["bucket"], key: param["key"]) as! SCSObjectRquest
         self.configureRequest(request)
         
         if (started != nil) {

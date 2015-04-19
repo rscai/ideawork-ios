@@ -8,7 +8,7 @@
 
 import UIKit
 
-import SCSwift
+//import SCSwift
 
 class ChooseBaseColorViewController: UIViewController {
 
@@ -35,6 +35,14 @@ class ChooseBaseColorViewController: UIViewController {
     *
     */
     var design:Design?
+    
+    /******
+    * order properties
+    */
+    
+    private var itemId:String?
+    
+    //private var postLoadedScript:String?
     
     private var colorList:[SKUColor]=[SKUColor]()
     
@@ -63,6 +71,13 @@ class ChooseBaseColorViewController: UIViewController {
         }
     }
     
+
+    
+    /**********
+    *
+    * life cycle handlers
+    */
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -72,7 +87,7 @@ class ChooseBaseColorViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         // Do any additional setup after loading the view.
         
-        showModal()
+        SwiftSpinner.show("获取颜色与尺码列表...", animated: true)
         
         dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)){
             // time consuming network operation should be performed in queue than main quene
@@ -81,7 +96,7 @@ class ChooseBaseColorViewController: UIViewController {
             dispatch_async(dispatch_get_main_queue()){
                 self.baseColor=self.colorList[0]
                 self.size=self.sizeList[0]
-                self.hideModal()
+                SwiftSpinner.hide()
             }
         }
         
@@ -92,6 +107,25 @@ class ChooseBaseColorViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let identifier = segue.identifier {
+            switch(identifier){
+                case "openOrderConfirm":
+                    if let broughtViewController = segue.destinationViewController as? BroughtViewController {
+                        
+                        if let targetUrl = sender as? NSURL {
+                            broughtViewController.url = targetUrl
+                            //broughtViewController.postLoadedScript=self.postLoadedScript!
+                        }
+                        
+                        
+                    }
+                default:
+                    print("unhandled segue \(segue)")
+            }
+        }
     }
     
     /************
@@ -177,6 +211,25 @@ class ChooseBaseColorViewController: UIViewController {
     }
 */
     @IBAction func doAddOrderItem(sender: UIBarButtonItem) {
+        // show guide for user
+        let guide = "为了保护消费都权益，所有交易都通淘宝担保交易。\n1. 定制信息已拷贝到粘贴板\n2.用户在淘宝中下单，并将粘贴板中的定制信息贴至'给卖家的留言'中\n3.回到应用中预览确认定制內容\n4.付款"
+        
+        var alert = UIAlertController(title: "交易指南", message: guide, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler:{
+            (Void) -> Void in
+            self.doOrder()
+        }))
+        alert.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Default, handler:nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+        
+    }
+    
+    private func doOrder(){
+        
+        // show activity indicator
+        SwiftSpinner.show("上传图片...", animated: true)
+        
         println("add item color:\(self.baseColor!.uiColor.description), size:\(self.size?.name)")
         
         // upload print and preview image
@@ -199,6 +252,11 @@ class ChooseBaseColorViewController: UIViewController {
         self.uploadImages(keyAndImages, completionHandler: { (result:[(key: String, image: UIImage, success: Bool, error: String?)]) -> Void in
             println("completed. \(result)")
             
+            // hide activity indicator
+            dispatch_async(dispatch_get_main_queue()){
+                SwiftSpinner.hide()
+            }
+            
             // check result
             
             for resultElement in result {
@@ -209,18 +267,71 @@ class ChooseBaseColorViewController: UIViewController {
             }
             
             let uploadedImageUrl = (printImageUrl:"http://cdn.sinacloud.net/\(self.cloudBucket)/\(result[0].key)",previewImageUrl:"http://cdn.sinacloud.net/\(self.cloudBucket)/\(result[1].key)")
+            let designInfo = (print:(bucket:self.cloudBucket,key:result[0].key),preview:(bucket:self.cloudBucket,key:result[1].key))
             
             // open taobao order view
             
-            let orderConfirmUrl = "http://buy.m.tmall.com/order/confirmOrderWap.htm?_input_charset=utf-8&buyNow=true&etm=post&itemId=26601592578&skuId=71995122308&quantity=1&divisionCode=310100#home"
+            // lookup sku
+            let skuIndex = "\(self.baseColor!.name)-\(self.size!.name)"
+            let sku = self.skuIndex[skuIndex]
+            
+            let orderConfirmUrl = "http://h5.m.taobao.com/awp/base/order.htm?itemId=\(self.itemId!)&_input_charset=utf-8&buyNow=true&v=0&skuId=\(sku!.id)#!/awp/base/order.htm?itemId=\(self.itemId!)&_input_charset=utf-8&buyNow=true&v=0&skuId=\(sku!.id)"
+            
+            //http://buy.m.tmall.com/order/confirmOrderWap.htm?_input_charset=utf-8&buyNow=true&etm=post&itemId=44775785190&skuId=82445770163&quantity=1#home
+            
+            let detailUrl="item.taobao.com/item.htm?id=\(self.itemId!)";
+            
+            // generate memo
+            let memo = self.generateMemo(designInfo)
+            
+            // copy memo to pasteboard
+            UIPasteboard.generalPasteboard().string=memo
+            
+            // open taobao client
+            
+            let taobaoClientURL = NSURL(string:"taobao://\(detailUrl)")!
+            let browserURL = NSURL(string:"http://\(detailUrl)")!
+            
+            let openTaobaoClientResult = UIApplication.sharedApplication().openURL(taobaoClientURL)
+            if openTaobaoClientResult == true {
+                println("open taobao client successfully.")
+            }else{
+                let openBroswerResult = UIApplication.sharedApplication().openURL(browserURL)
+                println("open browser result: \(openBroswerResult)")
+            }
+            
+            // load post loaded script from remote
+            /*
+            var enc:NSStringEncoding = NSUTF8StringEncoding
+            var err:NSError?
+            var postLoadedScript:String =
+            String(NSString(
+            contentsOfURL:NSURL(string: "http://cdn.sinacloud.net/\(self.cloudBucket)/config/postLoadedScript.js")!, usedEncoding:&enc, error:&err
+            )!)
             
             
+            postLoadedScript = "var memo='\(memo)';"+postLoadedScript
+            
+            
+            postLoadedScript="setTimeout(function(){\(postLoadedScript)},500);"
+            
+            self.postLoadedScript=postLoadedScript
+            */
+            //self.performSegueWithIdentifier("openOrderConfirm", sender: NSURL(string:orderConfirmUrl))
         })
-        
     }
     
-    private func uploadImages(keyAndImages:[(key:String,image:UIImage)], completionHandler:(([(key:String,image:UIImage,success:Bool,error:String?)])->Void)?) -> Void {
+    private func generateMemo(designInfo:(print:(bucket:String,key:String),preview:(bucket:String,key:String))) -> String {
+        let memo = "{\"hint\":\"定制內容信息，请勿修改！\",\"designInfo\":{\"print\":{\"bucket\":\"\(designInfo.print.bucket)\",\"key\":\"\(designInfo.print.key)\"},\"preview\":{\"bucket\":\"\(designInfo.preview.bucket)\",\"key\":\"\(designInfo.preview.key)\"}}}"
         
+        return memo
+    }
+    
+    /**
+    * run in background thread
+    */
+    private func uploadImages(keyAndImages:[(key:String,image:UIImage)], completionHandler:(([(key:String,image:UIImage,success:Bool,error:String?)])->Void)?) -> Void {
+
         var output:[(key:String,image:UIImage,success:Bool,error:String?)] = []
 
         for i in 0..<keyAndImages.count {
@@ -250,7 +361,7 @@ class ChooseBaseColorViewController: UIViewController {
             let image = keyAndImages[index].image
             let imageData = UIImagePNGRepresentation(image)
             
-            self.sinaStorage.uploadObject(data: imageData, bucket: self.cloudBucket, key: key, accessPolicy: AccessPolicy.access_public_read, started: nil, finished: { (request:SCSObjectRquest) -> Void in
+            self.sinaStorage.uploadObject(data: imageData, mimeType:"image/png", bucket: self.cloudBucket, key: key, started: nil, finished: { (request:SCSObjectRquest) -> Void in
                     println("fininsed \(request.key)")
                 
                     output[index] = (key:key,image:image,success:true,error:nil)
@@ -278,89 +389,11 @@ class ChooseBaseColorViewController: UIViewController {
                 uploadSingleImage(i)
             }
         }
+            
+        
     }
     
-    /**
-    * batch upload image on background. When completed call completetionHandler
-    *
-    * @keyAndImages
-    * @completionHandler (key,image,success or failed, failed message)
-    */
-/*
-    private func uploadPrintAndPreview(keyAndImages:(print:(String,UIImage),preview:(String,UIImage)),completionHandler:((print:(String,UIImage,Bool,String?),preview:(String,UIImage,Bool,String?)) -> Void)?) {
-        
-        var printOutput:(String,UIImage,Bool,String?)?
-        var previewOutput:(String,UIImage,Bool,String?)?
-        
-        let printKey = keyAndImages.print.0
-        let printImage = keyAndImages.print.1
-        let printImageData = UIImagePNGRepresentation(printImage)
-        
-        let uploadPreview:(preview:(String,UIImage))->Void = {
-            (preview:(String,UIImage))->Void
-            in
-            
-            let key = preview.0
-            let image = preview.1
-            let imageData = UIImagePNGRepresentation(image)
-            
-            self.sinaStorage.uploadObject(data: imageData, bucket: "ideadwork-dev", key: key, accessPolicy: AccessPolicy.access_public_read, started: nil, finished: { (request:SCSObjectRquest) -> Void in
-                println("fininsed \(request.key)")
-                
-                previewOutput = (printKey,printImage,true,nil)
-                
-                let output = (print:printOutput!,preview:previewOutput!)
-                completionHandler?(output)
-                
-                }, failed: { (request) -> Void in
-                    println("failed \(request.error)")
-                    
-                    previewOutput = (printKey,printImage,true,"\(request.error)")
-                    
-                    let output = (print:printOutput!,preview:previewOutput!)
-                    completionHandler?(output)
-                    
-                }, headerReceived: { (request:SCSObjectRquest) -> Void in
-                    println("header received")
-                }, redirected: { (request:SCSObjectRquest) -> Void in
-                    println("redirected")
-                }) { (request:SCSObjectRquest, a:UInt64, b:UInt64) -> Void in
-                    println("progress \(a), \(b)")
-            }
-        }
-        
-        self.sinaStorage.uploadObject(data: printImageData, bucket: "ideadwork-dev", key: printKey, accessPolicy: AccessPolicy.access_public_read, started: nil, finished: { (request:SCSObjectRquest) -> Void in
-                println("fininsed \(request.key)")
-            
-                printOutput = (printKey,printImage,true,nil)
-            
-                uploadPreview(preview: keyAndImages.preview)
-            
-            
-            }, failed: { (request) -> Void in
-                println("failed \(request.error)")
-                
-                printOutput = (printKey,printImage,true,"\(request.error)")
-                
-                uploadPreview(preview: keyAndImages.preview)
-                
-            }, headerReceived: { (request:SCSObjectRquest) -> Void in
-                println("header received")
-            }, redirected: { (request:SCSObjectRquest) -> Void in
-                println("redirected")
-            }) { (request:SCSObjectRquest, a:UInt64, b:UInt64) -> Void in
-                println("progress \(a), \(b)")
-        }
-    }*/
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     private func renderDesignPreview(design: Design, baseColor:UIColor)->UIImage?{
         // extract template layers and print as images
@@ -369,7 +402,7 @@ class ChooseBaseColorViewController: UIViewController {
         var colorImage:UIImage?
         var printImage:UIImage = design.print!
         
-        for layer in design.designTemplate.layers.array as [Layer] {
+        for layer in design.designTemplate.layers.array as! [Layer] {
             switch layer.name {
                 case "background":
                     backgroundImage=layer.image
@@ -410,7 +443,7 @@ class ChooseBaseColorViewController: UIViewController {
         
         let config = JSON(url:"http://cdn.sinacloud.net/ideadwork-dev/config/taobao-integration-config.json")
         
-        let itemId = config["item"]["itemId"].asString
+        self.itemId = config["item"]["itemId"].asString
         
         var skus:[Sku]=[Sku]()
         
@@ -468,22 +501,7 @@ class ChooseBaseColorViewController: UIViewController {
     }
     
     
-    private func showModal(){
-        self.overlayView = UIView(frame: UIScreen.mainScreen().bounds)
-        self.overlayView?.backgroundColor=UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-        
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
-        activityIndicator.center = overlayView!.center
-        overlayView?.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-        UIApplication.sharedApplication().delegate?.window!?.addSubview(self.overlayView!)
-        
-        
-    }
-    
-    private func hideModal(){
-        self.overlayView?.removeFromSuperview()
-    }
+
 
 }
 

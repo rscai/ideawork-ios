@@ -81,7 +81,7 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
     // filters
     
     @IBAction func doCartoonizeFilter(sender: UIBarButtonItem) {
-        self.showModal()
+        SwiftSpinner.show("处理图片...", animated: true)
         
         dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)){
             let filteredImage = ImgProcWrapper.cartoonizeFilter(self.modifiedImage!)
@@ -90,7 +90,7 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
             dispatch_async(dispatch_get_main_queue()){
                 self.modifiedImage=filteredImage
             
-                self.hideModal()
+                SwiftSpinner.hide()
             }
         }
         
@@ -104,7 +104,7 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
     }
     
     //
-    func imagePickerController(picker: UIImagePickerController!, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]!)
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject])
     {
         picker.dismissViewControllerAnimated(true, completion: nil)
         var image=info[UIImagePickerControllerOriginalImage] as? UIImage
@@ -121,7 +121,7 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
         //self.presentViewController(importImageViewController!,animated:true,completion:nil)
         
     }
-    func imagePickerControllerDidCancel(picker: UIImagePickerController!)
+    func imagePickerControllerDidCancel(picker: UIImagePickerController)
     {
         println("picker cancel.")
     }
@@ -190,23 +190,7 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
     *
     * helper functions
     */
-    
-    private func showModal(){
-        self.overlayView = UIView(frame: UIScreen.mainScreen().bounds)
-        self.overlayView?.backgroundColor=UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-        
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
-        activityIndicator.center = overlayView!.center
-        overlayView?.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-        UIApplication.sharedApplication().delegate?.window!?.addSubview(self.overlayView!)
-        
-        
-    }
-    
-    private func hideModal(){
-        self.overlayView?.removeFromSuperview()
-    }
+
 
     private func imageFixOrientation(img:UIImage) -> UIImage {
         
@@ -257,7 +241,7 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
         
         // Now we draw the underlying CGImage into a new context, applying the transform
         // calculated above.
-        var ctx:CGContextRef = CGBitmapContextCreate(nil, UInt(img.size.width), UInt(img.size.height),
+        var ctx:CGContextRef = CGBitmapContextCreate(nil, Int(img.size.width), Int(img.size.height),
             CGImageGetBitsPerComponent(img.CGImage), 0,
             CGImageGetColorSpace(img.CGImage),
             CGImageGetBitmapInfo(img.CGImage));

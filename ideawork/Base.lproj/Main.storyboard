@@ -228,11 +228,46 @@
                         <outlet property="colorButton" destination="BbR-wD-YC9" id="FCe-UD-yPF"/>
                         <outlet property="previewImageView" destination="zmG-eS-Mb3" id="G8M-SS-teJ"/>
                         <outlet property="sizeButton" destination="6ML-py-TcV" id="YXz-gL-DQb"/>
+                        <segue destination="eWg-E5-NF4" kind="show" identifier="openOrderConfirm" id="AII-Ae-MX3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mDl-hI-fV0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1876" y="-670"/>
+        </scene>
+        <!--Brought View Controller-->
+        <scene sceneID="Bsm-BA-4ho">
+            <objects>
+                <viewController id="eWg-E5-NF4" customClass="BroughtViewController" customModule="ideawork" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8LQ-4t-r2U"/>
+                        <viewControllerLayoutGuide type="bottom" id="cdp-T1-aJ8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cYX-nh-1CV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRd-x0-avp">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="XRd-x0-avp" firstAttribute="top" secondItem="8LQ-4t-r2U" secondAttribute="bottom" constant="-64" id="3qu-hE-rf7"/>
+                            <constraint firstItem="cdp-T1-aJ8" firstAttribute="top" secondItem="XRd-x0-avp" secondAttribute="bottom" id="91n-fp-YYI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="XRd-x0-avp" secondAttribute="trailing" constant="-16" id="pKZ-3h-JHx"/>
+                            <constraint firstItem="XRd-x0-avp" firstAttribute="leading" secondItem="cYX-nh-1CV" secondAttribute="leadingMargin" constant="-16" id="yV6-fW-I9y"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="webView" destination="XRd-x0-avp" id="Oku-hL-NgQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lXf-xp-Ccf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2307" y="-670"/>
         </scene>
         <!--Import Image View Controller-->
         <scene sceneID="bP1-NV-Z4M">

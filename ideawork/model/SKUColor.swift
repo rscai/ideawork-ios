@@ -16,7 +16,7 @@ class SKUColor {
     var red:UInt{
         get{
             if let num = UInt(self.rgbHex,radix:16){
-                return num / (256^2)
+                return num / ( 256 * 256 )
             }else{
                 return 0
             }
@@ -36,7 +36,7 @@ class SKUColor {
     var blue:UInt{
         get{
             if let num = UInt(self.rgbHex,radix:16){
-                return num % (256^2)
+                return num % 256
             }else{
                 return 0
             }
@@ -46,7 +46,7 @@ class SKUColor {
     var uiColor:UIColor{
         get{
             let max:UInt = 255
-            return UIColor(red:CGFloat(self.red/max) , green:CGFloat(self.green/max) , blue:CGFloat(self.blue/max) , alpha:1)
+            return UIColor(red:CGFloat(self.red)/CGFloat(max) , green:CGFloat(self.green)/CGFloat(max) , blue:CGFloat(self.blue)/CGFloat(max) , alpha:1)
 
         }
     }

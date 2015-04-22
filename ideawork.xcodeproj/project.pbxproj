@@ -13,7 +13,6 @@
 		0C26EC161A984E6000927996 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C26EC151A984E6000927996 /* Images.xcassets */; };
 		0C26EC191A984E6000927996 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C26EC171A984E6000927996 /* LaunchScreen.xib */; };
 		0C26EC251A984E6000927996 /* ideaworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26EC241A984E6000927996 /* ideaworkTests.swift */; };
-		0C4641911AD11D7800A44D00 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C4641901AD11D7800A44D00 /* opencv2.framework */; };
 		0C4641931AD11F8B00A44D00 /* TestChooseBaseColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4641921AD11F8B00A44D00 /* TestChooseBaseColorViewController.swift */; };
 		0C4641961AD160A000A44D00 /* json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4641951AD160A000A44D00 /* json.swift */; };
 		0C4641991AD1625200A44D00 /* SKUColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4641981AD1625200A44D00 /* SKUColor.swift */; };
@@ -29,10 +28,19 @@
 		0C4641D31AD2843000A44D00 /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C4641CB1AD2843000A44D00 /* SWActionSheet.m */; };
 		0C4641D91AD2AB8700A44D00 /* SinaStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4641D81AD2AB8700A44D00 /* SinaStorageService.swift */; };
 		0C4641DE1AD91FBB00A44D00 /* BroughtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4641DD1AD91FBB00A44D00 /* BroughtViewController.swift */; };
+		0C8F3D5E1AE54494001A60A2 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C8F3D5D1AE54494001A60A2 /* opencv2.framework */; };
 		0C91C5521AE34B5D00F41147 /* SwiftSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91C5511AE34B5D00F41147 /* SwiftSpinner.swift */; };
-		0C91C5541AE3A2C700F41147 /* SCSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C91C5531AE3A2C700F41147 /* SCSwift.framework */; };
-		0C91C5551AE3A2C700F41147 /* SCSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C91C5531AE3A2C700F41147 /* SCSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0C91C55A1AE5386800F41147 /* OrderManagementEntryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91C5591AE5386800F41147 /* OrderManagementEntryButton.swift */; };
 		0CB2D1441AD11B9700C631BB /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB2D1431AD11B9700C631BB /* libstdc++.6.0.9.dylib */; };
+		0CB5CB251AE7CEA300A5DAAC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB5CB241AE7CEA300A5DAAC /* libz.dylib */; };
+		0CB5CB271AE7CEBD00A5DAAC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB5CB261AE7CEBD00A5DAAC /* CoreGraphics.framework */; };
+		0CB5CB291AE7CEC600A5DAAC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB5CB281AE7CEC600A5DAAC /* CFNetwork.framework */; };
+		0CB5CB2B1AE7CED000A5DAAC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB5CB2A1AE7CED000A5DAAC /* SystemConfiguration.framework */; };
+		0CB5CB2D1AE7CED900A5DAAC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB5CB2C1AE7CED900A5DAAC /* MobileCoreServices.framework */; };
+		0CB5CB2F1AE7CEEB00A5DAAC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB5CB2E1AE7CEEB00A5DAAC /* Foundation.framework */; };
+		0CB5CB311AE7CEF500A5DAAC /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB5CB301AE7CEF500A5DAAC /* CoreFoundation.framework */; };
+		0CB5CB331AE7CEFF00A5DAAC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB5CB321AE7CEFF00A5DAAC /* UIKit.framework */; };
+		0CB5CB371AE7D06900A5DAAC /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CB5CB361AE7D06900A5DAAC /* libxml2.dylib */; };
 		0CD16AAD1AA49F1300E1C77A /* DesignService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD16AAC1AA49F1300E1C77A /* DesignService.swift */; };
 		0CD16AB51AA49F5100E1C77A /* ChooseBaseColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD16AAE1AA49F5100E1C77A /* ChooseBaseColorViewController.swift */; };
 		0CD16AB61AA49F5100E1C77A /* DesignViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD16AAF1AA49F5100E1C77A /* DesignViewCell.swift */; };
@@ -57,6 +65,31 @@
 		0CD16AE31AAAF22F00E1C77A /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD16AE21AAAF22F00E1C77A /* Layer.swift */; };
 		0CD3D4F01AC6A1A8007CBCBC /* TestImgProcWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD3D4EF1AC6A1A8007CBCBC /* TestImgProcWrapper.m */; };
 		0CD3D4FB1AC7B519007CBCBC /* wrinkles.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CD3D4FA1AC7B519007CBCBC /* wrinkles.png */; };
+		0CDE4D511AE7CA6C00041C18 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE4CF71AE7CA6C00041C18 /* ASIAuthenticationDialog.m */; };
+		0CDE4D521AE7CA6C00041C18 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE4CFA1AE7CA6C00041C18 /* ASIDataCompressor.m */; };
+		0CDE4D531AE7CA6C00041C18 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE4CFC1AE7CA6C00041C18 /* ASIDataDecompressor.m */; };
+		0CDE4D541AE7CA6C00041C18 /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE4CFE1AE7CA6C00041C18 /* ASIDownloadCache.m */; };
+		0CDE4D551AE7CA6C00041C18 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE4D001AE7CA6C00041C18 /* ASIFormDataRequest.m */; };
+		0CDE4D561AE7CA6C00041C18 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE4D021AE7CA6C00041C18 /* ASIHTTPRequest.m */; };
+		0CDE4D571AE7CA6C00041C18 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE4D061AE7CA6C00041C18 /* ASIInputStream.m */; };
+		0CDE4D581AE7CA6C00041C18 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE4D081AE7CA6C00041C18 /* ASINetworkQueue.m */; };
+		0CDE4D591AE7CA6C00041C18 /* ASIWebPageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE4D0C1AE7CA6C00041C18 /* ASIWebPageRequest.m */; };
+		0CDE4D5A1AE7CA6C00041C18 /* ASICloudFilesCDNRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE4D0F1AE7CA6C00041C18 /* ASICloudFilesCDNRequest.m */; };
+		0CDE4D5B1AE7CA6C00041C18 /* ASICloudFilesContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE4D111AE7CA6C00041C18 /* ASICloudFilesContainer.m */; };
+		0CDE4D5C1AE7CA6C00041C18 /* ASICloudFilesContainerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE4D131AE7CA6C00041C18 /* ASICloudFilesContainerRequest.m */; };
+		0CDE4D5D1AE7CA6C00041C18 /* ASICloudFilesContainerXMLParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE4D151AE7CA6C00041C18 /* ASICloudFilesContainerXMLParserDelegate.m */; };
+		0CDE4D5E1AE7CA6C00041C18 /* ASICloudFilesObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE4D171AE7CA6C00041C18 /* ASICloudFilesObject.m */; };
+		0CDE4D5F1AE7CA6C00041C18 /* ASICloudFilesObjectRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE4D191AE7CA6C00041C18 /* ASICloudFilesObjectRequest.m */; };
+		0CDE4D601AE7CA6C00041C18 /* ASICloudFilesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE4D1B1AE7CA6C00041C18 /* ASICloudFilesRequest.m */; };
+		0CDE4D611AE7CA6C00041C18 /* ASIS3Bucket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE4D1F1AE7CA6C00041C18 /* ASIS3Bucket.m */; };
+		0CDE4D621AE7CA6C00041C18 /* ASIS3BucketObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE4D211AE7CA6C00041C18 /* ASIS3BucketObject.m */; };
+		0CDE4D631AE7CA6C00041C18 /* ASIS3BucketRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE4D231AE7CA6C00041C18 /* ASIS3BucketRequest.m */; };
+		0CDE4D641AE7CA6C00041C18 /* ASIS3ObjectRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE4D251AE7CA6C00041C18 /* ASIS3ObjectRequest.m */; };
+		0CDE4D651AE7CA6C00041C18 /* ASIS3Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE4D271AE7CA6C00041C18 /* ASIS3Request.m */; };
+		0CDE4D661AE7CA6C00041C18 /* ASIS3ServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE4D291AE7CA6C00041C18 /* ASIS3ServiceRequest.m */; };
+		0CDE4D771AE7CA6C00041C18 /* README-GHUnit in Resources */ = {isa = PBXBuildFile; fileRef = 0CDE4D4C1AE7CA6C00041C18 /* README-GHUnit */; };
+		0CDE4D781AE7CA6C00041C18 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE4D4F1AE7CA6C00041C18 /* Reachability.m */; };
+		0CDE4D791AE7CA6C00041C18 /* SCSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDE4D501AE7CA6C00041C18 /* SCSwift.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,20 +102,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		0C91C5561AE3A2C800F41147 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				0C91C5551AE3A2C700F41147 /* SCSwift.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		0C0DB4821ADBFD5A002566D7 /* postLoadedScript.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = postLoadedScript.js; path = resources/config/postLoadedScript.js; sourceTree = "<group>"; };
 		0C26EC091A984E6000927996 /* ideawork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ideawork.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,7 +113,6 @@
 		0C26EC1E1A984E6000927996 /* ideaworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ideaworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C26EC231A984E6000927996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C26EC241A984E6000927996 /* ideaworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ideaworkTests.swift; sourceTree = "<group>"; };
-		0C4641901AD11D7800A44D00 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../libs/opencv/2.4.10/opencv2.framework; sourceTree = "<group>"; };
 		0C4641921AD11F8B00A44D00 /* TestChooseBaseColorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestChooseBaseColorViewController.swift; path = controller/TestChooseBaseColorViewController.swift; sourceTree = "<group>"; };
 		0C4641951AD160A000A44D00 /* json.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = json.swift; sourceTree = "<group>"; };
 		0C4641981AD1625200A44D00 /* SKUColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SKUColor.swift; path = model/SKUColor.swift; sourceTree = "<group>"; };
@@ -121,9 +139,19 @@
 		0C4641D81AD2AB8700A44D00 /* SinaStorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SinaStorageService.swift; path = util/SinaStorageService.swift; sourceTree = "<group>"; };
 		0C4641DD1AD91FBB00A44D00 /* BroughtViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BroughtViewController.swift; path = controller/BroughtViewController.swift; sourceTree = "<group>"; };
 		0C6CC5DB1A9D65720016298C /* ideawork-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ideawork-Bridging-Header.h"; sourceTree = "<group>"; };
+		0C8F3D5D1AE54494001A60A2 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../libs/opencv/2.4.9/opencv2.framework; sourceTree = "<group>"; };
 		0C91C5511AE34B5D00F41147 /* SwiftSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSpinner.swift; sourceTree = "<group>"; };
-		0C91C5531AE3A2C700F41147 /* SCSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SCSwift.framework; path = ../libs/SCSwift.framework; sourceTree = "<group>"; };
+		0C91C5591AE5386800F41147 /* OrderManagementEntryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrderManagementEntryButton.swift; path = view/OrderManagementEntryButton.swift; sourceTree = "<group>"; };
 		0CB2D1431AD11B9700C631BB /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
+		0CB5CB241AE7CEA300A5DAAC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		0CB5CB261AE7CEBD00A5DAAC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		0CB5CB281AE7CEC600A5DAAC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		0CB5CB2A1AE7CED000A5DAAC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		0CB5CB2C1AE7CED900A5DAAC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		0CB5CB2E1AE7CEEB00A5DAAC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		0CB5CB301AE7CEF500A5DAAC /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		0CB5CB321AE7CEFF00A5DAAC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		0CB5CB361AE7D06900A5DAAC /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		0CD16AAC1AA49F1300E1C77A /* DesignService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignService.swift; path = service/DesignService.swift; sourceTree = "<group>"; };
 		0CD16AAE1AA49F5100E1C77A /* ChooseBaseColorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChooseBaseColorViewController.swift; path = controller/ChooseBaseColorViewController.swift; sourceTree = "<group>"; };
 		0CD16AAF1AA49F5100E1C77A /* DesignViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DesignViewCell.swift; path = controller/DesignViewCell.swift; sourceTree = "<group>"; };
@@ -150,6 +178,59 @@
 		0CD3D4EE1AC6A1A7007CBCBC /* ideaworkTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ideaworkTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		0CD3D4EF1AC6A1A8007CBCBC /* TestImgProcWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestImgProcWrapper.m; path = util/opencv/TestImgProcWrapper.m; sourceTree = "<group>"; };
 		0CD3D4FA1AC7B519007CBCBC /* wrinkles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wrinkles.png; path = resources/designTemplate/defaultTeeShirt/wrinkles.png; sourceTree = "<group>"; };
+		0CDE4CF61AE7CA6C00041C18 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
+		0CDE4CF71AE7CA6C00041C18 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
+		0CDE4CF81AE7CA6C00041C18 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
+		0CDE4CF91AE7CA6C00041C18 /* ASIDataCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDataCompressor.h; sourceTree = "<group>"; };
+		0CDE4CFA1AE7CA6C00041C18 /* ASIDataCompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIDataCompressor.m; sourceTree = "<group>"; };
+		0CDE4CFB1AE7CA6C00041C18 /* ASIDataDecompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDataDecompressor.h; sourceTree = "<group>"; };
+		0CDE4CFC1AE7CA6C00041C18 /* ASIDataDecompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIDataDecompressor.m; sourceTree = "<group>"; };
+		0CDE4CFD1AE7CA6C00041C18 /* ASIDownloadCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDownloadCache.h; sourceTree = "<group>"; };
+		0CDE4CFE1AE7CA6C00041C18 /* ASIDownloadCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIDownloadCache.m; sourceTree = "<group>"; };
+		0CDE4CFF1AE7CA6C00041C18 /* ASIFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIFormDataRequest.h; sourceTree = "<group>"; };
+		0CDE4D001AE7CA6C00041C18 /* ASIFormDataRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIFormDataRequest.m; sourceTree = "<group>"; };
+		0CDE4D011AE7CA6C00041C18 /* ASIHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequest.h; sourceTree = "<group>"; };
+		0CDE4D021AE7CA6C00041C18 /* ASIHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIHTTPRequest.m; sourceTree = "<group>"; };
+		0CDE4D031AE7CA6C00041C18 /* ASIHTTPRequestConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestConfig.h; sourceTree = "<group>"; };
+		0CDE4D041AE7CA6C00041C18 /* ASIHTTPRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestDelegate.h; sourceTree = "<group>"; };
+		0CDE4D051AE7CA6C00041C18 /* ASIInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIInputStream.h; sourceTree = "<group>"; };
+		0CDE4D061AE7CA6C00041C18 /* ASIInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIInputStream.m; sourceTree = "<group>"; };
+		0CDE4D071AE7CA6C00041C18 /* ASINetworkQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASINetworkQueue.h; sourceTree = "<group>"; };
+		0CDE4D081AE7CA6C00041C18 /* ASINetworkQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASINetworkQueue.m; sourceTree = "<group>"; };
+		0CDE4D091AE7CA6C00041C18 /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
+		0CDE4D0B1AE7CA6C00041C18 /* ASIWebPageRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIWebPageRequest.h; sourceTree = "<group>"; };
+		0CDE4D0C1AE7CA6C00041C18 /* ASIWebPageRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIWebPageRequest.m; sourceTree = "<group>"; };
+		0CDE4D0E1AE7CA6C00041C18 /* ASICloudFilesCDNRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICloudFilesCDNRequest.h; sourceTree = "<group>"; };
+		0CDE4D0F1AE7CA6C00041C18 /* ASICloudFilesCDNRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASICloudFilesCDNRequest.m; sourceTree = "<group>"; };
+		0CDE4D101AE7CA6C00041C18 /* ASICloudFilesContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICloudFilesContainer.h; sourceTree = "<group>"; };
+		0CDE4D111AE7CA6C00041C18 /* ASICloudFilesContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASICloudFilesContainer.m; sourceTree = "<group>"; };
+		0CDE4D121AE7CA6C00041C18 /* ASICloudFilesContainerRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICloudFilesContainerRequest.h; sourceTree = "<group>"; };
+		0CDE4D131AE7CA6C00041C18 /* ASICloudFilesContainerRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASICloudFilesContainerRequest.m; sourceTree = "<group>"; };
+		0CDE4D141AE7CA6C00041C18 /* ASICloudFilesContainerXMLParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICloudFilesContainerXMLParserDelegate.h; sourceTree = "<group>"; };
+		0CDE4D151AE7CA6C00041C18 /* ASICloudFilesContainerXMLParserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASICloudFilesContainerXMLParserDelegate.m; sourceTree = "<group>"; };
+		0CDE4D161AE7CA6C00041C18 /* ASICloudFilesObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICloudFilesObject.h; sourceTree = "<group>"; };
+		0CDE4D171AE7CA6C00041C18 /* ASICloudFilesObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASICloudFilesObject.m; sourceTree = "<group>"; };
+		0CDE4D181AE7CA6C00041C18 /* ASICloudFilesObjectRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICloudFilesObjectRequest.h; sourceTree = "<group>"; };
+		0CDE4D191AE7CA6C00041C18 /* ASICloudFilesObjectRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASICloudFilesObjectRequest.m; sourceTree = "<group>"; };
+		0CDE4D1A1AE7CA6C00041C18 /* ASICloudFilesRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICloudFilesRequest.h; sourceTree = "<group>"; };
+		0CDE4D1B1AE7CA6C00041C18 /* ASICloudFilesRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASICloudFilesRequest.m; sourceTree = "<group>"; };
+		0CDE4D1D1AE7CA6C00041C18 /* ASINSXMLParserCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASINSXMLParserCompat.h; sourceTree = "<group>"; };
+		0CDE4D1E1AE7CA6C00041C18 /* ASIS3Bucket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIS3Bucket.h; sourceTree = "<group>"; };
+		0CDE4D1F1AE7CA6C00041C18 /* ASIS3Bucket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIS3Bucket.m; sourceTree = "<group>"; };
+		0CDE4D201AE7CA6C00041C18 /* ASIS3BucketObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIS3BucketObject.h; sourceTree = "<group>"; };
+		0CDE4D211AE7CA6C00041C18 /* ASIS3BucketObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIS3BucketObject.m; sourceTree = "<group>"; };
+		0CDE4D221AE7CA6C00041C18 /* ASIS3BucketRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIS3BucketRequest.h; sourceTree = "<group>"; };
+		0CDE4D231AE7CA6C00041C18 /* ASIS3BucketRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIS3BucketRequest.m; sourceTree = "<group>"; };
+		0CDE4D241AE7CA6C00041C18 /* ASIS3ObjectRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIS3ObjectRequest.h; sourceTree = "<group>"; };
+		0CDE4D251AE7CA6C00041C18 /* ASIS3ObjectRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIS3ObjectRequest.m; sourceTree = "<group>"; };
+		0CDE4D261AE7CA6C00041C18 /* ASIS3Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIS3Request.h; sourceTree = "<group>"; };
+		0CDE4D271AE7CA6C00041C18 /* ASIS3Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIS3Request.m; sourceTree = "<group>"; };
+		0CDE4D281AE7CA6C00041C18 /* ASIS3ServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIS3ServiceRequest.h; sourceTree = "<group>"; };
+		0CDE4D291AE7CA6C00041C18 /* ASIS3ServiceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIS3ServiceRequest.m; sourceTree = "<group>"; };
+		0CDE4D4C1AE7CA6C00041C18 /* README-GHUnit */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "README-GHUnit"; sourceTree = "<group>"; };
+		0CDE4D4E1AE7CA6C00041C18 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		0CDE4D4F1AE7CA6C00041C18 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		0CDE4D501AE7CA6C00041C18 /* SCSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCSwift.swift; sourceTree = "<group>"; };
 		0CEF66F31ACFE0A00063D357 /* taobao-integration-config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = "taobao-integration-config.json"; path = "resources/config/taobao-integration-config.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,8 +239,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C4641911AD11D7800A44D00 /* opencv2.framework in Frameworks */,
-				0C91C5541AE3A2C700F41147 /* SCSwift.framework in Frameworks */,
+				0CB5CB371AE7D06900A5DAAC /* libxml2.dylib in Frameworks */,
+				0CB5CB331AE7CEFF00A5DAAC /* UIKit.framework in Frameworks */,
+				0CB5CB311AE7CEF500A5DAAC /* CoreFoundation.framework in Frameworks */,
+				0CB5CB2F1AE7CEEB00A5DAAC /* Foundation.framework in Frameworks */,
+				0CB5CB2D1AE7CED900A5DAAC /* MobileCoreServices.framework in Frameworks */,
+				0CB5CB2B1AE7CED000A5DAAC /* SystemConfiguration.framework in Frameworks */,
+				0CB5CB291AE7CEC600A5DAAC /* CFNetwork.framework in Frameworks */,
+				0CB5CB271AE7CEBD00A5DAAC /* CoreGraphics.framework in Frameworks */,
+				0CB5CB251AE7CEA300A5DAAC /* libz.dylib in Frameworks */,
+				0C8F3D5E1AE54494001A60A2 /* opencv2.framework in Frameworks */,
 				0CB2D1441AD11B9700C631BB /* libstdc++.6.0.9.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -177,8 +266,16 @@
 		0C26EC001A984E6000927996 = {
 			isa = PBXGroup;
 			children = (
-				0C91C5531AE3A2C700F41147 /* SCSwift.framework */,
-				0C4641901AD11D7800A44D00 /* opencv2.framework */,
+				0CB5CB361AE7D06900A5DAAC /* libxml2.dylib */,
+				0CB5CB321AE7CEFF00A5DAAC /* UIKit.framework */,
+				0CB5CB301AE7CEF500A5DAAC /* CoreFoundation.framework */,
+				0CB5CB2E1AE7CEEB00A5DAAC /* Foundation.framework */,
+				0CB5CB2C1AE7CED900A5DAAC /* MobileCoreServices.framework */,
+				0CB5CB2A1AE7CED000A5DAAC /* SystemConfiguration.framework */,
+				0CB5CB281AE7CEC600A5DAAC /* CFNetwork.framework */,
+				0CB5CB261AE7CEBD00A5DAAC /* CoreGraphics.framework */,
+				0CB5CB241AE7CEA300A5DAAC /* libz.dylib */,
+				0C8F3D5D1AE54494001A60A2 /* opencv2.framework */,
 				0CB2D1431AD11B9700C631BB /* libstdc++.6.0.9.dylib */,
 				0C26EC0B1A984E6000927996 /* ideawork */,
 				0C26EC211A984E6000927996 /* ideaworkTests */,
@@ -295,6 +392,7 @@
 		0C26EC371A997A1300927996 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				0C91C5591AE5386800F41147 /* OrderManagementEntryButton.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -302,6 +400,7 @@
 		0C26EC481A9B220B00927996 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				0CDE4CF41AE7CA6C00041C18 /* sinaStorage */,
 				0C91C5501AE34B5D00F41147 /* SwiftSpinner */,
 				0C4641B91AD2843000A44D00 /* Pickers */,
 				0C4641941AD160A000A44D00 /* json */,
@@ -409,6 +508,123 @@
 			name = opencv;
 			sourceTree = "<group>";
 		};
+		0CDE4CF41AE7CA6C00041C18 /* sinaStorage */ = {
+			isa = PBXGroup;
+			children = (
+				0CDE4CF51AE7CA6C00041C18 /* Classes */,
+				0CDE4D4A1AE7CA6C00041C18 /* External */,
+				0CDE4D501AE7CA6C00041C18 /* SCSwift.swift */,
+			);
+			name = sinaStorage;
+			path = util/sinaStorage;
+			sourceTree = "<group>";
+		};
+		0CDE4CF51AE7CA6C00041C18 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				0CDE4CF61AE7CA6C00041C18 /* ASIAuthenticationDialog.h */,
+				0CDE4CF71AE7CA6C00041C18 /* ASIAuthenticationDialog.m */,
+				0CDE4CF81AE7CA6C00041C18 /* ASICacheDelegate.h */,
+				0CDE4CF91AE7CA6C00041C18 /* ASIDataCompressor.h */,
+				0CDE4CFA1AE7CA6C00041C18 /* ASIDataCompressor.m */,
+				0CDE4CFB1AE7CA6C00041C18 /* ASIDataDecompressor.h */,
+				0CDE4CFC1AE7CA6C00041C18 /* ASIDataDecompressor.m */,
+				0CDE4CFD1AE7CA6C00041C18 /* ASIDownloadCache.h */,
+				0CDE4CFE1AE7CA6C00041C18 /* ASIDownloadCache.m */,
+				0CDE4CFF1AE7CA6C00041C18 /* ASIFormDataRequest.h */,
+				0CDE4D001AE7CA6C00041C18 /* ASIFormDataRequest.m */,
+				0CDE4D011AE7CA6C00041C18 /* ASIHTTPRequest.h */,
+				0CDE4D021AE7CA6C00041C18 /* ASIHTTPRequest.m */,
+				0CDE4D031AE7CA6C00041C18 /* ASIHTTPRequestConfig.h */,
+				0CDE4D041AE7CA6C00041C18 /* ASIHTTPRequestDelegate.h */,
+				0CDE4D051AE7CA6C00041C18 /* ASIInputStream.h */,
+				0CDE4D061AE7CA6C00041C18 /* ASIInputStream.m */,
+				0CDE4D071AE7CA6C00041C18 /* ASINetworkQueue.h */,
+				0CDE4D081AE7CA6C00041C18 /* ASINetworkQueue.m */,
+				0CDE4D091AE7CA6C00041C18 /* ASIProgressDelegate.h */,
+				0CDE4D0A1AE7CA6C00041C18 /* ASIWebPageRequest */,
+				0CDE4D0D1AE7CA6C00041C18 /* CloudFiles */,
+				0CDE4D1C1AE7CA6C00041C18 /* S3 */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		0CDE4D0A1AE7CA6C00041C18 /* ASIWebPageRequest */ = {
+			isa = PBXGroup;
+			children = (
+				0CDE4D0B1AE7CA6C00041C18 /* ASIWebPageRequest.h */,
+				0CDE4D0C1AE7CA6C00041C18 /* ASIWebPageRequest.m */,
+			);
+			path = ASIWebPageRequest;
+			sourceTree = "<group>";
+		};
+		0CDE4D0D1AE7CA6C00041C18 /* CloudFiles */ = {
+			isa = PBXGroup;
+			children = (
+				0CDE4D0E1AE7CA6C00041C18 /* ASICloudFilesCDNRequest.h */,
+				0CDE4D0F1AE7CA6C00041C18 /* ASICloudFilesCDNRequest.m */,
+				0CDE4D101AE7CA6C00041C18 /* ASICloudFilesContainer.h */,
+				0CDE4D111AE7CA6C00041C18 /* ASICloudFilesContainer.m */,
+				0CDE4D121AE7CA6C00041C18 /* ASICloudFilesContainerRequest.h */,
+				0CDE4D131AE7CA6C00041C18 /* ASICloudFilesContainerRequest.m */,
+				0CDE4D141AE7CA6C00041C18 /* ASICloudFilesContainerXMLParserDelegate.h */,
+				0CDE4D151AE7CA6C00041C18 /* ASICloudFilesContainerXMLParserDelegate.m */,
+				0CDE4D161AE7CA6C00041C18 /* ASICloudFilesObject.h */,
+				0CDE4D171AE7CA6C00041C18 /* ASICloudFilesObject.m */,
+				0CDE4D181AE7CA6C00041C18 /* ASICloudFilesObjectRequest.h */,
+				0CDE4D191AE7CA6C00041C18 /* ASICloudFilesObjectRequest.m */,
+				0CDE4D1A1AE7CA6C00041C18 /* ASICloudFilesRequest.h */,
+				0CDE4D1B1AE7CA6C00041C18 /* ASICloudFilesRequest.m */,
+			);
+			path = CloudFiles;
+			sourceTree = "<group>";
+		};
+		0CDE4D1C1AE7CA6C00041C18 /* S3 */ = {
+			isa = PBXGroup;
+			children = (
+				0CDE4D1D1AE7CA6C00041C18 /* ASINSXMLParserCompat.h */,
+				0CDE4D1E1AE7CA6C00041C18 /* ASIS3Bucket.h */,
+				0CDE4D1F1AE7CA6C00041C18 /* ASIS3Bucket.m */,
+				0CDE4D201AE7CA6C00041C18 /* ASIS3BucketObject.h */,
+				0CDE4D211AE7CA6C00041C18 /* ASIS3BucketObject.m */,
+				0CDE4D221AE7CA6C00041C18 /* ASIS3BucketRequest.h */,
+				0CDE4D231AE7CA6C00041C18 /* ASIS3BucketRequest.m */,
+				0CDE4D241AE7CA6C00041C18 /* ASIS3ObjectRequest.h */,
+				0CDE4D251AE7CA6C00041C18 /* ASIS3ObjectRequest.m */,
+				0CDE4D261AE7CA6C00041C18 /* ASIS3Request.h */,
+				0CDE4D271AE7CA6C00041C18 /* ASIS3Request.m */,
+				0CDE4D281AE7CA6C00041C18 /* ASIS3ServiceRequest.h */,
+				0CDE4D291AE7CA6C00041C18 /* ASIS3ServiceRequest.m */,
+			);
+			path = S3;
+			sourceTree = "<group>";
+		};
+		0CDE4D4A1AE7CA6C00041C18 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				0CDE4D4B1AE7CA6C00041C18 /* GHUnit */,
+				0CDE4D4D1AE7CA6C00041C18 /* Reachability */,
+			);
+			path = External;
+			sourceTree = "<group>";
+		};
+		0CDE4D4B1AE7CA6C00041C18 /* GHUnit */ = {
+			isa = PBXGroup;
+			children = (
+				0CDE4D4C1AE7CA6C00041C18 /* README-GHUnit */,
+			);
+			path = GHUnit;
+			sourceTree = "<group>";
+		};
+		0CDE4D4D1AE7CA6C00041C18 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				0CDE4D4E1AE7CA6C00041C18 /* Reachability.h */,
+				0CDE4D4F1AE7CA6C00041C18 /* Reachability.m */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		0CEF66F21ACFE0360063D357 /* config */ = {
 			isa = PBXGroup;
 			children = (
@@ -436,7 +652,6 @@
 				0C26EC051A984E6000927996 /* Sources */,
 				0C26EC061A984E6000927996 /* Frameworks */,
 				0C26EC071A984E6000927996 /* Resources */,
-				0C91C5561AE3A2C800F41147 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -510,6 +725,7 @@
 			files = (
 				0CD3D4FB1AC7B519007CBCBC /* wrinkles.png in Resources */,
 				0CD16ADA1AAAC76100E1C77A /* color.png in Resources */,
+				0CDE4D771AE7CA6C00041C18 /* README-GHUnit in Resources */,
 				0C0DB4831ADBFD5A002566D7 /* postLoadedScript.js in Resources */,
 				0C26EC141A984E6000927996 /* Main.storyboard in Resources */,
 				0CD16ADD1AAACAF300E1C77A /* thumbnail.png in Resources */,
@@ -537,8 +753,11 @@
 			files = (
 				0CD16ABB1AA49F5100E1C77A /* ViewController.swift in Sources */,
 				0C4641CE1AD2843000A44D00 /* ActionSheetDatePicker.m in Sources */,
+				0CDE4D571AE7CA6C00041C18 /* ASIInputStream.m in Sources */,
 				0CD16AC91AA7490100E1C77A /* DesignTemplate.swift in Sources */,
+				0CDE4D781AE7CA6C00041C18 /* Reachability.m in Sources */,
 				0C46419B1AD163E000A44D00 /* SKUSize.swift in Sources */,
+				0CDE4D5B1AE7CA6C00041C18 /* ASICloudFilesContainer.m in Sources */,
 				0C4641D11AD2843000A44D00 /* ActionSheetStringPicker.m in Sources */,
 				0C4641D91AD2AB8700A44D00 /* SinaStorageService.swift in Sources */,
 				0C4641D31AD2843000A44D00 /* SWActionSheet.m in Sources */,
@@ -547,25 +766,47 @@
 				0CD16ABE1AA49F9300E1C77A /* ImgProcWrapper.mm in Sources */,
 				0C4641D01AD2843000A44D00 /* ActionSheetLocalePicker.m in Sources */,
 				0CD16ACD1AA7490200E1C77A /* AbstractDesign.swift in Sources */,
+				0CDE4D5E1AE7CA6C00041C18 /* ASICloudFilesObject.m in Sources */,
+				0CDE4D541AE7CA6C00041C18 /* ASIDownloadCache.m in Sources */,
+				0CDE4D511AE7CA6C00041C18 /* ASIAuthenticationDialog.m in Sources */,
+				0CDE4D531AE7CA6C00041C18 /* ASIDataDecompressor.m in Sources */,
 				0CD16AC51AA73F5200E1C77A /* Model.xcdatamodeld in Sources */,
+				0CDE4D5F1AE7CA6C00041C18 /* ASICloudFilesObjectRequest.m in Sources */,
 				0CD16AD11AA74A5000E1C77A /* Layer+extension.swift in Sources */,
+				0CDE4D5C1AE7CA6C00041C18 /* ASICloudFilesContainerRequest.m in Sources */,
+				0CDE4D561AE7CA6C00041C18 /* ASIHTTPRequest.m in Sources */,
+				0CDE4D601AE7CA6C00041C18 /* ASICloudFilesRequest.m in Sources */,
+				0CDE4D5D1AE7CA6C00041C18 /* ASICloudFilesContainerXMLParserDelegate.m in Sources */,
 				0CD16AB91AA49F5100E1C77A /* ImportImageDelegate.swift in Sources */,
 				0CD16AB61AA49F5100E1C77A /* DesignViewCell.swift in Sources */,
 				0C4641DE1AD91FBB00A44D00 /* BroughtViewController.swift in Sources */,
 				0C91C5521AE34B5D00F41147 /* SwiftSpinner.swift in Sources */,
+				0C91C55A1AE5386800F41147 /* OrderManagementEntryButton.swift in Sources */,
+				0CDE4D621AE7CA6C00041C18 /* ASIS3BucketObject.m in Sources */,
+				0CDE4D591AE7CA6C00041C18 /* ASIWebPageRequest.m in Sources */,
 				0CD16ABA1AA49F5100E1C77A /* ImportImageViewController.swift in Sources */,
 				0CD16AB71AA49F5100E1C77A /* DesignViewController.swift in Sources */,
 				0CD16ACF1AA7490200E1C77A /* Design.swift in Sources */,
 				0C4641991AD1625200A44D00 /* SKUColor.swift in Sources */,
 				0CD16AE11AAACBC800E1C77A /* AbstractDesign+extension.swift in Sources */,
 				0CD16AAD1AA49F1300E1C77A /* DesignService.swift in Sources */,
+				0CDE4D641AE7CA6C00041C18 /* ASIS3ObjectRequest.m in Sources */,
+				0CDE4D631AE7CA6C00041C18 /* ASIS3BucketRequest.m in Sources */,
+				0CDE4D551AE7CA6C00041C18 /* ASIFormDataRequest.m in Sources */,
+				0CDE4D651AE7CA6C00041C18 /* ASIS3Request.m in Sources */,
 				0CD16AB81AA49F5100E1C77A /* EditViewController.swift in Sources */,
 				0C4641CC1AD2843000A44D00 /* AbstractActionSheetPicker.m in Sources */,
 				0C26EC0F1A984E6000927996 /* AppDelegate.swift in Sources */,
 				0CD16AE31AAAF22F00E1C77A /* Layer.swift in Sources */,
+				0CDE4D521AE7CA6C00041C18 /* ASIDataCompressor.m in Sources */,
+				0CDE4D611AE7CA6C00041C18 /* ASIS3Bucket.m in Sources */,
 				0C4641CD1AD2843000A44D00 /* ActionSheetCustomPicker.m in Sources */,
 				0C4641961AD160A000A44D00 /* json.swift in Sources */,
+				0CDE4D581AE7CA6C00041C18 /* ASINetworkQueue.m in Sources */,
 				0CD16AB51AA49F5100E1C77A /* ChooseBaseColorViewController.swift in Sources */,
+				0CDE4D5A1AE7CA6C00041C18 /* ASICloudFilesCDNRequest.m in Sources */,
+				0CDE4D661AE7CA6C00041C18 /* ASIS3ServiceRequest.m in Sources */,
+				0CDE4D791AE7CA6C00041C18 /* SCSwift.swift in Sources */,
 				0C4641CF1AD2843000A44D00 /* ActionSheetDistancePicker.m in Sources */,
 				0CD16AD51AAAA66C00E1C77A /* Design+extension.swift in Sources */,
 			);
@@ -695,6 +936,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -714,6 +956,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"/usr/include/c++/4.2.1",
+					"${SDK_DIR}/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = ideawork/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -722,15 +965,16 @@
 					"$(inherited)",
 					"/Users/kkppccdd/Documents/git/ios/build/iPhoneSimulator-x86_64/lib/Release",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "ideawork/ideawork-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				USER_HEADER_SEARCH_PATHS = "";
-				VALID_ARCHS = "arm64 armv7 armv7s";
+				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Debug;
 		};
@@ -741,6 +985,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -760,6 +1005,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"/usr/include/c++/4.2.1",
+					"${SDK_DIR}/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = ideawork/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -770,12 +1016,13 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "ideawork/ideawork-Bridging-Header.h";
 				USER_HEADER_SEARCH_PATHS = "";
-				VALID_ARCHS = "arm64 armv7 armv7s";
+				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Release;
 		};

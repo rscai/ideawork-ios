@@ -124,6 +124,8 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
     func imagePickerControllerDidCancel(picker: UIImagePickerController)
     {
         println("picker cancel.")
+        
+        picker.dismissViewControllerAnimated(true, completion: nil)
     }
     
     

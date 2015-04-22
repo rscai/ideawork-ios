@@ -1,27 +1,61 @@
 //
-//  SinaStorageService.swift
-//  ideawork
+//  SCSwift.swift
+//  SCSwift
 //
-//  Created by Ray Cai on 2015/4/6.
-//  Copyright (c) 2015年 Ray Cai. All rights reserved.
+//  Created by Littlebox222 on 14-9-5.
+//  Copyright (c) 2014年 Littlebox222. All rights reserved.
 //
 
 import Foundation
 
 
+public enum AccessPolicy:String {
+    case access_private = "private",
+    access_public_read = "public-read",
+    access_public_read_write = "public-read-write",
+    access_authenticated_read = "authenticated-read"
+}
 
-public class SinaStorageService {
+public class SCSServiceRequest:ASIS3ServiceRequest {}
+public class SCSBucketRequest:ASIS3BucketRequest {}
+public class SCSObjectRquest:ASIS3ObjectRequest {}
+
+public class SCS {
+    
     var config:Dictionary<String,Any!>!
     var globleConfig:Dictionary<String,Any!>! = [:]
     
+    public class var sharedInstance: SCS {
+        
+    struct Static {
+        static var instance: SCS?
+        static var token: dispatch_once_t = 0
+        }
+        
+        dispatch_once(&Static.token) {
+            Static.instance = SCS()
+        }
+        
+        return Static.instance!
+    }
     
+    public class func GlobalConfig(accessKey:String!=nil, secretKey:String!=nil, useSSL:Bool!=false, maxConcurrentOperationCount:Int! = 3) {
+        
+        SCS.sharedInstance.globleConfig["accessKey"] = accessKey
+        SCS.sharedInstance.globleConfig["secretKey"] = secretKey
+        SCS.sharedInstance.globleConfig["useSSL"] = useSSL
+        SCS.sharedInstance.globleConfig["maxConcurrentOperationCount"] = maxConcurrentOperationCount
+    }
     
     internal func configureRequest(request:ASIS3Request) {
         
         var cfg:Dictionary<String,Any!>!
         
-        cfg = self.config
-
+        if (self.config == nil) {
+            cfg = SCS.sharedInstance.globleConfig
+        }else {
+            cfg = self.config
+        }
         
         if (cfg["accessKey"] != nil) {
             request.accessKey = cfg["accessKey"] as! String
@@ -155,9 +189,9 @@ public class SinaStorageService {
         
         let request = SCSBucketRequest.requestWithBucket(param["bucket"] as! String) as! SCSBucketRequest
         request.maxResultCount = param["maxKeys"] as! Int32
-        request.prefix = param["prefix"]! as! String
-        request.delimiter = param["delimiter"]! as! String
-        request.marker = param["marker"]! as! String
+        request.prefix = param["prefix"] as! String
+        request.delimiter = param["delimiter"] as! String
+        request.marker = param["marker"] as! String
         
         self.configureRequest(request)
         
@@ -180,7 +214,7 @@ public class SinaStorageService {
         request.startAsynchronous()
     }
     
-    public func uploadObject(#data:NSData,mimeType:String, bucket:String,key:String,started:((SCSObjectRquest)->Void)! = nil,
+    public func uploadObject(#param:Dictionary<String, String>, started:((SCSObjectRquest)->Void)! = nil,
         finished:((SCSObjectRquest)->Void)! = nil,
         failed:((SCSObjectRquest)->Void)! = nil,
         headerReceived:((SCSObjectRquest)->Void)! = nil,
@@ -188,9 +222,7 @@ public class SinaStorageService {
         progress:((SCSObjectRquest, UInt64, UInt64)->Void)! = nil)
     {
         
-        //let request = SCSObjectRquest.PUTRequestForFile(param["filePath"], withBucket:param["bucket"], key:param["key"]) as SCSObjectRquest
-        let request = SCSObjectRquest.PUTRequestForData(data, withBucket: bucket, key: key) as! SCSObjectRquest
-        request.mimeType = mimeType
+        let request = SCSObjectRquest.PUTRequestForFile(param["filePath"], withBucket:param["bucket"], key:param["key"]) as! SCSObjectRquest
         self.configureRequest(request)
         
         if (started != nil) {
@@ -215,8 +247,7 @@ public class SinaStorageService {
         }
         
         request.timeOutSeconds = 60
-        // follow the ACL of bucket
-        //request.accessPolicy = accessPolicy.rawValue
+        request.accessPolicy = param["accessPolicy"]
         request.addRequestHeader("Expect", value:"100-continue")
         request.showAccurateProgress = true
         

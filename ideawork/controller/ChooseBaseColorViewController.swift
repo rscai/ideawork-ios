@@ -8,7 +8,6 @@
 
 import UIKit
 
-//import SCSwift
 
 class ChooseBaseColorViewController: UIViewController {
 

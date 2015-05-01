@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MiY-fo-ENa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MiY-fo-ENa">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -21,7 +21,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="designItem" id="CgO-0D-YKC" customClass="DesignViewCell" customModule="ideawork" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="designItem" id="CgO-0D-YKC" customClass="DesignCell" customModule="ideawork" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -31,10 +31,15 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="T-shirt.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="x3j-13-4oZ">
                                             <rect key="frame" x="12" y="14" width="79" height="77"/>
                                         </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4dr-li-VRj">
+                                            <rect key="frame" x="76" y="2" width="21" height="21"/>
+                                            <state key="normal" title="Button" image="close">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="x3j-13-4oZ" firstAttribute="trailing" secondItem="CgO-0D-YKC" secondAttribute="trailingMargin" id="3d9-nJ-Nyy"/>
                                     <constraint firstItem="x3j-13-4oZ" firstAttribute="top" secondItem="CgO-0D-YKC" secondAttribute="topMargin" constant="6" id="5yy-na-VIF"/>
@@ -48,6 +53,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
+                                    <outlet property="closeButton" destination="4dr-li-VRj" id="g3r-kE-bfF"/>
                                     <outlet property="image" destination="x3j-13-4oZ" id="s9l-Ye-vzD"/>
                                 </connections>
                             </collectionViewCell>
@@ -57,7 +63,18 @@
                             <outlet property="delegate" destination="TRd-Xe-S8r" id="vrN-Af-6Lw"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Design" id="sZm-Sy-uli"/>
+                    <navigationItem key="navigationItem" title="Design" id="sZm-Sy-uli">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="9xE-xY-GzN">
+                            <connections>
+                                <action selector="addDesign:" destination="TRd-Xe-S8r" id="1ch-dR-9o4"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="编辑" id="ORs-VL-eiR">
+                            <connections>
+                                <action selector="enterEditMode:" destination="TRd-Xe-S8r" id="DfY-Ut-SkZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="designCollectionView" destination="8bq-kp-fvK" id="lPn-YT-rAG"/>
@@ -67,25 +84,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bN5-Qm-k8d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="836" y="-603"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="lwF-mT-Q0W">
-            <objects>
-                <viewController id="tbD-lB-87a" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="zAK-5A-0Eu"/>
-                        <viewControllerLayoutGuide type="bottom" id="88x-Fj-vdk"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Q48-c6-doU">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TIE-J4-jYb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1816" y="-1294"/>
         </scene>
         <!--DesignPrint-->
         <scene sceneID="zRQ-J9-24X">
@@ -148,7 +146,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="DesignPrint" id="zIi-Yu-gxo">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="6jY-ga-IPT">
+                        <barButtonItem key="rightBarButtonItem" id="6jY-ga-IPT">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Jq2-gG-D5N" customClass="OrderManagementEntryButton" customModule="ideawork" customModuleProvider="target">
                                 <rect key="frame" x="233" y="7" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -156,7 +154,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="tbD-lB-87a" kind="show" identifier="orderManagement" id="b6A-xK-Ree"/>
+                                    <segue destination="6Sz-qy-Ln7" kind="show" identifier="orderManagement" id="W8w-7D-ZS7"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -170,6 +168,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ggu-qZ-rdn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1381" y="-598"/>
+        </scene>
+        <!--Item 2-->
+        <scene sceneID="3mS-fO-647">
+            <objects>
+                <viewController id="CDA-1i-rAZ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="a6Y-PG-nfw"/>
+                        <viewControllerLayoutGuide type="bottom" id="Jfu-Z2-tMN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cX8-yo-u9h">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="Peg-YS-exN"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nUJ-KR-sVg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2321" y="-1372"/>
+        </scene>
+        <!--未下单-->
+        <scene sceneID="5Gw-CW-9Sh">
+            <objects>
+                <viewController id="odJ-xI-cFI" customClass="UnpaidOrderViewController" customModule="ideawork" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3dp-bH-NLe"/>
+                        <viewControllerLayoutGuide type="bottom" id="JNH-l9-7nc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FPM-A5-AyS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="未下单" id="1MS-aw-eQo"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9UN-k6-OWg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2305" y="-2116"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="29v-T1-WFQ">
+            <objects>
+                <tabBarController id="6Sz-qy-Ln7" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="Qz1-Ij-T72">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="odJ-xI-cFI" kind="relationship" relationship="viewControllers" id="sAM-bF-Wmn"/>
+                        <segue destination="CDA-1i-rAZ" kind="relationship" relationship="viewControllers" id="WYX-hG-Fwo"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MFA-kk-BFS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1793" y="-1621"/>
         </scene>
         <!--ChooseBaseColor-->
         <scene sceneID="QUU-g6-b5x">
@@ -443,6 +501,7 @@
     </scenes>
     <resources>
         <image name="T-shirt.jpg" width="899" height="889"/>
+        <image name="close" width="512" height="512"/>
         <image name="fantasy" width="25" height="25"/>
         <image name="paid" width="25" height="25"/>
         <image name="put_in" width="25" height="25"/>

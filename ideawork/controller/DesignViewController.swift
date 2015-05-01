@@ -13,7 +13,13 @@ class DesignViewController: UICollectionViewController,UICollectionViewDataSourc
     private let reuseIdentifier="designItem"
     private var designCollection = [AbstractDesign]()
     
+    private var isOnEditMode:Bool = false
+    
 
+    /**************
+    * UI outlets
+    *
+    */
     
     @IBOutlet var designCollectionView: UICollectionView!{
         didSet{
@@ -23,17 +29,15 @@ class DesignViewController: UICollectionViewController,UICollectionViewDataSourc
     }
     
     
+    /***********
+    * view controller life cycle handler
+    *
+    */
     
     override func viewWillAppear(animated: Bool) {
         self.designCollection.removeAll(keepCapacity: true)
-        // load designs, include templates and designs
+        // load designs, only designs
         
-        //construct mock template
-        
-        let templates = loadDesignTemplate()
-        for template in templates {
-            self.designCollection.append(template)
-        }
 
 
         let designs = loadDesign()
@@ -44,6 +48,33 @@ class DesignViewController: UICollectionViewController,UICollectionViewDataSourc
         designCollectionView.reloadData()
         
     }
+    
+    /**************
+    * UI outlet action handler
+    */
+    
+    @IBAction func addDesign(sender: UIBarButtonItem) {
+        println("click addDesign button")
+        
+        let design = doNewDesign()
+        
+        // open design edit 
+        
+        performSegueWithIdentifier("openDesign", sender: design)
+    }
+    
+    @IBAction func enterEditMode(sender: UIBarButtonItem) {
+        self.isOnEditMode = !self.isOnEditMode
+        
+        if self.isOnEditMode == true {
+            sender.title="完成"
+        }else{
+            sender.title="编辑"
+        }
+        
+        self.collectionView!.reloadData()
+    }
+    
     
     
     // functions of UICollectionViewDataSource
@@ -58,7 +89,7 @@ class DesignViewController: UICollectionViewController,UICollectionViewDataSourc
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! DesignViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! DesignCell
         
         print("click cell#\(indexPath)")
         
@@ -66,6 +97,32 @@ class DesignViewController: UICollectionViewController,UICollectionViewDataSourc
         
         let image = abstractDesign.thumbnail
         cell.image.image=image
+        
+        // set close button
+        
+        if self.isOnEditMode == true {
+            cell.closeButton.hidden=false
+        }else{
+            cell.closeButton.hidden=true
+        }
+        
+        cell.closeButton.layer.setValue(indexPath.row, forKey: "index")
+        
+        
+        cell.closeButton.addTarget(self, action: "deleteDesign:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        // add delete icon for test
+        /*
+        let removeButton = UIButton(frame: CGRectMake(cell.bounds.width-25, 0, 25, 25))
+        //removeButton.setTitle("D", forState: UIControlState.Normal)
+        let removeIcon = UIImage(named: "close")
+        
+        removeButton.setBackgroundImage(removeIcon,forState: UIControlState.Normal)
+        
+        removeButton.addTarget(self, action: "", forControlEvents: <#UIControlEvents#>)
+        
+        cell.addSubview(removeButton)
+        */
         return cell
     }
     
@@ -95,6 +152,17 @@ class DesignViewController: UICollectionViewController,UICollectionViewDataSourc
             
             
             return true
+    }
+    
+    private func doNewDesign() -> Design {
+        let defaultTemplate = constructDefaultDesignTemplate()
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedObjectContext = appDelegate.managedObjectContext
+        var design = NSEntityDescription.insertNewObjectForEntityForName("Design", inManagedObjectContext: managedObjectContext!) as? Design
+        design?.print=ImgProcWrapper.createImage(210, height: 297)
+        design?.designTemplate=defaultTemplate
+        
+        return design!
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -204,5 +272,18 @@ class DesignViewController: UICollectionViewController,UICollectionViewDataSourc
         return defaultDesignTemplate
     }
 
+    
+    func deleteDesign(sender:UIButton) {
+        let i : Int = (sender.layer.valueForKey("index")) as! Int
+        let removedDesign = designCollection.removeAtIndex(i)
+        
+        // remove from coredata
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedObjectContext = appDelegate.managedObjectContext
+        managedObjectContext?.deleteObject(removedDesign)
+        
+        
+        self.collectionView!.reloadData()
+    }
 
 }

@@ -12,7 +12,11 @@
 
 #include <opencv2/opencv.hpp>
 
-
+struct scalarComparor {
+    bool operator()(const cv::Vec4i& a, const cv::Vec4i& b) const {
+        return a[0] < b[0];
+    }
+};
 
 @implementation ImgProcWrapper
 
@@ -423,6 +427,121 @@ cv::Mat padding(cv::Mat inputMat,int newRows,int newCols){
     return outputImage;
 }
 
++(UIImage *) removeBackground:(UIImage *)image{
+    cv::Mat originalMat = cvMatFromUIImage(image);
+    
+    cv::Mat inputMat;
+    int originalChannelNum = originalMat.channels();
+    if(originalChannelNum==3){
+        //add alpha channel
+        cv::Mat originalChannels[4];
+        cv::split(originalMat,originalChannels);
+        
+        cv::Mat alphaChannel = cv::Mat(originalMat.rows,originalMat.cols,CV_8U,cvScalar(255));
+        
+        originalChannels[3]=alphaChannel;
+        // merge
+        cv::merge(originalChannels,4,inputMat);
+    }else{
+        inputMat=originalMat;
+    }
+    
+    cv::Mat imgRGB[4];
+    cv::split(inputMat, imgRGB);
+    int k = 6;
+    int n = inputMat.rows * inputMat.cols;
+    cv::Mat img3xN(n, 3, CV_8U);
+    for (int i = 0; i != 3; ++i)
+        imgRGB[i].reshape(1, n).copyTo(img3xN.col(i));
+    img3xN.convertTo(img3xN, CV_32F);
+    cv::Mat bestLables;
+    
+    
+    
+    
+    cv::kmeans(img3xN, k, bestLables, cv::TermCriteria( CV_TERMCRIT_EPS+CV_TERMCRIT_ITER, 3, 1.0), 1,
+               cv::KMEANS_PP_CENTERS);
+    bestLables = bestLables.reshape(0, inputMat.rows);
+    //cv::convertScaleAbs(bestLables, bestLables, int(255 / k));
+    //bestLables.convertTo(bestLables,CV_8U);
+    
+    std::cout<<"finished clustering"<<std::endl;
+    
+    int borderWidth = int(inputMat.cols/20);
+    
+    int backgroundColor = determineBackgroundColor(borderWidth, bestLables);
+    
+    /*
+     int r,g,b,a;
+     r=int(backgroundColor[0])%256;
+     g=int(backgroundColor[1])%256;
+     
+     b=int(backgroundColor[2])%256;
+     
+     a=int(backgroundColor[3])%256;
+     */
+    cv::Scalar color = cv::Scalar(backgroundColor);
+    
+    //std::cout<<bestLables.at<cv::Vec4i>(1,1)[0]<<","<<bestLables.at<cv::Vec4i>(1,1)[1]<<","<<bestLables.at<cv::Vec4i>(1,1)[2]<<std::endl;
+    
+    //std::cout<<backgroundColor[0]<<","<<backgroundColor[1]<<","<<backgroundColor[2]<<std::endl;
+    //std::cout<<color[0]<<","<<color[1]<<","<<color[2]<<std::endl;
+    
+    cv::Mat mask;
+    cv::inRange(bestLables,color,color+cv::Scalar(0.1),mask);
+    
+    cv::inRange(bestLables,color,color+cv::Scalar(0.1,0.1,0.1,0.1),mask);
+    // inverse mask
+    mask = cv::Mat::ones(mask.size(), mask.type()) * 255 - mask;
+    
+    cv::Mat result = cv::Mat(inputMat.rows,inputMat.cols,CV_8UC4,cv::Scalar(255,255,255,0));
+    
+    
+    inputMat.copyTo(result,mask);
+
+    
+    UIImage* outputImage = UIImageFromCVMat(result);
+    return outputImage;
+}
+
++(UIImage *) removeWhiteBackground:(UIImage *)image{
+    
+    cv::Mat originalMat = cvMatFromUIImage(image);
+    
+    cv::Mat inputMat;
+    int originalChannelNum = originalMat.channels();
+    if(originalChannelNum==3){
+        //add alpha channel
+        cv::Mat originalChannels[4];
+        cv::split(originalMat,originalChannels);
+        
+        cv::Mat alphaChannel = cv::Mat(originalMat.rows,originalMat.cols,CV_8U,cvScalar(255));
+        
+        originalChannels[3]=alphaChannel;
+        // merge
+        cv::merge(originalChannels,4,inputMat);
+    }else{
+        inputMat=originalMat;
+    }
+    
+
+    
+    cv::Mat mask;
+    cv::inRange(inputMat,cv::Scalar(240,240,240,0),cv::Scalar(256,256,256,256),mask);
+    // inverse mask
+    mask = cv::Mat::ones(mask.size(), mask.type()) * 255 - mask;
+
+    
+    cv::Mat result = cv::Mat(inputMat.rows,inputMat.cols,CV_8UC4,cv::Scalar(255,255,255,0));
+    
+    
+    inputMat.copyTo(result,mask);
+    
+    UIImage* outputImage = UIImageFromCVMat(result);
+    
+    return outputImage;
+}
+
 +(UIImage *) createImage:(int) width height:(int)height{
     cv::Mat transparentMat(height,width,CV_8UC4,transparentColor);
     
@@ -458,6 +577,7 @@ cv::Mat padding(cv::Mat inputMat,int newRows,int newCols){
     
     // process print
     cv::Mat printMat = cvMatFromUIImage(printImage);
+    
     cv::resize(printMat, printMat, cv::Size(210,279));
     // construct target area which print locates on result image
     // fixed position of print on result
@@ -520,6 +640,74 @@ cv::Mat performWrinkles(cv::Mat baseImage,cv::Mat wrinkles){
     cv::merge(resultChannels, 4,result);
     
     return result;
+}
+
+/*************
+ *support methonds
+ *
+ */
+
+void countOccur(int element,
+                std::map<int, int>& result) {
+    if (result.find(element) != result.end()) {
+        //std::cout<<result[element]<<std::endl;
+        
+        result[element] = result[element] +1;
+    } else {
+        result[element] = 1;
+    }
+}
+
+int determineBackgroundColor(int borderWidth, cv::Mat& bestLables) {
+    std::map<int, int> distribution;
+    for (int x = 0; x < borderWidth; x++) {
+        for (int y = 0; y < bestLables.rows; y++) {
+            // at(row,col)
+            int element = bestLables.at<int>(y, x);
+            countOccur(element, distribution);
+        }
+    }
+    std::cout << "extracted left border" << std::endl;
+    for (int x = bestLables.cols - borderWidth; x < bestLables.cols; x++) {
+        for (int y = 0; y < bestLables.rows; y++) {
+            int element = bestLables.at<int>(y, x);
+            countOccur(element, distribution);
+        }
+    }
+    std::cout << "extracted right border" << std::endl;
+    for (int x = borderWidth; x < bestLables.cols - borderWidth; x++) {
+        for (int y = 0; y < borderWidth; y++) {
+            int element = bestLables.at<int>(y, x);
+            countOccur(element, distribution);
+        }
+    }
+    std::cout << "extracted top border" << std::endl;
+    for (int x = borderWidth; x < bestLables.cols - borderWidth; x++) {
+        for (int y = bestLables.rows - borderWidth; y < bestLables.rows; y++) {
+            int element = bestLables.at<int>(y, x);
+            countOccur(element, distribution);
+            
+            //std::cout<<"Classification: "<<element<<std::endl;
+        }
+    }
+    std::cout << "extracted bottom border" << std::endl;
+    int max;
+    int occur = 0;
+    
+    std::cout<<"key size:"<<distribution.size()<<std::endl;
+    for (std::map<int, int>::iterator it = distribution.begin();
+         it != distribution.end(); ++it) {
+        if (it->second > occur) {
+            //std::cout<<it->first<<std::endl;
+            occur = it->second;
+            max = it->first;
+        }
+    }
+    
+    //std::cout<<"query max occur"<<std::endl;
+    //std::cout<<"Max:"<<max[0]<<","<<max[1]<<","<<max[2]<<"value:"<<occur<<std::endl;
+    
+    return max;
 }
 //type converter
 

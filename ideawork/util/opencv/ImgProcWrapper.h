@@ -45,6 +45,18 @@
  */
 +(UIImage *) cartoonizeFilter:(UIImage *)image;
 
+/**************
+ * remove background
+ *
+ */
+
++(UIImage *) removeBackground:(UIImage *)image;
+
+/*********
+ * remove white background
+ *
+ */
++(UIImage *) removeWhiteBackground:(UIImage *)image;
 // type converters
 //-(cv::Mat)cvMatFromUIImage:(UIImage *)image;
 //-(UIImage *)UIImageFromCVMat:(cv::Mat)cvMat;

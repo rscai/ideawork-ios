@@ -24,8 +24,8 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
     //private var originalImage:UIImage?
     private var modifiedImage:UIImage? {
         didSet{
-            canvas?.image=modifiedImage
             design?.print=modifiedImage
+            canvas?.image=design?.print
         }
     }
     
@@ -41,27 +41,25 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
 
     override func viewWillAppear(animated: Bool) {
         print("design: \(design)")
-
-        
-        modifiedImage=design?.print
+        canvas?.image=design?.print
     }
     
     // import image button event handler
     @IBAction func importImage(sender: UIBarButtonItem) {
-        var alert:UIAlertController=UIAlertController(title: "Choose Image", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        var alert:UIAlertController=UIAlertController(title: "请选择图像", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         
-        var cameraAction = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default)
+        var cameraAction = UIAlertAction(title: "相机", style: UIAlertActionStyle.Default)
             {
                 UIAlertAction in
                 self.openCamera()
                 
         }
-        var gallaryAction = UIAlertAction(title: "Gallary", style: UIAlertActionStyle.Default)
+        var gallaryAction = UIAlertAction(title: "相冊", style: UIAlertActionStyle.Default)
             {
                 UIAlertAction in
                 self.openGallary()
         }
-        var cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel)
+        var cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel)
             {
                 UIAlertAction in
                 
@@ -78,19 +76,42 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
 
     }
     
+    @IBAction func showFilterMenu(sender: UIBarButtonItem){
+        var alert:UIAlertController=UIAlertController(title: "请选择", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        var removeBackground = UIAlertAction(title:"袪除背景",style:UIAlertActionStyle.Default){
+            UIAlertAction in
+            self.doRemoveBackground()
+
+        }
+        
+        var cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel)
+            {
+                UIAlertAction in
+                
+        }
+        
+        // add actions
+        alert.addAction(removeBackground)
+        alert.addAction(cancelAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     // filters
     
-    @IBAction func doCartoonizeFilter(sender: UIBarButtonItem) {
-        SwiftSpinner.show("处理图片...", animated: true)
+   private func doRemoveBackground() {
+        SwiftSpinner.show("袪除背景...", animated: true)
         
         dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)){
-            let filteredImage = ImgProcWrapper.cartoonizeFilter(self.modifiedImage!)
+            let filteredImage = ImgProcWrapper.removeBackground(self.modifiedImage!)
            
             // all UI operation should be performed in main queue
             dispatch_async(dispatch_get_main_queue()){
+                
                 self.modifiedImage=filteredImage
-            
                 SwiftSpinner.hide()
+                
             }
         }
         
@@ -114,9 +135,26 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
             image = self.imageFixOrientation(image!)
         }
         
+        // make image is small enough
+        // max height 800, max width 600
+        let maxHeight:CGFloat=800
+        let maxWidth:CGFloat=600
+        var newWidth = image!.size.width
+        var newHeight = image!.size.height
+        if image!.size.height > maxHeight {
+            newHeight=maxHeight
+            newWidth=maxHeight/image!.size.height*image!.size.width
+        }
+        if newWidth > maxWidth{
+            newWidth=maxWidth
+            newHeight=maxWidth/image!.size.width*image!.size.height
+        }
+        
+        // show image on canvas
+        modifiedImage = ImgProcWrapper.resize(image, width: Int32(newWidth), height: Int32(newHeight))
         // route to importImageViewController 
         
-        performSegueWithIdentifier("importImage", sender: image)
+        //performSegueWithIdentifier("importImage", sender: image)
         //self.importImageViewController!.delegate=self
         //self.presentViewController(importImageViewController!,animated:true,completion:nil)
         

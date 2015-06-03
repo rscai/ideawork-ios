@@ -13,7 +13,7 @@ enum RestServiceStatus {
     case Ready
 }
 
-class RestService<T>: BaseRestService {
+class RestService<T: Mappable>: BaseRestService {
 
    
     let endPoint:String
@@ -38,7 +38,7 @@ class RestService<T>: BaseRestService {
 
     }
     
-    func query(criteria:Dictionary<String,AnyObject>) -> RestCursor<T> {
+    func query(criteria:String) -> RestCursor<T> {
         
         let cursor = RestCursor<T>(service: self,criteria:criteria)
         

@@ -9,9 +9,10 @@
 import Foundation
 import UIKit
 
-class SKUColor {
-    var name:String
-    var rgbHex:String
+class SKUColor: Mappable {
+    var id:String=""
+    var name:String=""
+    var rgbHex:String=""
     
     var red:UInt{
         get{
@@ -56,6 +57,22 @@ class SKUColor {
         self.name=name
         self.rgbHex=rgbHex
     }
+    
+    required init(){
+        
+    }
+    
+    required init?(_ map: Map) {
+        mapping(map)
+    }
+    
+    // Mappable
+    func mapping(map: Map) {
+        id    <- map["_id"]
+        name<-map["name"]
+        rgbHex<-map["rgbHex"]
+    }
+
 }
 
 extension UInt {

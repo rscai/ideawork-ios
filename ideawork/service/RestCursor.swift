@@ -8,15 +8,15 @@
 
 import UIKit
 
-class RestCursor<T>: NSObject {
+class RestCursor<T:Mappable>: NSObject {
     var nextStart:Int=0
     var batchSize:Int=10
     
     
     private let service:RestService<T>
-    private let criteria:Dictionary<String,AnyObject>
+    private let criteria:String
     
-    init(service:RestService<T>,criteria:Dictionary<String,AnyObject>) {
+    init(service:RestService<T>,criteria:String) {
         self.service=service
         self.criteria=criteria
     }
@@ -26,15 +26,12 @@ class RestCursor<T>: NSObject {
     func fetch(dataHandler:([T]->Void)){
         // construct request
         
-        var criteriaJSON="{"
-        for (key,value) in self.criteria {
-            criteriaJSON+="\"\(key)\":\"\(value)\""
-        }
-        criteriaJSON+="}"
         
-        let queryUrl = self.service.serviceUrl+"?criteria="+criteriaJSON
-        let request = NSMutableURLRequest(URL: NSURL(fileURLWithPath: queryUrl)!)
-        request.HTTPMethod = "POST"
+        let queryUrl = self.service.serviceUrl+"?criteria="+criteria.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        let urlComponet = NSURLComponents(string: queryUrl)!
+        
+        let request = NSMutableURLRequest(URL: urlComponet.URL!)
+        request.HTTPMethod = "GET"
         
         self.service.execute(request, completionHandler: {
             data,response,error in
@@ -45,8 +42,12 @@ class RestCursor<T>: NSObject {
             
             println("response = \(response)")
             
-            let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
+            let responseString = NSString(data: data, encoding: NSUTF8StringEncoding) as! String
             println("responseString = \(responseString)")
+            
+            let items = Mapper<T>().mapArray(responseString)
+            
+            dataHandler(items)
         })
     }
 }

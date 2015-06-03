@@ -24,8 +24,11 @@ class ChooseBaseColorViewController: UIViewController {
     *************/
     private let sinaStorage:SinaStorageService = SinaStorageService(accessKey:"jl9ynyTLw9I6lOwfay5V", secretKey:"7deb0e69c4e6a63d776222b2f95bdff48b38b6f4", useSSL:true)
     
+    private var configurationService:RestService<Configuration>?
+    private var skuColorService:RestService<SKUColor>?
     
-    private let cloudBucket:String = "ideadwork-dev"
+    
+    private var cloudBucket:String = ""
     
     
     var overlayView:UIView?
@@ -62,13 +65,6 @@ class ChooseBaseColorViewController: UIViewController {
         }
     }
     
-    private var size:SKUSize?{
-        didSet{
-            // update size button
-            self.sizeButton?.setTitle(self.size?.name, forState: UIControlState.Normal)
-
-        }
-    }
     
 
     
@@ -80,23 +76,42 @@ class ChooseBaseColorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // init trade data service
+        
+        let webServiceEndPoint = NSBundle.mainBundle().objectForInfoDictionaryKey("WebServiceEndPoint") as? NSDictionary
+        let dataServiceEndPoint = webServiceEndPoint!.objectForKey("DataServiceEndPoint") as? String
+        
+        let imageCloudStorageConfiguration = NSBundle.mainBundle().objectForInfoDictionaryKey("ImageCloudStorageConfiguration") as! NSDictionary
+        
+        self.cloudBucket = imageCloudStorageConfiguration.objectForKey("bucket") as! String
+        
+        if dataServiceEndPoint != nil {
+            println("load data service end point configuration: \(dataServiceEndPoint!).")
+            self.configurationService = RestService<Configuration>(endPoint:dataServiceEndPoint!,modelName:"configuration")
+            self.skuColorService = RestService<SKUColor>(endPoint:dataServiceEndPoint!,modelName:"skuColor")
+        }else{
+            // init failed
+            println("load data service end point configuration failed.")
+        }
         
     }
     
     override func viewDidAppear(animated: Bool) {
         // Do any additional setup after loading the view.
         
-        SwiftSpinner.show("获取颜色与尺码列表...", animated: true)
+        SwiftSpinner.show("获取颜色列表...", animated: true)
         
         dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)){
             // time consuming network operation should be performed in queue than main quene
-            self.loadConfig()
-            // all UI operation should be performed in main queue
-            dispatch_async(dispatch_get_main_queue()){
-                self.baseColor=self.colorList[0]
-                self.size=self.sizeList[0]
-                SwiftSpinner.hide()
-            }
+            self.loadConfig({
+                (Void) -> Void in
+                // all UI operation should be performed in main queue
+                dispatch_async(dispatch_get_main_queue()){
+                    self.baseColor=self.colorList[0]
+                    SwiftSpinner.hide()
+                }
+            })
+            
         }
         
         
@@ -135,7 +150,6 @@ class ChooseBaseColorViewController: UIViewController {
     
     @IBOutlet weak var colorButton: UIButton!
 
-    @IBOutlet weak var sizeButton: UIButton!
     
     @IBAction func chooseColor(sender: UIButton) {
         let colorNameList = self.colorList.map({(skuColor:SKUColor)->(String) in
@@ -162,35 +176,6 @@ class ChooseBaseColorViewController: UIViewController {
         }, origin: sender)
         
         colorPicker.showActionSheetPicker()
-    }
-
-    @IBAction func chooseSize(sender: UIButton) {
-        let sizeNameList = self.sizeList.map({
-            (skuSize:SKUSize)->(String) in
-            return skuSize.name
-        })
-        
-        var chooseSizeIndex:Int = 0
-        
-        for i in 0..<sizeNameList.count {
-            if sizeNameList[i] == self.size?.name {
-                chooseSizeIndex = i
-                break
-            }
-        }
-        
-        let sizePicker = ActionSheetStringPicker(title: "选择尺码", rows: sizeNameList, initialSelection: chooseSizeIndex, doneBlock: {
-            picker, index,value in
-            println("choose size value:\(value), index:\(index)")
-            
-            self.size=self.sizeList[index]
-            
-            }, cancelBlock: {
-                ActionStringCancelBlock in return
-            }, origin: sender)
-        
-        sizePicker.showActionSheetPicker()
-        
     }
     
     
@@ -229,7 +214,7 @@ class ChooseBaseColorViewController: UIViewController {
         // show activity indicator
         SwiftSpinner.show("上传图片...", animated: true)
         
-        println("add item color:\(self.baseColor!.uiColor.description), size:\(self.size?.name)")
+        println("add item color:\(self.baseColor!.uiColor.description)")
         
         // upload print and preview image
         
@@ -266,15 +251,10 @@ class ChooseBaseColorViewController: UIViewController {
             }
             
             let uploadedImageUrl = (printImageUrl:"http://cdn.sinacloud.net/\(self.cloudBucket)/\(result[0].key)",previewImageUrl:"http://cdn.sinacloud.net/\(self.cloudBucket)/\(result[1].key)")
-            let designInfo = (print:(bucket:self.cloudBucket,key:result[0].key),preview:(bucket:self.cloudBucket,key:result[1].key))
+            let designInfo = (print:(bucket:self.cloudBucket,key:result[0].key),preview:(bucket:self.cloudBucket,key:result[1].key),creatorId:UIDevice.currentDevice().identifierForVendor.UUIDString)
             
             // open taobao order view
             
-            // lookup sku
-            let skuIndex = "\(self.baseColor!.name)-\(self.size!.name)"
-            let sku = self.skuIndex[skuIndex]
-            
-            let orderConfirmUrl = "http://h5.m.taobao.com/awp/base/order.htm?itemId=\(self.itemId!)&_input_charset=utf-8&buyNow=true&v=0&skuId=\(sku!.id)#!/awp/base/order.htm?itemId=\(self.itemId!)&_input_charset=utf-8&buyNow=true&v=0&skuId=\(sku!.id)"
             
             //http://buy.m.tmall.com/order/confirmOrderWap.htm?_input_charset=utf-8&buyNow=true&etm=post&itemId=44775785190&skuId=82445770163&quantity=1#home
             
@@ -320,8 +300,8 @@ class ChooseBaseColorViewController: UIViewController {
         })
     }
     
-    private func generateMemo(designInfo:(print:(bucket:String,key:String),preview:(bucket:String,key:String))) -> String {
-        let memo = "{\"hint\":\"定制內容信息，请勿修改！\",\"designInfo\":{\"print\":{\"bucket\":\"\(designInfo.print.bucket)\",\"key\":\"\(designInfo.print.key)\"},\"preview\":{\"bucket\":\"\(designInfo.preview.bucket)\",\"key\":\"\(designInfo.preview.key)\"}}}"
+    private func generateMemo(designInfo:(print:(bucket:String,key:String),preview:(bucket:String,key:String),creatorId:String)) -> String {
+        let memo = "{\"hint\":\"定制內容信息，请勿修改！\",\"print\":{\"bucket\":\"\(designInfo.print.bucket)\",\"key\":\"\(designInfo.print.key)\"},\"preview\":{\"bucket\":\"\(designInfo.preview.bucket)\",\"key\":\"\(designInfo.preview.key)\"},\"creatorId\":\"\(designInfo.creatorId)\"}"
         
         return memo
     }
@@ -414,7 +394,9 @@ class ChooseBaseColorViewController: UIViewController {
             }
         }
         
-        let renderedResult = ImgProcWrapper.renderDesign(backgroundImage!, wrinkles: wrinklesImage!, colorImage: colorImage!, printImage: printImage, baseColor: baseColor)
+        let paddedPrintImage=self.paddingPrint(printImage)
+        
+        let renderedResult = ImgProcWrapper.renderDesign(backgroundImage!, wrinkles: wrinklesImage!, colorImage: colorImage!, printImage: paddedPrintImage, baseColor: baseColor)
         
         return renderedResult
         
@@ -433,73 +415,65 @@ class ChooseBaseColorViewController: UIViewController {
     * @param callback handler when loaded config
     */
 
-    private func loadConfig(){
+    private func loadConfig(completionHandler:((Void) -> Void)?){
         var error:NSError?
         //let configFilePath = NSBundle.mainBundle().pathForResource("taobao-integration-config", ofType: "json")
         //let configFileUrl = NSURL(string: "http://cdn.sinacloud.net/ideadwork-dev/config/taobao-integration-config.json")
         //let configData:NSData = NSData(contentsOfURL: configFileUrl!)!
         //let configDict:NSDictionary = NSJSONSerialization.JSONObjectWithData(configData, options: nil, error: &error) as NSDictionary
         
-        let config = JSON(url:"http://cdn.sinacloud.net/ideadwork-dev/config/taobao-integration-config.json")
+        let configurationCursor = self.configurationService?.query("{\"name\":\"taobaoItemId\"}")
         
-        self.itemId = config["item"]["itemId"].asString
-        
-        var skus:[Sku]=[Sku]()
-        
-        for (i,sku) in config["item"]["sku"] {
-            let skuId = sku["id"].asString!
+        configurationCursor?.fetch({
+            (items:[Configuration]) -> Void in
+            if items.count > 0 {
+                self.itemId = items[0].value
+            }else{
+                println("load configuration:taobaoItemId failed.")
+            }
             
-            let colorName = sku["color"]["name"].asString!
-            let colorRgbHex = sku["color"]["rgbHex"].asString!
+            // fetch colors
             
-            let sizeName = sku["size"]["name"].asString!
-            let sizeCode = sku["size"]["code"].asString!
+            let skuColorCursor = self.skuColorService?.query("{}")
             
-            let color = SKUColor(name:colorName,rgbHex:colorRgbHex)
-            let size = SKUSize(name:sizeName,code:sizeCode)
-            
-            let skuObj = Sku(id:skuId,color:color,size:size)
-            
-            skus.append(skuObj)
-
-        }
-        
-        
-        // extract color list and size list 
-        var colorSet:Dictionary<String,SKUColor> = Dictionary<String,SKUColor>()
-        for sku in skus {
-            let color = sku.color
-            
-            colorSet[color.name] = color
-
-        }
-        
-        self.colorList = Array(colorSet.values)
-        
-        var sizeSet:Dictionary<String,SKUSize> = Dictionary<String,SKUSize>()
-        for sku in skus {
-            let size = sku.size
-            
-            sizeSet[size.name] = size
-            
-        }
-        
-        self.sizeList = Array(sizeSet.values)
-        
-        // construct sku index, key is combination of color name and size name
-        
-        self.skuIndex.removeAll()
-        
-        for sku in skus {
-            let key = sku.color.name+"-"+sku.size.name
-            
-            self.skuIndex[key]=sku
-        }
+            skuColorCursor?.fetch({
+                (items:[SKUColor]) -> Void in
+                self.colorList = items
+                
+                completionHandler?()
+            })
+        })
         
         
     }
     
-    
+    private func paddingPrint(theImage:UIImage) -> UIImage{
+        // padding image to 210:279
+        let targetHeight:CGFloat=279
+        let targetWidth:CGFloat=210
+        
+        let heightPrimer = Int(theImage.size.height / CGFloat(targetHeight))
+        let widthPrimer = Int(theImage.size.width / CGFloat(targetWidth))
+        if (heightPrimer) > (widthPrimer) {
+            let newHeight=Int32(theImage.size.height)
+            let newWidth=Int32(CGFloat(newHeight)/targetHeight*targetWidth)
+            
+            println("original size: height(\(theImage.size.height)) width(\(theImage.size.width)), padding to:height(\(newHeight)) width(\(newWidth))")
+            
+            
+            let paddedImage = ImgProcWrapper.padding(theImage, newRows: newHeight, newCols: newWidth)
+            
+            return paddedImage
+        } else {
+            let newWidth=Int32(theImage.size.width)
+            let newHeight=Int32(CGFloat(newWidth)/targetWidth*targetHeight)
+            
+            println("original size: height(\(theImage.size.height)) width(\(theImage.size.width)), padding to:height(\(newHeight)) width(\(newWidth))")
+            
+            let paddedImage = ImgProcWrapper.padding(theImage, newRows: newHeight, newCols: newWidth)
+            return paddedImage
+        }
+    }
 
 
 }

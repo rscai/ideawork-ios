@@ -1,6 +1,7 @@
 //var memo="{\"hint\":\"定制內容信息，请勿修改！\",\"designInfo\":{\"print\":{\"bucket\":\"ideadwork-dev\",\"key\":\"design/1E74885A-4CDB-4343-9545-472CA747401E/print.png\"},\"preview\":{\"bucket\":\"ideadwork-dev\",\"key\":\"design/1E74885A-4CDB-4343-9545-472CA747401E/preview.png\"}}}";
 // check if order page
-if (window.location.href.startsWith('http://h5.m.taobao.com/awp/base/order.htm') == true){
+var indexOfKeyword = window.location.href.indexOf("h5.m.taobao.com/awp/base/order.htm");
+if (indexOfKeyword>0 & indexOfKeyword<10){
     try{
         var designInfo=JSON.parse(memo);
         var memoXpath='//*[contains(@class,\"memo\")]//input[@type=\"text\"]';
@@ -17,8 +18,8 @@ if (window.location.href.startsWith('http://h5.m.taobao.com/awp/base/order.htm')
 
         // construct print and privew image section
         var designDiv = document.createElement('div');
-        var designDivInnerHTMLT='<img src=\"http://imgx.sinacloud.net/'+designInfo.designInfo.print.bucket+'/c_thumb,w_200/'+designInfo.designInfo.print.key+'\" style="max-width:48%;padding: 1px 1px 1px 1px;"/>';
-        designDivInnerHTMLT+='<img src=\"http://imgx.sinacloud.net/'+designInfo.designInfo.preview.bucket+'/c_thumb,w_200/'+designInfo.designInfo.preview.key+'\" style="max-width:48%;padding: 1px 1px 1px 1px;"/>';
+        var designDivInnerHTMLT='<img src=\"http://imgx.sinacloud.net/'+designInfo.print.bucket+'/c_thumb,w_200/'+designInfo.print.key+'\" style="max-width:48%;padding: 1px 1px 1px 1px;"/>';
+        designDivInnerHTMLT+='<img src=\"http://imgx.sinacloud.net/'+designInfo.preview.bucket+'/c_thumb,w_200/'+designInfo.preview.key+'\" style="max-width:48%;padding: 1px 1px 1px 1px;"/>';
         designDiv.innerHTML=designDivInnerHTMLT;
         if(itemInfoElement.nextSibling){
             itemInfoElement.parentElement.insertBefore(designDiv,itemInfoElement.nextSibling);

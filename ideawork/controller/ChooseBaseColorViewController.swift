@@ -44,7 +44,7 @@ class ChooseBaseColorViewController: UIViewController {
     
     private var itemId:String?
     
-    //private var postLoadedScript:String?
+    private var postLoadedScript:String?
     
     private var colorList:[SKUColor]=[SKUColor]()
     
@@ -64,6 +64,7 @@ class ChooseBaseColorViewController: UIViewController {
             updatePreview()
         }
     }
+    private var size:SKUSize?
     
     
 
@@ -76,7 +77,7 @@ class ChooseBaseColorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // init trade data service
+        // load properties
         
         let webServiceEndPoint = NSBundle.mainBundle().objectForInfoDictionaryKey("WebServiceEndPoint") as? NSDictionary
         let dataServiceEndPoint = webServiceEndPoint!.objectForKey("DataServiceEndPoint") as? String
@@ -84,15 +85,6 @@ class ChooseBaseColorViewController: UIViewController {
         let imageCloudStorageConfiguration = NSBundle.mainBundle().objectForInfoDictionaryKey("ImageCloudStorageConfiguration") as! NSDictionary
         
         self.cloudBucket = imageCloudStorageConfiguration.objectForKey("bucket") as! String
-        
-        if dataServiceEndPoint != nil {
-            println("load data service end point configuration: \(dataServiceEndPoint!).")
-            self.configurationService = RestService<Configuration>(endPoint:dataServiceEndPoint!,modelName:"configuration")
-            self.skuColorService = RestService<SKUColor>(endPoint:dataServiceEndPoint!,modelName:"skuColor")
-        }else{
-            // init failed
-            println("load data service end point configuration failed.")
-        }
         
     }
     
@@ -107,7 +99,8 @@ class ChooseBaseColorViewController: UIViewController {
                 (Void) -> Void in
                 // all UI operation should be performed in main queue
                 dispatch_async(dispatch_get_main_queue()){
-                    self.baseColor=self.colorList[0]
+                    self.baseColor=self.colorList.first
+                    self.size=self.sizeList.first
                     SwiftSpinner.hide()
                 }
             })
@@ -131,7 +124,7 @@ class ChooseBaseColorViewController: UIViewController {
                         
                         if let targetUrl = sender as? NSURL {
                             broughtViewController.url = targetUrl
-                            //broughtViewController.postLoadedScript=self.postLoadedScript!
+                            broughtViewController.postLoadedScript=self.postLoadedScript!
                         }
                         
                         
@@ -253,18 +246,25 @@ class ChooseBaseColorViewController: UIViewController {
             let uploadedImageUrl = (printImageUrl:"http://cdn.sinacloud.net/\(self.cloudBucket)/\(result[0].key)",previewImageUrl:"http://cdn.sinacloud.net/\(self.cloudBucket)/\(result[1].key)")
             let designInfo = (print:(bucket:self.cloudBucket,key:result[0].key),preview:(bucket:self.cloudBucket,key:result[1].key),creatorId:UIDevice.currentDevice().identifierForVendor.UUIDString)
             
-            // open taobao order view
-            
-            
-            //http://buy.m.tmall.com/order/confirmOrderWap.htm?_input_charset=utf-8&buyNow=true&etm=post&itemId=44775785190&skuId=82445770163&quantity=1#home
-            
-            let detailUrl="item.taobao.com/item.htm?id=\(self.itemId!)";
-            
             // generate memo
             let memo = self.generateMemo(designInfo)
             
             // copy memo to pasteboard
             UIPasteboard.generalPasteboard().string=memo
+            // open taobao order view
+            
+            
+            //http://buy.m.tmall.com/order/confirmOrderWap.htm?_input_charset=utf-8&buyNow=true&etm=post&itemId=44775785190&skuId=82445770163&quantity=1#home
+            
+            let skuIndex = self.baseColor!.name+"-"+self.size!.name
+            let sku = self.skuIndex[skuIndex]
+            let orderConfirmUrl:String = "http://h5.m.taobao.com/awp/base/order.htm?itemId=\(self.itemId!)&item_num_id=\(self.itemId!)&_input_charset=utf-8&buyNow=true&v=0&skuId=\(sku!.id)"
+            
+            //let orderConfirmUrl:String = "http://h5.m.taobao.com/awp/base/order.htm?itemId=44775785190&item_num_id=44775785190&_input_charset=utf-8&buyNow=true&v=0&skuId=82445770162"
+            /*
+            let detailUrl="item.taobao.com/item.htm?id=\(self.itemId!)";
+            
+            
             
             // open taobao client
             
@@ -278,9 +278,9 @@ class ChooseBaseColorViewController: UIViewController {
                 let openBroswerResult = UIApplication.sharedApplication().openURL(browserURL)
                 println("open browser result: \(openBroswerResult)")
             }
-            
+            */
             // load post loaded script from remote
-            /*
+            
             var enc:NSStringEncoding = NSUTF8StringEncoding
             var err:NSError?
             var postLoadedScript:String =
@@ -295,8 +295,8 @@ class ChooseBaseColorViewController: UIViewController {
             postLoadedScript="setTimeout(function(){\(postLoadedScript)},500);"
             
             self.postLoadedScript=postLoadedScript
-            */
-            //self.performSegueWithIdentifier("openOrderConfirm", sender: NSURL(string:orderConfirmUrl))
+            
+            self.performSegueWithIdentifier("openOrderConfirm", sender: NSURL(string:orderConfirmUrl))
         })
     }
     
@@ -416,35 +416,65 @@ class ChooseBaseColorViewController: UIViewController {
     */
 
     private func loadConfig(completionHandler:((Void) -> Void)?){
-        var error:NSError?
-        //let configFilePath = NSBundle.mainBundle().pathForResource("taobao-integration-config", ofType: "json")
-        //let configFileUrl = NSURL(string: "http://cdn.sinacloud.net/ideadwork-dev/config/taobao-integration-config.json")
-        //let configData:NSData = NSData(contentsOfURL: configFileUrl!)!
-        //let configDict:NSDictionary = NSJSONSerialization.JSONObjectWithData(configData, options: nil, error: &error) as NSDictionary
         
-        let configurationCursor = self.configurationService?.query("{\"name\":\"taobaoItemId\"}")
+        let config = JSON(url:"http://cdn.sinacloud.net/\(self.cloudBucket)/config/taobao-integration-config.json")
         
-        configurationCursor?.fetch({
-            (items:[Configuration]) -> Void in
-            if items.count > 0 {
-                self.itemId = items[0].value
-            }else{
-                println("load configuration:taobaoItemId failed.")
-            }
+        self.itemId = config["item"]["itemId"].asString
+        
+        var skus:[Sku]=[Sku]()
+        
+        for (i,sku) in config["item"]["sku"] {
+            let skuId = sku["id"].asString!
             
-            // fetch colors
+            let colorName = sku["color"]["name"].asString!
+            let colorRgbHex = sku["color"]["rgbHex"].asString!
             
-            let skuColorCursor = self.skuColorService?.query("{}")
+            let sizeName = sku["size"]["name"].asString!
+            let sizeCode = sku["size"]["code"].asString!
             
-            skuColorCursor?.fetch({
-                (items:[SKUColor]) -> Void in
-                self.colorList = items
-                
-                completionHandler?()
-            })
-        })
+            let color = SKUColor(name:colorName,rgbHex:colorRgbHex)
+            let size = SKUSize(name:sizeName,code:sizeCode)
+            
+            let skuObj = Sku(id:skuId,color:color,size:size)
+            
+            skus.append(skuObj)
+            
+        }
         
         
+        // extract color list and size list
+        var colorSet:Dictionary<String,SKUColor> = Dictionary<String,SKUColor>()
+        for sku in skus {
+            let color = sku.color
+            
+            colorSet[color.name] = color
+            
+        }
+        
+        self.colorList = Array(colorSet.values)
+        
+        var sizeSet:Dictionary<String,SKUSize> = Dictionary<String,SKUSize>()
+        for sku in skus {
+            let size = sku.size
+            
+            sizeSet[size.name] = size
+            
+        }
+        
+        self.sizeList = Array(sizeSet.values)
+        
+        // construct sku index, key is combination of color name and size name
+        
+        self.skuIndex.removeAll()
+        
+        for sku in skus {
+            let key = sku.color.name+"-"+sku.size.name
+            
+            self.skuIndex[key]=sku
+        }
+
+        
+        completionHandler?()
     }
     
     private func paddingPrint(theImage:UIImage) -> UIImage{

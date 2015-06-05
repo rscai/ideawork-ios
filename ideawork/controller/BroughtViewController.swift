@@ -64,7 +64,10 @@ class BroughtViewController: UIViewController, UIWebViewDelegate {
         
         // check if confirmOrder page
         
-        webView.stringByEvaluatingJavaScriptFromString(self.postLoadedScript!)
+        println(self.postLoadedScript!)
+        let result = webView.stringByEvaluatingJavaScriptFromString(self.postLoadedScript!)
+        
+        println("execute script result:\(result)")
         
     }
 }

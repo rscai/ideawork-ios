@@ -494,6 +494,29 @@ cv::Mat padding(cv::Mat inputMat,int newRows,int newCols){
     // inverse mask
     mask = cv::Mat::ones(mask.size(), mask.type()) * 255 - mask;
     
+    // keep closed area
+    
+    std::vector<std::vector<cv::Point> > contours;
+    std::vector<cv::Vec4i> hierarchy;
+    
+    cv::findContours(mask, contours, hierarchy, cv::RETR_CCOMP,
+                     cv::CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
+    
+    std::cout << "Detected contours number: " << contours.size() << std::endl;
+    for (int idx = 0; idx >= 0 && idx < contours.size(); idx =
+         hierarchy[idx][0]) {
+        
+        if (hierarchy[idx][2] < 0) //Check if there is a child contour
+        {
+            // opened contours
+        } else {
+            //closed contours
+        }
+        cv::Scalar color(255, 255, 255);
+        cv::drawContours(mask, contours, idx, color, CV_FILLED, 8, hierarchy, 0,
+                         cv::Point());
+    }
+    
     cv::Mat result = cv::Mat(inputMat.rows,inputMat.cols,CV_8UC4,cv::Scalar(255,255,255,0));
     
     

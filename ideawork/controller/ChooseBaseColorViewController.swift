@@ -64,9 +64,19 @@ class ChooseBaseColorViewController: UIViewController {
             updatePreview()
         }
     }
-    private var size:SKUSize?
+    private var size:SKUSize?{
+        didSet{
+            print("Set size \(size?.name)")
+            self.sizeButton?.setTitle(self.size?.name, forState: UIControlState.Normal)
+        }
+    }
     
+    // MARK: - UIOutlet
     
+    @IBOutlet weak var previewImageView: UIImageView!
+    
+    @IBOutlet weak var colorButton: UIButton!
+    @IBOutlet weak var sizeButton:UIButton!
 
     
     /**********
@@ -135,14 +145,8 @@ class ChooseBaseColorViewController: UIViewController {
         }
     }
     
-    /************
-    UI components
-    */
     
-    @IBOutlet weak var previewImageView: UIImageView!
-    
-    @IBOutlet weak var colorButton: UIButton!
-
+    //MARK: - UI Actions
     
     @IBAction func chooseColor(sender: UIButton) {
         let colorNameList = self.colorList.map({(skuColor:SKUColor)->(String) in
@@ -171,6 +175,102 @@ class ChooseBaseColorViewController: UIViewController {
         colorPicker.showActionSheetPicker()
     }
     
+    @IBAction func chooseSize(sender: UIButton) {
+        let sizeNameList = self.sizeList.map({(skuSize:SKUSize)->(String) in
+            return skuSize.name
+        })
+        
+        var chooseSizeIndex:Int = 0
+        
+        for i in 0..<sizeNameList.count {
+            if sizeNameList[i] == self.size?.name {
+                chooseSizeIndex = i
+                break
+            }
+        }
+        
+        let sizePicker = ActionSheetStringPicker(title: "选择尺码", rows: sizeNameList, initialSelection: chooseSizeIndex, doneBlock: {
+            picker, index,value in
+            println("choose size value:\(value), index:\(index)")
+            
+            self.size=self.sizeList[index]
+            
+            }, cancelBlock: {
+                ActionStringCancelBlock in return
+            }, origin: sender)
+        
+        sizePicker.showActionSheetPicker()
+    }
+    
+    @IBAction func share(sender: UIBarButtonItem) {
+        let sendImageToWeChat = {
+            (image:UIImage,scene:WXScene) -> Void in
+            
+            var sharedImage = image
+            var imageData = UIImagePNGRepresentation(image)
+            
+            if imageData.length > 30 * 1024 {
+                // reseize image
+                let edgeScale  = sqrt(CGFloat(30 * 1024)/CGFloat(imageData.length))
+                
+                let newWidth = Int32(image.size.width * edgeScale)
+                let newHeight = Int32(image.size.height * edgeScale)
+                
+                sharedImage = ImgProcWrapper.resize(image, width: newWidth, height: newHeight)
+                imageData = UIImagePNGRepresentation(sharedImage)
+            }
+            
+            
+            
+            let message:WXMediaMessage = WXMediaMessage()
+            message.setThumbImage(sharedImage)
+            
+            let ext:WXImageObject = WXImageObject()
+            ext.imageData = imageData
+            
+            message.mediaObject = ext;
+            message.mediaTagName = "WECHAT_TAG_JUMP_APP";
+            message.messageExt = "这是第三方带的测试字段";
+            message.messageAction = "<action>dotalist</action>";
+            
+            let req:SendMessageToWXReq = SendMessageToWXReq()
+            req.bText = false;
+            req.message = message;
+            req.scene = Int32(scene.value);
+            
+            WXApi.sendReq(req)
+        }
+        // show target list
+        let alert:UIAlertController=UIAlertController(title: "分享至", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        let shareOnWeChatMoment = UIAlertAction(title: "微信朋友圈",style: UIAlertActionStyle.Default){
+            UIAlertAction  in
+            sendImageToWeChat(self.previewImageView.image!,WXSceneTimeline)
+        }
+        
+        let shareOnWeChatSession = UIAlertAction(title: "微信聊天界面",style: UIAlertActionStyle.Default){
+            UIAlertAction  in
+            sendImageToWeChat(self.previewImageView.image!,WXSceneSession)
+        }
+        
+        let saveToPhotoAlbum = UIAlertAction(title: "相册",style: UIAlertActionStyle.Default){
+            UIAlertAction  in
+            UIImageWriteToSavedPhotosAlbum(self.previewImageView.image!, self, "image:didFinishSavingWithError:contextInfo:", nil)
+        }
+        
+        let cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel)
+            {
+                UIAlertAction in
+                
+        }
+        
+        //alert.addAction(shareOnWeChatMoment)
+        //alert.addAction(shareOnWeChatSession)
+        alert.addAction(saveToPhotoAlbum)
+        alert.addAction(cancelAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
     
 /*
     @IBAction func doChooseColor(sender: UISegmentedControl, forEvent event: UIEvent) {
@@ -189,7 +289,7 @@ class ChooseBaseColorViewController: UIViewController {
 */
     @IBAction func doAddOrderItem(sender: UIBarButtonItem) {
         // show guide for user
-        let guide = "为了保护消费都权益，所有交易都通淘宝担保交易。\n1. 定制信息已拷贝到粘贴板\n2.用户在淘宝中下单，并将粘贴板中的定制信息贴至'给卖家的留言'中\n3.回到应用中预览确认定制內容\n4.付款"
+        let guide = "为了保护消费者权益，所有交易都通淘宝担保交易。"
         
         var alert = UIAlertController(title: "交易指南", message: guide, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler:{
@@ -504,7 +604,17 @@ class ChooseBaseColorViewController: UIViewController {
             return paddedImage
         }
     }
-
+    func image(image: UIImage, didFinishSavingWithError
+        error: NSErrorPointer, contextInfo:UnsafePointer<Void>) {
+            
+            if error != nil {
+                let alert = UIAlertView(title: "分享到相册失败", message: "", delegate: self, cancelButtonTitle: "OK")
+                alert.show()
+            }else{
+                let alert = UIAlertView(title: "分享到相册成功", message: "", delegate: self, cancelButtonTitle: "OK")
+                alert.show()
+            }
+    }
 
 }
 

@@ -10,18 +10,35 @@ import UIKit
 import CoreData
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
 
     var window: UIWindow?
     
     private var document:UIManagedDocument?
     var managedObjectContext:NSManagedObjectContext?
 
+    // MARK: - UIApplicationDelegate
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         println("application is launching")
+        let pageControl = UIPageControl.appearance()
+        pageControl.pageIndicatorTintColor = UIColor.lightGrayColor()
+        pageControl.currentPageIndicatorTintColor = UIColor.blackColor()
+        pageControl.backgroundColor = UIColor.whiteColor()
+        
+        // init WeCaht api
+        WXApi.registerApp("wx81c20cec3acf58b0")
+        //showTutorial()
         initManagedObjectContext()
         return true
+    }
+    
+    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+        return WXApi.handleOpenURL(url, delegate: self)
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        return WXApi.handleOpenURL(url, delegate: self)
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -54,6 +71,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         println("application will terminate")
         
         self.closeManagedDocument()
+    }
+    
+    // MARK: - WXApiDelegate
+    func onReq(req: BaseReq!) {
+        var alertTitle:String=""
+        var alertMsg:String=""
+        if let reqMsg:GetMessageFromWXReq = req as? GetMessageFromWXReq {
+        
+            // 微信请求App提供内容， 需要app提供内容后使用sendRsp返回
+            alertTitle = "微信请求App提供内容"
+            alertMsg = "openID: \(reqMsg.openID)"
+            
+        }else if let reqMsg:ShowMessageFromWXReq = req as? ShowMessageFromWXReq{
+            alertTitle = "微信请求App显示内容"
+            alertMsg = "openID: \(reqMsg.openID), 标题：\(reqMsg.message.title) \n内容：\(reqMsg.message.description) \n附带信息：\(reqMsg.message.mediaObject.extInfo) \n缩略图:\(reqMsg.message.thumbData.length) bytes\n附加消息:\(reqMsg.message.messageExt)\n"
+        }else if let reqMsg:LaunchFromWXReq = req as? LaunchFromWXReq{
+            alertTitle = "从微信启动"
+            alertMsg = "openID: \(reqMsg.openID), messageExt: \(reqMsg.message.messageExt)"
+        }
+        
+        let alert:UIAlertView = UIAlertView(title: alertTitle, message: alertMsg, delegate: self, cancelButtonTitle: "OK")
+        
+        alert.tag = 1000;
+        alert.show()
+    }
+    
+    func onResp(resp: BaseResp!) {
+        var alertTitle = ""
+        var alertMsg = ""
+        if let respMsg = resp as? SendMessageToWXResp{
+            alertTitle = "分享成功"
+            alertMsg = ""
+        }else if let respMsg = resp as? SendAuthResp {
+            alertTitle = "登入微信成功"
+            alertMsg = ""
+        }else if let respMsg = resp as? AddCardToWXCardPackageResp{
+            alertTitle = "Add card to WeChat Successful"
+            alertMsg = ""
+        }
+        
+        let alert:UIAlertView = UIAlertView(title: alertTitle, message: alertMsg, delegate: self, cancelButtonTitle: "OK")
+        
+        alert.tag = 1000;
+        alert.show()
     }
 
     private func initManagedObjectContext(){
@@ -95,11 +156,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if self.document!.documentState == UIDocumentState.Normal {
             self.managedObjectContext = self.document!.managedObjectContext
 
-            var storyboard = UIStoryboard(name: "Main", bundle: nil)
-            var viewController: UINavigationController = storyboard.instantiateViewControllerWithIdentifier("MainNavigationController") as! UINavigationController
-            
-            window?.rootViewController = viewController
-            window?.makeKeyAndVisible()
+            startUI()
         }
     }
     
@@ -111,6 +168,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 println("close document result: \(result)")
             })
         }
+    }
+    
+    private func startUI(){
+        if !NSUserDefaults.standardUserDefaults().boolForKey(Constants.USER_DEFAULT_KEY_HAS_SEEN_TUTORIAL){
+            showTutorial()
+        }else{
+            showNavigation()
+        }
+    }
+    
+    private func showTutorial(){
+        var storyboard = UIStoryboard(name: "Main", bundle: nil)
+        var tutorialViewController: TutorialViewController = storyboard.instantiateViewControllerWithIdentifier("tutorialViewController") as! TutorialViewController
+        
+        tutorialViewController.didFinish = {
+            (Void) -> Void in
+            self.showNavigation()
+        }
+        
+        window?.rootViewController?.presentViewController(tutorialViewController,animated: true, completion: nil)
+        window?.makeKeyAndVisible()
+    }
+    
+    private func showNavigation(){
+        var storyboard = UIStoryboard(name: "Main", bundle: nil)
+        var viewController: UINavigationController = storyboard.instantiateViewControllerWithIdentifier("MainNavigationController") as! UINavigationController
+        
+        self.window?.rootViewController = viewController
+        self.window?.makeKeyAndVisible()
     }
 
 }

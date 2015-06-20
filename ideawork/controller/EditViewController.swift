@@ -29,6 +29,8 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
         }
     }
     
+    // MARK: - UI Outlets
+    
     @IBOutlet weak var canvas: UIImageView!
     
     
@@ -44,6 +46,7 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
         canvas?.image=design?.print
     }
     
+    // MARK: - UI Action
     // import image button event handler
     @IBAction func importImage(sender: UIBarButtonItem) {
         var alert:UIAlertController=UIAlertController(title: "请选择图像", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
@@ -54,7 +57,7 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
                 self.openCamera()
                 
         }
-        var gallaryAction = UIAlertAction(title: "相冊", style: UIAlertActionStyle.Default)
+        var gallaryAction = UIAlertAction(title: "相册", style: UIAlertActionStyle.Default)
             {
                 UIAlertAction in
                 self.openGallary()
@@ -96,6 +99,77 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
         alert.addAction(cancelAction)
         
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func share(sender: UIBarButtonItem) {
+        let sendImageToWeChat = {
+            (image:UIImage,scene:WXScene) -> Void in
+            
+            var sharedImage = image
+            var imageData = UIImagePNGRepresentation(image)
+            
+            if imageData.length > 30 * 1024 {
+                // reseize image
+                let edgeScale  = sqrt(CGFloat(30 * 1024)/CGFloat(imageData.length))
+                
+                let newWidth = Int32(image.size.width * edgeScale)
+                let newHeight = Int32(image.size.height * edgeScale)
+                
+                sharedImage = ImgProcWrapper.resize(image, width: newWidth, height: newHeight)
+                imageData = UIImagePNGRepresentation(sharedImage)
+            }
+            
+            
+            
+            let message:WXMediaMessage = WXMediaMessage()
+            message.setThumbImage(sharedImage)
+            
+            let ext:WXImageObject = WXImageObject()
+            ext.imageData = imageData
+            
+            message.mediaObject = ext;
+            message.mediaTagName = "WECHAT_TAG_JUMP_APP";
+            message.messageExt = "这是第三方带的测试字段";
+            message.messageAction = "<action>dotalist</action>";
+            
+            let req:SendMessageToWXReq = SendMessageToWXReq()
+            req.bText = false;
+            req.message = message;
+            req.scene = Int32(scene.value);
+            
+            WXApi.sendReq(req)
+        }
+        // show target list
+        let alert:UIAlertController=UIAlertController(title: "分享至", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        let shareOnWeChatMoment = UIAlertAction(title: "微信朋友圈",style: UIAlertActionStyle.Default){
+            UIAlertAction  in
+            sendImageToWeChat(self.modifiedImage!,WXSceneTimeline)
+        }
+        
+        let shareOnWeChatSession = UIAlertAction(title: "微信聊天界面",style: UIAlertActionStyle.Default){
+            UIAlertAction  in
+            sendImageToWeChat(self.modifiedImage!,WXSceneSession)
+        }
+        let saveToPhotoAlbum = UIAlertAction(title: "相册",style: UIAlertActionStyle.Default){
+            UIAlertAction  in
+            UIImageWriteToSavedPhotosAlbum(self.modifiedImage!, self, "image:didFinishSavingWithError:contextInfo:", nil)
+        }
+        
+        let cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel)
+            {
+                UIAlertAction in
+                
+        }
+        
+        alert.addAction(shareOnWeChatMoment)
+        alert.addAction(shareOnWeChatSession)
+        alert.addAction(saveToPhotoAlbum)
+        alert.addAction(cancelAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+        
     }
     
     // filters
@@ -305,5 +379,17 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
         var imgEnd:UIImage = UIImage(CGImage: cgimg)!
         
         return imgEnd
+    }
+    
+    func image(image: UIImage, didFinishSavingWithError
+        error: NSErrorPointer, contextInfo:UnsafePointer<Void>) {
+            
+            if error != nil {
+                let alert = UIAlertView(title: "分享到相册失败", message: "", delegate: self, cancelButtonTitle: "OK")
+                alert.show()
+            }else{
+                let alert = UIAlertView(title: "分享到相册成功", message: "", delegate: self, cancelButtonTitle: "OK")
+                alert.show()
+            }
     }
 }

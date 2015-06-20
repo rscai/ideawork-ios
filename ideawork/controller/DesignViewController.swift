@@ -91,12 +91,18 @@ class DesignViewController: UICollectionViewController,UICollectionViewDataSourc
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! DesignCell
         
+        
+        
         print("click cell#\(indexPath)")
         
         let abstractDesign = self.designCollection[indexPath.row]
         
         let image = abstractDesign.thumbnail
         cell.image.image=image
+        
+        cell.image.layer.borderWidth = 0.5
+        cell.image.layer.borderColor = UIColor.grayColor().CGColor
+        cell.image.layer.cornerRadius = 2.0
         
         // set close button
         

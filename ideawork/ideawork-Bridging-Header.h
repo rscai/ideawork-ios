@@ -11,6 +11,7 @@
 
 #import "ImgProcWrapper.h"
 
+// Sina Storage SDK
 #import "AbstractActionSheetPicker.h"
 #import "ActionSheetCustomPicker.h"
 #import "ActionSheetCustomPickerDelegate.h"
@@ -51,5 +52,9 @@
 #import "ASICloudFilesObject.h"
 #import "ASICloudFilesObjectRequest.h"
 #import "ASICloudFilesRequest.h"
+
+// WeChat SDK
+#import "WXApi.h"
+#import "WXApiObject.h"
 
 #endif

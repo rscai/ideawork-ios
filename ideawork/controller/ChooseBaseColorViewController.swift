@@ -8,34 +8,38 @@
 
 import UIKit
 
+import CMPopTipView
 
-class ChooseBaseColorViewController: UIViewController {
+class ChooseBaseColorViewController: UIViewController,CMPopTipViewDelegate {
 
+    // MARK: - Initializers
     required init(coder aDecoder: NSCoder) {
         super.init(coder:aDecoder)
     }
     
 
     
-    /********************************
-    *
-    *
-    *
-    *************/
+    //MARK: - Support members
     private let sinaStorage:SinaStorageService = SinaStorageService(accessKey:"jl9ynyTLw9I6lOwfay5V", secretKey:"7deb0e69c4e6a63d776222b2f95bdff48b38b6f4", useSSL:true)
     
     private var configurationService:RestService<Configuration>?
     private var skuColorService:RestService<SKUColor>?
     
+    var overlayView:UIView?
     
+    // MARK: - Configuration
     private var cloudBucket:String = ""
     
     
-    var overlayView:UIView?
-    /************
-    * properties
-    *
-    */
+    private lazy var tutorialTipQueue:NSOperationQueue = {
+        var queue = NSOperationQueue()
+        queue.name = "Tutorial tip queue"
+        queue.maxConcurrentOperationCount = 1
+        return queue
+        }()
+    
+    
+    //MARK: - Storage members
     var design:Design?
     
     /******
@@ -77,12 +81,11 @@ class ChooseBaseColorViewController: UIViewController {
     
     @IBOutlet weak var colorButton: UIButton!
     @IBOutlet weak var sizeButton:UIButton!
+    
+    @IBOutlet weak var uiAddOrderBarButtonItem:UIBarButtonItem!
 
     
-    /**********
-    *
-    * life cycle handlers
-    */
+    //MARK: - UIViewController lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,9 +102,13 @@ class ChooseBaseColorViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
+        
+        // check
         // Do any additional setup after loading the view.
         
-        SwiftSpinner.show("获取颜色列表...", animated: true)
+
+        
+        
         
         dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)){
             // time consuming network operation should be performed in queue than main quene
@@ -111,7 +118,12 @@ class ChooseBaseColorViewController: UIViewController {
                 dispatch_async(dispatch_get_main_queue()){
                     self.baseColor=self.colorList.first
                     self.size=self.sizeList.first
-                    SwiftSpinner.hide()
+                    
+                }
+                
+                // process tutorial tip
+                if !NSUserDefaults.standardUserDefaults().boolForKey(Constants.USER_DEFAULT_KEY_SHOW_TUTORIAL_TIP){
+                    self.showTutorialTip()
                 }
             })
             
@@ -142,6 +154,28 @@ class ChooseBaseColorViewController: UIViewController {
                 default:
                     print("unhandled segue \(segue)")
             }
+        }
+    }
+    
+    //MARK: - CMPopTipViewDelegate
+    func popTipViewWasDismissedByUser(popTipView: CMPopTipView!) {
+        // cancel tutorial tip task queue
+        self.tutorialTipQueue.cancelAllOperations()
+        
+        let confirmDialog = UIAlertController(title: "确认", message: "以后都不再显示提示？", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        confirmDialog.addAction(UIAlertAction(title: "不再显示", style: UIAlertActionStyle.Default, handler:{
+            (Void) -> Void in
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: Constants.USER_DEFAULT_KEY_SHOW_TUTORIAL_TIP)
+        }))
+        
+        confirmDialog.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler:{
+            (Void) -> Void in
+            
+        }))
+        
+        dispatch_async(dispatch_get_main_queue()){
+            self.presentViewController(confirmDialog, animated: true, completion: nil)
         }
     }
     
@@ -207,38 +241,94 @@ class ChooseBaseColorViewController: UIViewController {
             (image:UIImage,scene:WXScene) -> Void in
             
             var sharedImage = image
-            var imageData = UIImagePNGRepresentation(image)
+            var imageData = UIImageJPEGRepresentation(image,0.8)
             
-            if imageData.length > 30 * 1024 {
+            if imageData.length > 31 * 1024 {
                 // reseize image
-                let edgeScale  = sqrt(CGFloat(30 * 1024)/CGFloat(imageData.length))
+                let edgeScale  = sqrt(CGFloat(31 * 1024)/CGFloat(imageData.length))
                 
                 let newWidth = Int32(image.size.width * edgeScale)
                 let newHeight = Int32(image.size.height * edgeScale)
                 
                 sharedImage = ImgProcWrapper.resize(image, width: newWidth, height: newHeight)
-                imageData = UIImagePNGRepresentation(sharedImage)
+                imageData = UIImageJPEGRepresentation(sharedImage,0.8)
             }
             
+            // upload images
+            // show activity indicator
+            SwiftSpinner.show("上传图片...", animated: true)
+            
+            let uuid = NSUUID().UUIDString
+            
+            let printImageKey = "design/\(uuid)/print.png"
+            let previewImageKey = "design/\(uuid)/preview.jpg"
+            
+            var keyAndImages = [
+                (key:printImageKey,image:self.design!.print!),
+                (key:previewImageKey,image:self.previewImageView.image!)
+            ]
+            
+            self.uploadImages(keyAndImages, completionHandler: { (result:[(key: String, image: UIImage, success: Bool, error: NSError?)]) -> Void in
+                println("completed. \(result)")
+                
+                // hide activity indicator
+                dispatch_async(dispatch_get_main_queue()){
+                    SwiftSpinner.hide()
+                }
+                
+                let uploadedImageUrl = (printImageUrl:"http://cdn.sinacloud.net/\(self.cloudBucket)/\(result[0].key)",previewImageUrl:"http://cdn.sinacloud.net/\(self.cloudBucket)/\(result[1].key)")
+                let designInfo = (print:(bucket:self.cloudBucket,key:result[0].key),preview:(bucket:self.cloudBucket,key:result[1].key))
+                
+                // generate memo
+                let memo = self.generateMemo(designInfo)
+                
+                let message:WXMediaMessage = WXMediaMessage()
+                message.setThumbImage(sharedImage)
+                
+                let ext:WXWebpageObject = WXWebpageObject()
+                ext.webpageUrl = "http://cdn.sinacloud.net/\(self.cloudBucket)/config/design-viewer.html?design=\(memo)"
+                
+                
+                message.mediaObject = ext;
+                message.mediaTagName = "WECHAT_TAG_JUMP_APP";
+                message.messageExt = "这是第三方带的测试字段";
+                message.messageAction = "<action>dotalist</action>";
+                
+                message.title = "Ideawork"
+                message.description = ""
+                
+                let req:SendMessageToWXReq = SendMessageToWXReq()
+                req.bText = false;
+                req.message = message;
+                req.scene = Int32(scene.value);
+                
+                WXApi.sendReq(req)
+            },failureHandler:{ (result:[(key: String, image: UIImage, success: Bool, error: NSError?)]) -> Void in
+                // fail
+                // hide activity indicator
+                dispatch_async(dispatch_get_main_queue()){
+                    SwiftSpinner.hide()
+                }
+                
+                for element in result {
+                    if element.error?.code == 1 {
+                        // not internet
+                        // show alert
+                        let guide = "请检查网络连接设置。"
+                        var alert = UIAlertController(title: "无网络连接", message: guide, preferredStyle: UIAlertControllerStyle.Alert)
+                        alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler:{
+                            (Void) -> Void in
+                            // go preview view
+                            //self.navigationController?.popViewControllerAnimated(true)
+                            // do nothing
+                        }))
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    }
+                }
+            })
             
             
-            let message:WXMediaMessage = WXMediaMessage()
-            message.setThumbImage(sharedImage)
             
-            let ext:WXImageObject = WXImageObject()
-            ext.imageData = imageData
-            
-            message.mediaObject = ext;
-            message.mediaTagName = "WECHAT_TAG_JUMP_APP";
-            message.messageExt = "这是第三方带的测试字段";
-            message.messageAction = "<action>dotalist</action>";
-            
-            let req:SendMessageToWXReq = SendMessageToWXReq()
-            req.bText = false;
-            req.message = message;
-            req.scene = Int32(scene.value);
-            
-            WXApi.sendReq(req)
         }
         // show target list
         let alert:UIAlertController=UIAlertController(title: "分享至", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
@@ -264,29 +354,14 @@ class ChooseBaseColorViewController: UIViewController {
                 
         }
         
-        //alert.addAction(shareOnWeChatMoment)
-        //alert.addAction(shareOnWeChatSession)
+        alert.addAction(shareOnWeChatMoment)
+        alert.addAction(shareOnWeChatSession)
         alert.addAction(saveToPhotoAlbum)
         alert.addAction(cancelAction)
         
         self.presentViewController(alert, animated: true, completion: nil)
     }
-    
-/*
-    @IBAction func doChooseColor(sender: UISegmentedControl, forEvent event: UIEvent) {
-        let selectedColorIndex = sender.selectedSegmentIndex
-        let chooseColor = self.colorList[selectedColorIndex]
-        
-        self.baseColor=chooseColor
-        
-    }
-    @IBAction func doChooseSize(sender: UISegmentedControl, forEvent event: UIEvent) {
-        let selectedSizeIndex = sender.selectedSegmentIndex
-        let chooseSize = self.sizeList[selectedSizeIndex]
-        
-        self.size=chooseSize;
-    }
-*/
+
     @IBAction func doAddOrderItem(sender: UIBarButtonItem) {
         // show guide for user
         let guide = "为了保护消费者权益，所有交易都通淘宝担保交易。"
@@ -302,6 +377,7 @@ class ChooseBaseColorViewController: UIViewController {
         
     }
     
+    //MARK: - Support functions
     private func doOrder(){
         
         // show activity indicator
@@ -314,19 +390,19 @@ class ChooseBaseColorViewController: UIViewController {
         //let data :NSData = NSData(base64EncodedString: "test", options: NSDataBase64DecodingOptions.allZeros)!
         
         let printImageData = UIImagePNGRepresentation(self.design!.print)
-        let previewImageData = UIImagePNGRepresentation(self.previewImageView.image)
+        let previewImageData = UIImageJPEGRepresentation(self.previewImageView.image,0.9)
         
         let uuid = NSUUID().UUIDString
         
         let printImageKey = "design/\(uuid)/print.png"
-        let previewImageKey = "design/\(uuid)/preview.png"
+        let previewImageKey = "design/\(uuid)/preview.jpg"
         
         var keyAndImages = [
             (key:printImageKey,image:self.design!.print!),
             (key:previewImageKey,image:self.previewImageView.image!)
         ]
         
-        self.uploadImages(keyAndImages, completionHandler: { (result:[(key: String, image: UIImage, success: Bool, error: String?)]) -> Void in
+        self.uploadImages(keyAndImages, completionHandler: { (result:[(key: String, image: UIImage, success: Bool, error: NSError?)]) -> Void in
             println("completed. \(result)")
             
             // hide activity indicator
@@ -344,7 +420,7 @@ class ChooseBaseColorViewController: UIViewController {
             }
             
             let uploadedImageUrl = (printImageUrl:"http://cdn.sinacloud.net/\(self.cloudBucket)/\(result[0].key)",previewImageUrl:"http://cdn.sinacloud.net/\(self.cloudBucket)/\(result[1].key)")
-            let designInfo = (print:(bucket:self.cloudBucket,key:result[0].key),preview:(bucket:self.cloudBucket,key:result[1].key),creatorId:UIDevice.currentDevice().identifierForVendor.UUIDString)
+            let designInfo = (print:(bucket:self.cloudBucket,key:result[0].key),preview:(bucket:self.cloudBucket,key:result[1].key))
             
             // generate memo
             let memo = self.generateMemo(designInfo)
@@ -397,11 +473,33 @@ class ChooseBaseColorViewController: UIViewController {
             self.postLoadedScript=postLoadedScript
             
             self.performSegueWithIdentifier("openOrderConfirm", sender: NSURL(string:orderConfirmUrl))
+            },failureHandler:{ (result:[(key: String, image: UIImage, success: Bool, error: NSError?)]) -> Void in
+                // fail
+                // hide activity indicator
+                dispatch_async(dispatch_get_main_queue()){
+                    SwiftSpinner.hide()
+                }
+                
+                for element in result {
+                    if element.error?.code == 1 {
+                        // not internet
+                        // show alert
+                        let guide = "请检查网络连接设置。"
+                        var alert = UIAlertController(title: "无网络连接", message: guide, preferredStyle: UIAlertControllerStyle.Alert)
+                        alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler:{
+                            (Void) -> Void in
+                            // go preview view
+                            //self.navigationController?.popViewControllerAnimated(true)
+                            // do nothing
+                        }))
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    }
+                }
         })
     }
     
-    private func generateMemo(designInfo:(print:(bucket:String,key:String),preview:(bucket:String,key:String),creatorId:String)) -> String {
-        let memo = "{\"hint\":\"定制內容信息，请勿修改！\",\"print\":{\"bucket\":\"\(designInfo.print.bucket)\",\"key\":\"\(designInfo.print.key)\"},\"preview\":{\"bucket\":\"\(designInfo.preview.bucket)\",\"key\":\"\(designInfo.preview.key)\"},\"creatorId\":\"\(designInfo.creatorId)\"}"
+    private func generateMemo(designInfo:(print:(bucket:String,key:String),preview:(bucket:String,key:String))) -> String {
+        let memo = "{\"hint\":\"定制內容信息，请勿修改！\",\"print\":{\"bucket\":\"\(designInfo.print.bucket)\",\"key\":\"\(designInfo.print.key)\"},\"preview\":{\"bucket\":\"\(designInfo.preview.bucket)\",\"key\":\"\(designInfo.preview.key)\"}}"
         
         return memo
     }
@@ -409,9 +507,9 @@ class ChooseBaseColorViewController: UIViewController {
     /**
     * run in background thread
     */
-    private func uploadImages(keyAndImages:[(key:String,image:UIImage)], completionHandler:(([(key:String,image:UIImage,success:Bool,error:String?)])->Void)?) -> Void {
+    private func uploadImages(keyAndImages:[(key:String,image:UIImage)], completionHandler:(([(key:String,image:UIImage,success:Bool,error:NSError?)])->Void)?,failureHandler:(([(key:String,image:UIImage,success:Bool,error:NSError?)])->Void)?=nil) -> Void {
 
-        var output:[(key:String,image:UIImage,success:Bool,error:String?)] = []
+        var output:[(key:String,image:UIImage,success:Bool,error:NSError?)] = []
 
         for i in 0..<keyAndImages.count {
             output.append(key: "", image: keyAndImages[i].image, success: false, error: nil)
@@ -421,16 +519,23 @@ class ChooseBaseColorViewController: UIViewController {
             () -> Void
             in
             var flag:Bool = true
+            var allSuccess = true
             
             for element in output {
                 if element.key == "" {
                     flag=false
                     break;
                 }
+                
+                if element.success == false {
+                    allSuccess = false
+                }
             }
             
-            if flag == true {
+            if flag == true && allSuccess == true {
                 completionHandler?(output)
+            }else if flag == true && allSuccess == false {
+                failureHandler?(output)
             }
         }
         let uploadSingleImage = {
@@ -438,9 +543,16 @@ class ChooseBaseColorViewController: UIViewController {
             in
             let key = keyAndImages[index].key
             let image = keyAndImages[index].image
-            let imageData = UIImagePNGRepresentation(image)
+            var mimeType = "image/png"
+            var imageData = UIImagePNGRepresentation(image)
             
-            self.sinaStorage.uploadObject(data: imageData, mimeType:"image/png", bucket: self.cloudBucket, key: key, started: nil, finished: { (request:SCSObjectRquest) -> Void in
+            if key.hasSuffix("jpg") || key.hasSuffix("jpeg") {
+                mimeType = "image/jpeg"
+                imageData = UIImageJPEGRepresentation(image,0.9)
+            }
+            
+            
+            self.sinaStorage.uploadObject(data: imageData, mimeType:mimeType, bucket: self.cloudBucket, key: key, started: nil, finished: { (request:SCSObjectRquest) -> Void in
                     println("fininsed \(request.key)")
                 
                     output[index] = (key:key,image:image,success:true,error:nil)
@@ -449,7 +561,7 @@ class ChooseBaseColorViewController: UIViewController {
                 }, failed: { (request) -> Void in
                     println("failed \(request.error)")
                     
-                    output[index] = (key:key,image:image,success:false,error:"\(request.error)")
+                    output[index] = (key:key,image:image,success:false,error:request.error)
                     
                     checkCompletion()
                     
@@ -515,10 +627,58 @@ class ChooseBaseColorViewController: UIViewController {
     * @param callback handler when loaded config
     */
 
-    private func loadConfig(completionHandler:((Void) -> Void)?){
+    private func loadConfig(completionHandler:((Void) -> Void)?) {
         
-        let config = JSON(url:"http://cdn.sinacloud.net/\(self.cloudBucket)/config/taobao-integration-config.json")
         
+        let url:String = "http://cdn.sinacloud.net/\(self.cloudBucket)/config/taobao-integration-config.json"
+        
+        var enc:NSStringEncoding = NSUTF8StringEncoding
+        var err:NSError?
+        
+        var config:JSON = JSON(string:"{}")
+        
+        if let nsurl = NSURL(string:url) as NSURL? {
+            // all UI operation should be performed in main queue
+            dispatch_async(dispatch_get_main_queue()){
+                SwiftSpinner.show("获取颜色列表...", animated: true)
+            }
+            let str = NSString(
+                contentsOfURL:nsurl, usedEncoding:&enc, error:&err
+            )
+            dispatch_async(dispatch_get_main_queue()){
+                SwiftSpinner.hide()
+            }
+            
+            if err != nil {
+                // alert and
+                // show alert
+                let guide = "请检查网络连接设置。"
+                var alert = UIAlertController(title: "无网络连接", message: guide, preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler:{
+                    (Void) -> Void in
+                    // go preview view
+                    self.navigationController?.popViewControllerAnimated(true)
+                }))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }else{
+                config = JSON(string:String(str!))
+                self.parseConfig(config)
+                
+                completionHandler?()
+            }
+        }else{
+            // code exception
+            println("Invalid config url: \(url)")
+        }
+
+        
+        
+
+        
+        
+    }
+    
+    private func parseConfig(config:JSON){
         self.itemId = config["item"]["itemId"].asString
         
         var skus:[Sku]=[Sku]()
@@ -572,10 +732,8 @@ class ChooseBaseColorViewController: UIViewController {
             
             self.skuIndex[key]=sku
         }
-
-        
-        completionHandler?()
     }
+    
     
     private func paddingPrint(theImage:UIImage) -> UIImage{
         // padding image to 210:279
@@ -614,6 +772,58 @@ class ChooseBaseColorViewController: UIViewController {
                 let alert = UIAlertView(title: "分享到相册成功", message: "", delegate: self, cancelButtonTitle: "OK")
                 alert.show()
             }
+    }
+    
+    func showTutorialTip() {
+        
+        let configureTip = {
+            (tip:CMPopTipView) -> Void in
+            tip.has3DStyle = false
+            tip.borderWidth = 0.0
+            tip.delegate = self 
+        }
+        
+        self.tutorialTipQueue.addOperation(NSBlockOperation(){
+            let chooseColorTip = CMPopTipView(message: "选择T恤颜色")
+            configureTip(chooseColorTip)
+            dispatch_async(dispatch_get_main_queue()){
+                chooseColorTip.presentPointingAtView(self.colorButton, inView: self.view, animated: true)
+            }
+            
+            NSThread.sleepForTimeInterval(2)
+            
+            dispatch_async(dispatch_get_main_queue()){
+                chooseColorTip.dismissAnimated(true)
+            }
+            })
+        
+        self.tutorialTipQueue.addOperation(NSBlockOperation(){
+            let chooseSizeTip = CMPopTipView(message: "选择T恤尺码")
+            configureTip(chooseSizeTip)
+            dispatch_async(dispatch_get_main_queue()){
+                chooseSizeTip.presentPointingAtView(self.sizeButton, inView: self.view, animated: true)
+            }
+            
+            NSThread.sleepForTimeInterval(2)
+            
+            dispatch_async(dispatch_get_main_queue()){
+                chooseSizeTip.dismissAnimated(true)
+            }
+            })
+        
+        self.tutorialTipQueue.addOperation(NSBlockOperation(){
+            let addOrderTip = CMPopTipView(message: "下单")
+            configureTip(addOrderTip)
+            dispatch_async(dispatch_get_main_queue()){
+                addOrderTip.presentPointingAtBarButtonItem(self.uiAddOrderBarButtonItem, animated: true)
+            }
+            
+            NSThread.sleepForTimeInterval(2)
+            
+            dispatch_async(dispatch_get_main_queue()){
+                addOrderTip.dismissAnimated(true)
+            }
+            })
     }
 
 }

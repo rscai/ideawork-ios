@@ -1,104 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MiY-fo-ENa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MiY-fo-ENa">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Tutorial View Controller-->
-        <scene sceneID="MGm-MH-UD5">
-            <objects>
-                <viewController storyboardIdentifier="tutorialViewController" id="j7W-0g-rjt" customClass="TutorialViewController" customModule="ideawork" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Lww-ft-AnU"/>
-                        <viewControllerLayoutGuide type="bottom" id="y4v-xd-KAs"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Rbx-gh-43b" customClass="Tu">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bVe-aN-3C9">
-                                <rect key="frame" x="16" y="529" width="51" height="31"/>
-                            </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="下次显示" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="th8-Bn-Rzw">
-                                <rect key="frame" x="73" y="534" width="68" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YGk-7d-LJ8">
-                                <rect key="frame" x="274" y="530" width="30" height="30"/>
-                                <state key="normal" title="完成">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="uiClickFinishButton:" destination="j7W-0g-rjt" eventType="touchUpInside" id="Ay6-ki-ZxP"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="y4v-xd-KAs" firstAttribute="top" secondItem="bVe-aN-3C9" secondAttribute="bottom" constant="8" symbolic="YES" id="F7w-X6-zcu"/>
-                            <constraint firstItem="bVe-aN-3C9" firstAttribute="leading" secondItem="Rbx-gh-43b" secondAttribute="leadingMargin" id="Nby-E0-Bqx"/>
-                            <constraint firstItem="th8-Bn-Rzw" firstAttribute="leading" secondItem="bVe-aN-3C9" secondAttribute="trailing" constant="8" symbolic="YES" id="akF-5k-TpZ"/>
-                            <constraint firstItem="th8-Bn-Rzw" firstAttribute="centerY" secondItem="bVe-aN-3C9" secondAttribute="centerY" id="bsi-4R-WgE"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="YGk-7d-LJ8" secondAttribute="trailing" id="jZT-aZ-5ZL"/>
-                            <constraint firstItem="th8-Bn-Rzw" firstAttribute="centerY" secondItem="YGk-7d-LJ8" secondAttribute="centerY" id="o21-Uq-9xJ"/>
-                        </constraints>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6z8-s3-7pp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-94" y="-1310"/>
-        </scene>
-        <!--Tutorial Content View Controller-->
-        <scene sceneID="h9g-3W-zJp">
-            <objects>
-                <viewController storyboardIdentifier="tutorialContentViewController" id="MDR-gs-hmy" customClass="TutorialContentViewController" customModule="ideawork" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="TdH-Du-CQ4"/>
-                        <viewControllerLayoutGuide type="bottom" id="gDG-ss-dgt"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="p5k-UX-jul">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guide-import-image.png" translatesAutoresizingMaskIntoConstraints="NO" id="6lv-C5-fNl">
-                                <rect key="frame" x="16" y="28" width="288" height="361"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="6lv-C5-fNl" secondAttribute="height" multiplier="4:5" id="fgl-7L-lnb"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0a-am-HVm">
-                                <rect key="frame" x="16" y="397" width="288" height="163"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="6lv-C5-fNl" firstAttribute="leading" secondItem="p5k-UX-jul" secondAttribute="leadingMargin" id="5nZ-MF-VHs"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="6lv-C5-fNl" secondAttribute="trailing" id="Bx3-98-TLS"/>
-                            <constraint firstItem="h0a-am-HVm" firstAttribute="leading" secondItem="p5k-UX-jul" secondAttribute="leadingMargin" id="Cuu-Nl-A9Z"/>
-                            <constraint firstItem="6lv-C5-fNl" firstAttribute="top" secondItem="TdH-Du-CQ4" secondAttribute="bottom" constant="8" symbolic="YES" id="IEh-AZ-93b"/>
-                            <constraint firstItem="gDG-ss-dgt" firstAttribute="top" secondItem="h0a-am-HVm" secondAttribute="bottom" constant="8" symbolic="YES" id="TPk-1m-c7c"/>
-                            <constraint firstItem="h0a-am-HVm" firstAttribute="top" secondItem="6lv-C5-fNl" secondAttribute="bottom" constant="8" symbolic="YES" id="fXq-gK-OvJ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="h0a-am-HVm" secondAttribute="trailing" id="hFn-vf-XrV"/>
-                        </constraints>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <connections>
-                        <outlet property="imageView" destination="6lv-C5-fNl" id="Unb-RD-qdL"/>
-                        <outlet property="textView" destination="h0a-am-HVm" id="W85-GH-2Si"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vO9-Co-OAR" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="362" y="-1937"/>
-        </scene>
         <!--Design View Controller-->
         <scene sceneID="NhE-CZ-BIt">
             <objects>
@@ -171,6 +78,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="designCollectionView" destination="8bq-kp-fvK" id="lPn-YT-rAG"/>
+                        <outlet property="uiAddDesignBarButtonItem" destination="9xE-xY-GzN" id="fzb-gp-Fo3"/>
                         <segue destination="G9P-bJ-1Ia" kind="show" identifier="openDesign" id="Jfk-Rt-M58"/>
                     </connections>
                 </collectionViewController>
@@ -238,16 +146,13 @@
                             <constraint firstItem="4Cm-IO-EP3" firstAttribute="leading" secondItem="SvR-eJ-bKV" secondAttribute="leadingMargin" constant="-10" id="z4B-fc-IWv"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="编辑" id="zIi-Yu-gxo">
-                        <barButtonItem key="rightBarButtonItem" image="share" id="4fj-XJ-m8e">
-                            <connections>
-                                <action selector="share:" destination="G9P-bJ-1Ia" id="lC5-1D-VUp"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="编辑" id="zIi-Yu-gxo"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="canvas" destination="4Cm-IO-EP3" id="ypa-Nv-kdo"/>
+                        <outlet property="uiFilterBarButtonItem" destination="OGk-bD-zOC" id="cCp-P2-dwR"/>
+                        <outlet property="uiImportImageBarButtonItem" destination="Rlm-0B-iW0" id="eiV-Kd-oO4"/>
+                        <outlet property="uiPreviewBarButtonItem" destination="kal-rR-0nK" id="fJr-Px-Xlo"/>
                         <segue destination="U2V-94-DO0" kind="show" identifier="importImage" id="ut6-OZ-K6G"/>
                     </connections>
                 </viewController>
@@ -440,11 +345,8 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zmG-eS-Mb3" customClass="Choose">
-                                <rect key="frame" x="6" y="72" width="308" height="308"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="zmG-eS-Mb3" secondAttribute="height" multiplier="1:1" id="TMi-fi-bYb"/>
-                                </constraints>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zmG-eS-Mb3" customClass="Choose">
+                                <rect key="frame" x="6" y="74" width="308" height="372"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="尺码：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Qx-db-WyN">
                                 <rect key="frame" x="16" y="491" width="51" height="21"/>
@@ -463,13 +365,13 @@
                                     <action selector="chooseSize:" destination="6fp-Uv-Hqe" eventType="touchUpInside" id="njh-Ou-dQs"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="颜色：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcU-hP-3zl">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="颜色：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcU-hP-3zl">
                                 <rect key="frame" x="15" y="454" width="53" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ML-py-TcV">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ML-py-TcV">
                                 <rect key="frame" x="76" y="450" width="228" height="30"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="颜色名称">
@@ -495,6 +397,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="zmG-eS-Mb3" secondAttribute="trailing" constant="-10" id="P3m-RV-Oyg"/>
                             <constraint firstItem="6ML-py-TcV" firstAttribute="centerX" secondItem="hg1-WN-VhR" secondAttribute="centerX" id="V5y-87-JDL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6ML-py-TcV" secondAttribute="trailing" id="adF-zy-094"/>
+                            <constraint firstItem="PcU-hP-3zl" firstAttribute="top" secondItem="zmG-eS-Mb3" secondAttribute="bottom" constant="8" symbolic="YES" id="jgm-Ft-MQh"/>
                             <constraint firstItem="PcU-hP-3zl" firstAttribute="centerX" secondItem="1Qx-db-WyN" secondAttribute="centerX" id="ljR-EO-cH2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hg1-WN-VhR" secondAttribute="trailing" id="oEs-WZ-JOy"/>
                             <constraint firstItem="1Qx-db-WyN" firstAttribute="leading" secondItem="BUE-Ia-1tM" secondAttribute="leadingMargin" id="yxq-03-qew"/>
@@ -512,6 +415,7 @@
                         <outlet property="colorButton" destination="6ML-py-TcV" id="zsQ-6F-Vr2"/>
                         <outlet property="previewImageView" destination="zmG-eS-Mb3" id="G8M-SS-teJ"/>
                         <outlet property="sizeButton" destination="hg1-WN-VhR" id="hLa-zw-ZAe"/>
+                        <outlet property="uiAddOrderBarButtonItem" destination="6Ba-MG-abw" id="Qqi-EA-aAm"/>
                         <segue destination="eWg-E5-NF4" kind="show" identifier="openOrderConfirm" id="AII-Ae-MX3"/>
                     </connections>
                 </viewController>
@@ -643,16 +547,6 @@
                 </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1381" y="107"/>
-        </scene>
-        <!--Page View Controller-->
-        <scene sceneID="xIy-RU-QMc">
-            <objects>
-                <pageViewController storyboardIdentifier="tutorialPageViewController" autoresizesArchivedViewToFullSize="NO" modalTransitionStyle="flipHorizontal" transitionStyle="scroll" pageSpacing="2" navigationOrientation="horizontal" spineLocation="none" id="6cw-WV-KgU" sceneMemberID="viewController">
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                </pageViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wwh-dA-2VR" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="362" y="-1302"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ngL-Ka-AEs">

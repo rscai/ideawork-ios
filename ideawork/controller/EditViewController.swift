@@ -8,13 +8,16 @@
 
 import UIKit
 
-class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPopoverControllerDelegate,ImportImageDelegate
+import CMPopTipView
+
+class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPopoverControllerDelegate,ImportImageDelegate,CMPopTipViewDelegate
  {
 
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder:aDecoder)
-    }
+    
+    // MARK: - Configuration
+    private var cloudBucket:String = ""
 
+    // MARK: - Data members
     var design:Design?{
         didSet{
             modifiedImage=design?.print
@@ -33,17 +36,101 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
     
     @IBOutlet weak var canvas: UIImageView!
     
+    @IBOutlet weak var uiImportImageBarButtonItem:UIBarButtonItem!
+    @IBOutlet weak var uiFilterBarButtonItem:UIBarButtonItem!
+    @IBOutlet weak var uiPreviewBarButtonItem:UIBarButtonItem!
     
     
+    // MARK: - Support members
     var picker:UIImagePickerController?=UIImagePickerController()
     var importImageViewController:ImportImageViewController?=ImportImageViewController()
     var popover:UIPopoverController?=nil
     
     var overlayView:UIView?
+    
+
+    lazy var tutorialTipQueue:NSOperationQueue = {
+        var queue = NSOperationQueue()
+        queue.name = "Tutorial tip queue"
+        queue.maxConcurrentOperationCount = 1
+        return queue
+        }()
+    
+    // MARK: - Initializers
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder:aDecoder)
+    }
+    
+    // MARK: - UIViewController lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let imageCloudStorageConfiguration = NSBundle.mainBundle().objectForInfoDictionaryKey("ImageCloudStorageConfiguration") as! NSDictionary
+        
+        self.cloudBucket = imageCloudStorageConfiguration.objectForKey("bucket") as! String
+    }
 
     override func viewWillAppear(animated: Bool) {
         print("design: \(design)")
         canvas?.image=design?.print
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        if !NSUserDefaults.standardUserDefaults().boolForKey(Constants.USER_DEFAULT_KEY_SHOW_TUTORIAL_TIP){
+            showTutorialTip()
+        }
+    }
+    
+
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let identifier = segue.identifier {
+            switch(identifier){
+            case "importImage":
+                if let importImageController = segue.destinationViewController as? ImportImageViewController {
+                    
+                    // set delegate
+                    importImageController.delegate=self
+                    if let image = sender as? UIImage {
+                        importImageController.processImage(image)
+                    }
+                }
+            case "chooseBaseColor":
+                if let chooseBaseColorViewController = segue.destinationViewController as? ChooseBaseColorViewController {
+                    // set model
+                    
+                    chooseBaseColorViewController.design = self.design
+                    
+                }
+            default:
+                print("unhandled segue \(segue)")
+            }
+        }
+    }
+    
+    //MARK: - CMPopTipViewDelegate
+    
+    func popTipViewWasDismissedByUser(popTipView: CMPopTipView!) {
+        // cancel tutorial tip task queue
+        self.tutorialTipQueue.cancelAllOperations()
+        
+        let confirmDialog = UIAlertController(title: "确认", message: "以后都不再显示提示？", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        confirmDialog.addAction(UIAlertAction(title: "不再显示", style: UIAlertActionStyle.Default, handler:{
+            (Void) -> Void in
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: Constants.USER_DEFAULT_KEY_SHOW_TUTORIAL_TIP)
+        }))
+        
+        confirmDialog.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler:{
+            (Void) -> Void in
+            
+        }))
+        
+        dispatch_async(dispatch_get_main_queue()){
+            self.presentViewController(confirmDialog, animated: true, completion: nil)
+        }
+        
+
     }
     
     // MARK: - UI Action
@@ -101,78 +188,18 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    
-    @IBAction func share(sender: UIBarButtonItem) {
-        let sendImageToWeChat = {
-            (image:UIImage,scene:WXScene) -> Void in
-            
-            var sharedImage = image
-            var imageData = UIImagePNGRepresentation(image)
-            
-            if imageData.length > 30 * 1024 {
-                // reseize image
-                let edgeScale  = sqrt(CGFloat(30 * 1024)/CGFloat(imageData.length))
-                
-                let newWidth = Int32(image.size.width * edgeScale)
-                let newHeight = Int32(image.size.height * edgeScale)
-                
-                sharedImage = ImgProcWrapper.resize(image, width: newWidth, height: newHeight)
-                imageData = UIImagePNGRepresentation(sharedImage)
-            }
-            
-            
-            
-            let message:WXMediaMessage = WXMediaMessage()
-            message.setThumbImage(sharedImage)
-            
-            let ext:WXImageObject = WXImageObject()
-            ext.imageData = imageData
-            
-            message.mediaObject = ext;
-            message.mediaTagName = "WECHAT_TAG_JUMP_APP";
-            message.messageExt = "这是第三方带的测试字段";
-            message.messageAction = "<action>dotalist</action>";
-            
-            let req:SendMessageToWXReq = SendMessageToWXReq()
-            req.bText = false;
-            req.message = message;
-            req.scene = Int32(scene.value);
-            
-            WXApi.sendReq(req)
-        }
-        // show target list
-        let alert:UIAlertController=UIAlertController(title: "分享至", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+    // preview
+    @IBAction func doPreview(sender: UIBarButtonItem) {
+        let sender = self.design!
         
-        let shareOnWeChatMoment = UIAlertAction(title: "微信朋友圈",style: UIAlertActionStyle.Default){
-            UIAlertAction  in
-            sendImageToWeChat(self.modifiedImage!,WXSceneTimeline)
-        }
-        
-        let shareOnWeChatSession = UIAlertAction(title: "微信聊天界面",style: UIAlertActionStyle.Default){
-            UIAlertAction  in
-            sendImageToWeChat(self.modifiedImage!,WXSceneSession)
-        }
-        let saveToPhotoAlbum = UIAlertAction(title: "相册",style: UIAlertActionStyle.Default){
-            UIAlertAction  in
-            UIImageWriteToSavedPhotosAlbum(self.modifiedImage!, self, "image:didFinishSavingWithError:contextInfo:", nil)
-        }
-        
-        let cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel)
-            {
-                UIAlertAction in
-                
-        }
-        
-        alert.addAction(shareOnWeChatMoment)
-        alert.addAction(shareOnWeChatSession)
-        alert.addAction(saveToPhotoAlbum)
-        alert.addAction(cancelAction)
-        
-        self.presentViewController(alert, animated: true, completion: nil)
-        
+        performSegueWithIdentifier("chooseBaseColor",sender:sender)
     }
     
-    // filters
+
+    
+    // MARK: - Support functions
+    
+    // MARK: - Image Filters
     
    private func doRemoveBackground() {
         SwiftSpinner.show("袪除背景...", animated: true)
@@ -191,14 +218,9 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
         
     }
 
-    // preview
-    @IBAction func doPreview(sender: UIBarButtonItem) {
-        let sender = self.design!
-        
-        performSegueWithIdentifier("chooseBaseColor",sender:sender)
-    }
     
-    //
+    
+    //MARK: - UIImagePickerControllerDelegate
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject])
     {
         picker.dismissViewControllerAnimated(true, completion: nil)
@@ -275,35 +297,9 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
 
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let identifier = segue.identifier {
-        switch(identifier){
-            case "importImage":
-                if let importImageController = segue.destinationViewController as? ImportImageViewController {
-                    
-                    // set delegate
-                    importImageController.delegate=self
-                    if let image = sender as? UIImage {
-                        importImageController.processImage(image)
-                    }
-            }
-            case "chooseBaseColor":
-                if let chooseBaseColorViewController = segue.destinationViewController as? ChooseBaseColorViewController {
-                    // set model 
-                    
-                    chooseBaseColorViewController.design = self.design
-                    
-            }
-        default:
-            print("unhandled segue \(segue)")
-        }
-        }
-    }
 
-    /**************
-    *
-    * helper functions
-    */
+
+    //MARK: - Help functions
 
 
     private func imageFixOrientation(img:UIImage) -> UIImage {
@@ -391,5 +387,60 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
                 let alert = UIAlertView(title: "分享到相册成功", message: "", delegate: self, cancelButtonTitle: "OK")
                 alert.show()
             }
+    }
+    
+    // MARK: Tutorial functions
+    func showTutorialTip() {
+        let configureTip = {
+        (tip:CMPopTipView) -> Void in
+            tip.has3DStyle = false
+            tip.borderWidth = 0.0
+            tip.delegate = self
+        }
+        // 1.import image
+        self.tutorialTipQueue.addOperation(NSBlockOperation(){
+            let importImageTip = CMPopTipView(message: "从相册选取图片，或者直接使用相机拍摄")
+            configureTip(importImageTip)
+            dispatch_async(dispatch_get_main_queue()){
+                importImageTip.presentPointingAtBarButtonItem(self.uiImportImageBarButtonItem, animated: true)
+            }
+            
+            NSThread.sleepForTimeInterval(2)
+            
+            dispatch_async(dispatch_get_main_queue()){
+                importImageTip.dismissAnimated(true)
+            }
+            
+            })
+        // 2.use filter
+        self.tutorialTipQueue.addOperation(NSBlockOperation(){
+            let filterTip = CMPopTipView(message: "使用滤镜处理图片")
+            configureTip(filterTip)
+            dispatch_async(dispatch_get_main_queue()){
+                filterTip.presentPointingAtBarButtonItem(self.uiFilterBarButtonItem, animated: true)
+            }
+            
+            NSThread.sleepForTimeInterval(2)
+            
+            dispatch_async(dispatch_get_main_queue()){
+                filterTip.dismissAnimated(true)
+            }
+            
+            })
+        // 3. preview
+        self.tutorialTipQueue.addOperation(NSBlockOperation(){
+            let previewTip = CMPopTipView(message: "预览T恤打印效果")
+            configureTip(previewTip)
+            dispatch_async(dispatch_get_main_queue()){
+                previewTip.presentPointingAtBarButtonItem(self.uiPreviewBarButtonItem, animated: true)
+            }
+            NSThread.sleepForTimeInterval(2)
+            
+            dispatch_async(dispatch_get_main_queue()){
+                previewTip.dismissAnimated(true)
+            }
+            
+            })
+        
     }
 }

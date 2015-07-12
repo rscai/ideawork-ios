@@ -9,5 +9,5 @@
 import Foundation
 
 public struct Constants{
-    static let USER_DEFAULT_KEY_HAS_SEEN_TUTORIAL:String = "USER_DEFAULT_KEY_HAS_SEEN_TUTORIAL"
+    static let USER_DEFAULT_KEY_SHOW_TUTORIAL_TIP:String = "USER_DEFAULT_KEY_SHOW_TUTORIAL_TIP"
 }

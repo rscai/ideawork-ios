@@ -171,24 +171,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
     }
     
     private func startUI(){
-        if !NSUserDefaults.standardUserDefaults().boolForKey(Constants.USER_DEFAULT_KEY_HAS_SEEN_TUTORIAL){
-            showTutorial()
-        }else{
-            showNavigation()
-        }
-    }
-    
-    private func showTutorial(){
-        var storyboard = UIStoryboard(name: "Main", bundle: nil)
-        var tutorialViewController: TutorialViewController = storyboard.instantiateViewControllerWithIdentifier("tutorialViewController") as! TutorialViewController
-        
-        tutorialViewController.didFinish = {
-            (Void) -> Void in
-            self.showNavigation()
-        }
-        
-        window?.rootViewController?.presentViewController(tutorialViewController,animated: true, completion: nil)
-        window?.makeKeyAndVisible()
+        showNavigation()
+
     }
     
     private func showNavigation(){

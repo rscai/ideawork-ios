@@ -216,7 +216,7 @@ public class SinaStorageService {
         
         request.timeOutSeconds = 60
         // follow the ACL of bucket
-        //request.accessPolicy = accessPolicy.rawValue
+        //request.accessPolicy = AccessPolicy.access_public_read.rawValue
         request.addRequestHeader("Expect", value:"100-continue")
         request.showAccurateProgress = true
         

@@ -8,18 +8,31 @@
 import UIKit
 import CoreData
 
-class DesignViewController: UICollectionViewController,UICollectionViewDataSource,UICollectionViewDelegate {
+import CMPopTipView
+
+
+class DesignViewController: UICollectionViewController,UICollectionViewDataSource,UICollectionViewDelegate,CMPopTipViewDelegate {
     
+    // MARK: - internal constant
     private let reuseIdentifier="designItem"
+    
+    // MARK: data members
     private var designCollection = [AbstractDesign]()
     
+
+    // MARK: state holders
     private var isOnEditMode:Bool = false
     
+    // MARK: - support mermbers
+    private lazy var tutorialTipQueue:NSOperationQueue = {
+        var queue = NSOperationQueue()
+        queue.name = "Tutorial tip queue"
+        queue.maxConcurrentOperationCount = 1
+        return queue
+    }()
+    
 
-    /**************
-    * UI outlets
-    *
-    */
+    // MARK: - UI Outlets
     
     @IBOutlet var designCollectionView: UICollectionView!{
         didSet{
@@ -28,11 +41,11 @@ class DesignViewController: UICollectionViewController,UICollectionViewDataSourc
         }
     }
     
+    @IBOutlet var uiAddDesignBarButtonItem: UIBarButtonItem!
     
-    /***********
-    * view controller life cycle handler
-    *
-    */
+    // MARK: - UIViewController lifecycle
+    
+
     
     override func viewWillAppear(animated: Bool) {
         self.designCollection.removeAll(keepCapacity: true)
@@ -49,9 +62,14 @@ class DesignViewController: UICollectionViewController,UICollectionViewDataSourc
         
     }
     
-    /**************
-    * UI outlet action handler
-    */
+    override func viewDidAppear(animated: Bool) {
+        if !NSUserDefaults.standardUserDefaults().boolForKey(Constants.USER_DEFAULT_KEY_SHOW_TUTORIAL_TIP){
+            showTutorialTip()
+        }
+    }
+
+    
+    // MARK: - UI Actions
     
     @IBAction func addDesign(sender: UIBarButtonItem) {
         println("click addDesign button")
@@ -61,6 +79,8 @@ class DesignViewController: UICollectionViewController,UICollectionViewDataSourc
         // open design edit 
         
         performSegueWithIdentifier("openDesign", sender: design)
+        
+
     }
     
     @IBAction func enterEditMode(sender: UIBarButtonItem) {
@@ -75,9 +95,32 @@ class DesignViewController: UICollectionViewController,UICollectionViewDataSourc
         self.collectionView!.reloadData()
     }
     
+    //MARK: - CMPopTipViewDelegate
     
+    func popTipViewWasDismissedByUser(popTipView: CMPopTipView!) {
+        // cancel tutorial tip task queue
+        self.tutorialTipQueue.cancelAllOperations()
+        
+        let confirmDialog = UIAlertController(title: "确认", message: "以后都不再显示提示？", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        confirmDialog.addAction(UIAlertAction(title: "不再显示", style: UIAlertActionStyle.Default, handler:{
+            (Void) -> Void in
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: Constants.USER_DEFAULT_KEY_SHOW_TUTORIAL_TIP)
+        }))
+        
+        confirmDialog.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler:{
+            (Void) -> Void in
+            
+        }))
+        
+        dispatch_async(dispatch_get_main_queue()){
+            self.presentViewController(confirmDialog, animated: true, completion: nil)
+        }
+        
+        
+    }
     
-    // functions of UICollectionViewDataSource
+    // MARK: - UICollectionViewDataSource
 
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -159,6 +202,8 @@ class DesignViewController: UICollectionViewController,UICollectionViewDataSourc
             
             return true
     }
+    
+    // MARK: - Support functions
     
     private func doNewDesign() -> Design {
         let defaultTemplate = constructDefaultDesignTemplate()
@@ -290,6 +335,32 @@ class DesignViewController: UICollectionViewController,UICollectionViewDataSourc
         
         
         self.collectionView!.reloadData()
+    }
+    
+    func showTutorialTip() {
+        
+        let configureTip = {
+            (tip:CMPopTipView) -> Void in
+            tip.has3DStyle = false
+            tip.borderWidth = 0.0
+            tip.delegate = self 
+        }
+        
+        self.tutorialTipQueue.addOperation(NSBlockOperation(){
+            let addDesignTip = CMPopTipView(message: "添加设计")
+            configureTip(addDesignTip)
+            dispatch_async(dispatch_get_main_queue()){
+                addDesignTip.presentPointingAtBarButtonItem(self.uiAddDesignBarButtonItem, animated: true)
+            }
+            
+            NSThread.sleepForTimeInterval(2)
+            
+            dispatch_async(dispatch_get_main_queue()){
+                addDesignTip.dismissAnimated(true)
+            }
+            })
+        
+
     }
 
 }

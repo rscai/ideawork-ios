@@ -600,11 +600,11 @@ cv::Mat padding(cv::Mat inputMat,int newRows,int newCols){
     
     // process print
     cv::Mat printMat = cvMatFromUIImage(printImage);
-    
-    cv::resize(printMat, printMat, cv::Size(210,279));
+    //A4 on template scale is 290x385
+    cv::resize(printMat, printMat, cv::Size(290,385));
     // construct target area which print locates on result image
     // fixed position of print on result
-    int startY=190;
+    int startY=220;
     int startX = int((backgroundMat.cols-printMat.cols)/2);
     
     cv::Rect printLocatedRect = cv::Rect(startX,startY,printMat.cols,printMat.rows);

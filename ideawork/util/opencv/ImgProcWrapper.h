@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 
+//#import "ideawork-Swift.h"
+
 
 @interface ImgProcWrapper : NSObject 
 
@@ -33,6 +35,7 @@
  render design with specific base color
  */
 +(UIImage *) renderDesign:(UIImage *)backgroundImage wrinkles:(UIImage *)wrinkles colorImage:(UIImage *)colorImage printImage:(UIImage *)printImage baseColor:(UIColor *)baseColor;
+
 
 /*******************************s
  * Filters

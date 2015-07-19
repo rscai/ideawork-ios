@@ -68,6 +68,12 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
         let imageCloudStorageConfiguration = NSBundle.mainBundle().objectForInfoDictionaryKey("ImageCloudStorageConfiguration") as! NSDictionary
         
         self.cloudBucket = imageCloudStorageConfiguration.objectForKey("bucket") as! String
+        
+        // init UI outlets
+        
+        let transparentBackground = UIColor(patternImage: UIImage(named: "transparent-pattern.png")!)
+        
+        canvas.backgroundColor=transparentBackground
     }
 
     override func viewWillAppear(animated: Bool) {

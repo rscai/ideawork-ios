@@ -100,6 +100,9 @@
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WLh-4d-qR5">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="lAI-cZ-pvB"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem systemItem="camera" id="Rlm-0B-iW0">
                                         <connections>
@@ -120,30 +123,38 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Cm-IO-EP3">
-                                <rect key="frame" x="6" y="74" width="308" height="400"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n1W-bZ-yqW">
+                                <rect key="frame" x="8" y="72" width="304" height="444"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Cm-IO-EP3">
+                                        <rect key="frame" x="0.0" y="20" width="304" height="404"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="4Cm-IO-EP3" secondAttribute="height" multiplier="210:279" id="JZf-Qs-qei"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="4Cm-IO-EP3" secondAttribute="height" multiplier="40:71" id="DKm-Ha-D3z"/>
-                                    <constraint firstAttribute="width" constant="320" id="wCf-JY-6zC"/>
+                                    <constraint firstItem="4Cm-IO-EP3" firstAttribute="width" relation="lessThanOrEqual" secondItem="n1W-bZ-yqW" secondAttribute="width" id="7GZ-ir-E2c"/>
+                                    <constraint firstItem="4Cm-IO-EP3" firstAttribute="height" relation="lessThanOrEqual" secondItem="n1W-bZ-yqW" secondAttribute="height" id="BOr-aO-O1m"/>
+                                    <constraint firstAttribute="centerY" secondItem="4Cm-IO-EP3" secondAttribute="centerY" id="QhF-It-djF"/>
+                                    <constraint firstItem="4Cm-IO-EP3" firstAttribute="height" secondItem="n1W-bZ-yqW" secondAttribute="height" priority="750" id="ZKp-Ea-w97"/>
+                                    <constraint firstAttribute="centerX" secondItem="4Cm-IO-EP3" secondAttribute="centerX" id="pQG-tp-Dt6"/>
+                                    <constraint firstItem="4Cm-IO-EP3" firstAttribute="width" secondItem="n1W-bZ-yqW" secondAttribute="width" priority="750" id="zyB-3g-Trs"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="DKm-Ha-D3z"/>
-                                        <exclude reference="wCf-JY-6zC"/>
-                                    </mask>
-                                </variation>
-                            </imageView>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="LuZ-P2-F28" firstAttribute="top" secondItem="WLh-4d-qR5" secondAttribute="bottom" id="4jE-Z3-R1q"/>
-                            <constraint firstItem="4Cm-IO-EP3" firstAttribute="top" secondItem="MQR-6w-dne" secondAttribute="bottom" constant="10" id="79j-rS-DBn"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="WLh-4d-qR5" secondAttribute="trailing" constant="-16" id="Dpd-Gu-m3c"/>
-                            <constraint firstAttribute="width" secondItem="4Cm-IO-EP3" secondAttribute="height" multiplier="20:25" id="GTO-az-MIQ"/>
-                            <constraint firstItem="WLh-4d-qR5" firstAttribute="leading" secondItem="SvR-eJ-bKV" secondAttribute="leadingMargin" constant="-16" id="NXo-86-FZf"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="4Cm-IO-EP3" secondAttribute="trailing" constant="-10" id="Xxh-Cl-sjP"/>
-                            <constraint firstItem="4Cm-IO-EP3" firstAttribute="leading" secondItem="SvR-eJ-bKV" secondAttribute="leadingMargin" constant="-10" id="z4B-fc-IWv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="n1W-bZ-yqW" secondAttribute="trailing" constant="-8" id="5pv-IP-XbY"/>
+                            <constraint firstItem="n1W-bZ-yqW" firstAttribute="top" secondItem="MQR-6w-dne" secondAttribute="bottom" constant="8" symbolic="YES" id="EL1-HC-Y5C"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="WLh-4d-qR5" secondAttribute="trailing" constant="-16" id="dFz-sX-nlg"/>
+                            <constraint firstItem="WLh-4d-qR5" firstAttribute="top" secondItem="n1W-bZ-yqW" secondAttribute="bottom" constant="8" id="i2I-aW-OjW"/>
+                            <constraint firstItem="WLh-4d-qR5" firstAttribute="leading" secondItem="SvR-eJ-bKV" secondAttribute="leadingMargin" constant="-16" id="ij6-kc-0e7"/>
+                            <constraint firstItem="n1W-bZ-yqW" firstAttribute="leading" secondItem="SvR-eJ-bKV" secondAttribute="leadingMargin" id="kDF-cV-OUl"/>
+                            <constraint firstItem="n1W-bZ-yqW" firstAttribute="leading" secondItem="SvR-eJ-bKV" secondAttribute="leadingMargin" constant="-8" id="mip-yh-hs2"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="编辑" id="zIi-Yu-gxo"/>
@@ -153,12 +164,11 @@
                         <outlet property="uiFilterBarButtonItem" destination="OGk-bD-zOC" id="cCp-P2-dwR"/>
                         <outlet property="uiImportImageBarButtonItem" destination="Rlm-0B-iW0" id="eiV-Kd-oO4"/>
                         <outlet property="uiPreviewBarButtonItem" destination="kal-rR-0nK" id="fJr-Px-Xlo"/>
-                        <segue destination="U2V-94-DO0" kind="show" identifier="importImage" id="ut6-OZ-K6G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ggu-qZ-rdn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1381" y="-598"/>
+            <point key="canvasLocation" x="1392" y="-612"/>
         </scene>
         <!--未付款订单-->
         <scene sceneID="5HC-pU-IRP">
@@ -334,8 +344,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rEY-jO-aQp">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rEY-jO-aQp">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="uIS-a4-aCY"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="omY-3S-5cm"/>
                                     <barButtonItem image="put_in" id="6Ba-MG-abw">
@@ -345,15 +358,9 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zmG-eS-Mb3" customClass="Choose">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zmG-eS-Mb3" customClass="Choose">
                                 <rect key="frame" x="6" y="74" width="308" height="372"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="尺码：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Qx-db-WyN">
-                                <rect key="frame" x="16" y="491" width="51" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hg1-WN-VhR">
                                 <rect key="frame" x="75" y="487" width="229" height="30"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -365,13 +372,13 @@
                                     <action selector="chooseSize:" destination="6fp-Uv-Hqe" eventType="touchUpInside" id="njh-Ou-dQs"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="颜色：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcU-hP-3zl">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="颜色：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcU-hP-3zl">
                                 <rect key="frame" x="15" y="454" width="53" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ML-py-TcV">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ML-py-TcV">
                                 <rect key="frame" x="76" y="450" width="228" height="30"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="颜色名称">
@@ -382,9 +389,16 @@
                                     <action selector="chooseColor:" destination="6fp-Uv-Hqe" eventType="touchUpInside" id="GMM-9l-oqz"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="尺码：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Qx-db-WyN">
+                                <rect key="frame" x="16" y="491" width="51" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="rEY-jO-aQp" secondAttribute="trailing" constant="-16" id="2nK-WL-dYt"/>
                             <constraint firstItem="hg1-WN-VhR" firstAttribute="centerY" secondItem="1Qx-db-WyN" secondAttribute="centerY" id="4bf-3P-Eac"/>
                             <constraint firstItem="hg1-WN-VhR" firstAttribute="leading" secondItem="1Qx-db-WyN" secondAttribute="trailing" constant="8" symbolic="YES" id="7fB-dd-f3f"/>
                             <constraint firstItem="6ML-py-TcV" firstAttribute="leading" secondItem="PcU-hP-3zl" secondAttribute="trailing" constant="8" symbolic="YES" id="7w5-Vx-bxZ"/>
@@ -395,6 +409,7 @@
                             <constraint firstItem="rGZ-gn-QG0" firstAttribute="top" secondItem="rEY-jO-aQp" secondAttribute="bottom" id="J79-VG-OrX"/>
                             <constraint firstItem="1Qx-db-WyN" firstAttribute="top" secondItem="PcU-hP-3zl" secondAttribute="bottom" constant="16" id="NGA-l0-peB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zmG-eS-Mb3" secondAttribute="trailing" constant="-10" id="P3m-RV-Oyg"/>
+                            <constraint firstItem="rEY-jO-aQp" firstAttribute="leading" secondItem="BUE-Ia-1tM" secondAttribute="leadingMargin" constant="-16" id="RJu-qv-vkK"/>
                             <constraint firstItem="6ML-py-TcV" firstAttribute="centerX" secondItem="hg1-WN-VhR" secondAttribute="centerX" id="V5y-87-JDL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6ML-py-TcV" secondAttribute="trailing" id="adF-zy-094"/>
                             <constraint firstItem="PcU-hP-3zl" firstAttribute="top" secondItem="zmG-eS-Mb3" secondAttribute="bottom" constant="8" symbolic="YES" id="jgm-Ft-MQh"/>

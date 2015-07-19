@@ -59,6 +59,7 @@
 		0C26EC161A984E6000927996 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C26EC151A984E6000927996 /* Images.xcassets */; };
 		0C26EC191A984E6000927996 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C26EC171A984E6000927996 /* LaunchScreen.xib */; };
 		0C26EC251A984E6000927996 /* ideaworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26EC241A984E6000927996 /* ideaworkTests.swift */; };
+		0C315B9B1B5B4B0200CB69FE /* transparent-pattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C315B9A1B5B4B0200CB69FE /* transparent-pattern.png */; };
 		0C3593BA1AF5F73D0004DCC2 /* AbstractTradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3593B91AF5F73D0004DCC2 /* AbstractTradeViewController.swift */; };
 		0C3593BC1AF5F7F40004DCC2 /* CustomizationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3593BB1AF5F7F40004DCC2 /* CustomizationInfo.swift */; };
 		0C3593BD1AF5F7F40004DCC2 /* CustomizationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3593BB1AF5F7F40004DCC2 /* CustomizationInfo.swift */; };
@@ -214,6 +215,7 @@
 		0C26EC1E1A984E6000927996 /* ideaworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ideaworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C26EC231A984E6000927996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C26EC241A984E6000927996 /* ideaworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ideaworkTests.swift; sourceTree = "<group>"; };
+		0C315B9A1B5B4B0200CB69FE /* transparent-pattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "transparent-pattern.png"; path = "resources/image/transparent-pattern.png"; sourceTree = "<group>"; };
 		0C3593B91AF5F73D0004DCC2 /* AbstractTradeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractTradeViewController.swift; path = controller/AbstractTradeViewController.swift; sourceTree = "<group>"; };
 		0C3593BB1AF5F7F40004DCC2 /* CustomizationInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomizationInfo.swift; path = model/CustomizationInfo.swift; sourceTree = "<group>"; };
 		0C3593BE1AF644A20004DCC2 /* TestCustomizationInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestCustomizationInfo.swift; path = model/TestCustomizationInfo.swift; sourceTree = "<group>"; };
@@ -547,6 +549,7 @@
 		0C26EC301A996E9A00927996 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				0C315B9A1B5B4B0200CB69FE /* transparent-pattern.png */,
 				0C81C49F1B2C187E00DEA0D9 /* guide-deliver.png */,
 				0C81C4961B2C0E5700DEA0D9 /* guide-order.png */,
 				0C81C4971B2C0E5700DEA0D9 /* guide-preview.png */,
@@ -1009,6 +1012,7 @@
 				0C26EC141A984E6000927996 /* Main.storyboard in Resources */,
 				0CE89A7D1AFE49C600541F5D /* Info.plist in Resources */,
 				0CD16ADD1AAACAF300E1C77A /* thumbnail.png in Resources */,
+				0C315B9B1B5B4B0200CB69FE /* transparent-pattern.png in Resources */,
 				0CD16AD91AAAC76100E1C77A /* background.png in Resources */,
 				0C81C4991B2C0E5700DEA0D9 /* guide-order.png in Resources */,
 				0CD16AC01AA49FE600E1C77A /* definition.xml in Resources */,

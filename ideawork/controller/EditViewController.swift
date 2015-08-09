@@ -181,6 +181,12 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
 
         }
         
+        var cartoonize = UIAlertAction(title:"卡通化",style:UIAlertActionStyle.Default){
+            UIAlertAction in
+            self.doCartoonize()
+            
+        }
+        
         var cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel)
             {
                 UIAlertAction in
@@ -189,6 +195,8 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
         
         // add actions
         alert.addAction(removeBackground)
+        // cartoonize filter has not ready
+        //alert.addAction(cartoonize)
         alert.addAction(cancelAction)
         
         self.presentViewController(alert, animated: true, completion: nil)
@@ -222,6 +230,22 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
             }
         }
         
+    }
+    
+    private func doCartoonize(){
+        SwiftSpinner.show("卡通化...", animated: true)
+        
+        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)){
+            let filteredImage = ImgProcWrapper.cartoonizeFilter(self.modifiedImage!)
+            
+            // all UI operation should be performed in main queue
+            dispatch_async(dispatch_get_main_queue()){
+                
+                self.modifiedImage=filteredImage
+                SwiftSpinner.hide()
+                
+            }
+        }
     }
 
     

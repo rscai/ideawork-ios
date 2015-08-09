@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
         WXApi.registerApp("wx81c20cec3acf58b0")
         //showTutorial()
         initManagedObjectContext()
+        
         return true
     }
     
@@ -153,6 +154,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
     }
     private func documentIsReady(){
         println("document state: \(self.document!.documentState.rawValue)")
+        if let designFile = self.document?.fileURL{
+            if self.addSkipBackupAttributeToItemAtURL(designFile) == true {
+                print("Excluded \(designFile) from backup.")
+            }
+        }
+        
         if self.document!.documentState == UIDocumentState.Normal {
             self.managedObjectContext = self.document!.managedObjectContext
 
@@ -183,5 +190,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
         self.window?.makeKeyAndVisible()
     }
 
+    
+    func addSkipBackupAttributeToItemAtURL(URL:NSURL) ->Bool{
+        
+        let fileManager = NSFileManager.defaultManager()
+        //assert(fileManager.fileExistsAtPath(URL.path!))
+        
+        var error:NSError?
+        let success:Bool = URL.setResourceValue(NSNumber(bool: true),forKey: NSURLIsExcludedFromBackupKey, error: &error)
+        
+        if !success{
+            
+            println("Error excluding \(URL.lastPathComponent) from backup \(error)")
+        }
+        
+        return success;
+        
+    }
 }
 

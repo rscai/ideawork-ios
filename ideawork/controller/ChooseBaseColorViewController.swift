@@ -20,7 +20,7 @@ class ChooseBaseColorViewController: UIViewController,CMPopTipViewDelegate {
 
     
     //MARK: - Support members
-    private let sinaStorage:SinaStorageService = SinaStorageService(accessKey:"", secretKey:"", useSSL:true)
+    private let sinaStorage:SinaStorageService = SinaStorageService(accessKey:"jl9ynyTLw9I6lOwfay5V", secretKey:"7deb0e69c4e6a63d776222b2f95bdff48b38b6f4", useSSL:true)
     
     private var configurationService:RestService<Configuration>?
     private var skuColorService:RestService<SKUColor>?

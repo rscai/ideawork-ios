@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>T恤工厂</title>
+
+    <!-- Bootstrap -->
+    <link href="http://lib.sinaapp.com/js/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+    <script type="text/javascript">
+        function selectText(containerid) {
+            if (document.selection) {
+                var range = document.body.createTextRange();
+                range.moveToElementText(document.getElementById(containerid));
+                range.select();
+            } else if (window.getSelection) {
+                var range = document.createRange();
+                range.selectNode(document.getElementById(containerid));
+                window.getSelection().addRange(range);
+            }
+        }
+    function isWeixin(){
+        var ua = navigator.userAgent.toLowerCase();
+        if(ua.match(/MicroMessenger/i)=="micromessenger") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+        var init =function(){
+            console.log("init");
+            var design = JSON.parse(decodeURI(location.search.replace("?","").split("&")[0].split("=")[1]));
+            var cloudStorageBaseUrl="http://cdn.sinacloud.net";
+            var printImageURL=cloudStorageBaseUrl+"/"+design.print.bucket+"/"+design.print.key;
+            var previewImageURL=cloudStorageBaseUrl+"/"+design.preview.bucket+"/"+design.preview.key;
+            
+            document.getElementById("print-image").src=printImageURL;
+            document.getElementById("preview-image").src=previewImageURL;
+            
+            document.getElementById("designText").innerHTML=JSON.stringify(design);
+            
+            // check if in wexin
+            if(isWeixin()){
+                document.getElementById("bnBuyOne1").setAttribute("data-target","#askOpenInBrowser");
+                document.getElementById("bnBuyOne2").setAttribute("data-target","#askOpenInBrowser");
+                document.getElementById("bnCreateOne1").setAttribute("data-target","#askOpenInBrowser");
+                document.getElementById("bnCreateOne2").setAttribute("data-target","#askOpenInBrowser");
+
+
+            }
+        }
+    </script>
+  </head>
+  <body onload="init()">
+      <h1>T恤工厂 <small>自制T恤</small></h1>
+      <div class="container-fluid">
+          <div class="panel panel-default">
+              <div class="panel-heading">印花图案</div>
+              <div class="panel-body">
+                  <img id="print-image" src="http://cdn.sinacloud.net/ideadwork-dev/design/1F4A325B-4F90-45DD-956A-16EF747D2F98/print.png" class="img-responsive" alt="Responsive image"/>
+              </div>
+              <div class="panel-footer">
+                  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" id="bnBuyOne1" data-target="#orderDialog">
+                      买一件
+                  </button>
+                  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" id="bnCreateOne1" data-target="#downloadAppDialog">
+                      定制
+                  </button>
+              </div>
+          </div>
+          <div class="panel panel-default">
+              <div class="panel-heading">渲染效果</div>
+              <div class="panel-body">
+                  <img id="preview-image" src="http://cdn.sinacloud.net/ideadwork-dev/design/1F4A325B-4F90-45DD-956A-16EF747D2F98/preview.png" class="img-responsive" alt="Responsive image"/>
+            </div>
+              <div class="panel-footer">
+                  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" id="bnBuyOne2" data-target="#orderDialog">
+                      买一件
+                  </button>
+                  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" id="bnCreateOne2" data-target="#downloadAppDialog">
+                      定制
+                  </button>
+              </div>
+          </div>
+      </div>
+      
+      <!-- Modal -->
+      <div class="modal fade" id="orderDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">买一件</h4>
+                  </div>
+                  <div class="modal-body">
+                      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="2000">
+                          <!-- Indicators -->
+                          <ol class="carousel-indicators">
+                              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                              <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                              <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                              <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                              <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+
+                          </ol>
+                          
+                          <!-- Wrapper for slides -->
+                          <div class="carousel-inner">
+                              <div class="item active">
+                                  <img src="images/guide-1.png" alt="...">
+
+                               </div>
+                              <div class="item">
+                                  <img src="images/guide-2.png" alt="...">
+                             </div>
+                              <div class="item">
+                                  <img src="images/guide-3.png" alt="...">
+                              </div>
+                              <div class="item">
+                                  <img src="images/guide-4.png" alt="...">
+                                      </div>
+                              <div class="item">
+                                  <img src="images/guide-5.png" alt="...">
+                                      </div>
+                          </div>
+                          
+                      </div> <!-- Carousel -->
+                      <p></p>
+                      <div class="alert alert-success" role="alert">请长按下方红色区域复制T恤定制信息，然后点击下方"去淘宝购买"按钮去淘宝下单，将粘贴板里的內容贴至"给卖家留言"栏中。</div>
+                      <div class="alert alert-danger" role="alert" id="designText" onclick="selectText('designText')"></div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                      <a type="button" class="btn btn-primary" href="http://h5.m.taobao.com/awp/core/detail.htm?id=44775785190">去淘宝购买</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+      <div class="modal fade" id="downloadAppDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">下载《T恤工厂》应用</h4>
+                  </div>
+                  <div class="modal-body">
+                      <div class="row">
+                          <div class="col-sm-6 col-md-4">
+                              <a class="thumbnail" href="https://itunes.apple.com/cn/app/t-xu-gong-chang/id979041618?mt=8">
+                                  <img src="https://devimages.apple.com.edgekey.net/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="...">
+                               </a>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+      <div class="modal fade" id="askOpenInBrowser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">请在浏览器中打开</h4>
+                  </div>
+                  <div class="modal-body">
+                      <div class="thumbnail">
+                          <img src="images/open-in-browser-tip.png" alt="..."/>
+                          </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://lib.sinaapp.com/js/jquery/1.10.2/jquery-1.10.2.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="http://lib.sinaapp.com/js/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -314,24 +314,156 @@ void testGray(){
     cv::kmeans(sampleMat, k, bestLables, cv::TermCriteria( CV_TERMCRIT_EPS+CV_TERMCRIT_ITER, 10, 1.0), 10,cv::KMEANS_PP_CENTERS,centers);
     bestLables = bestLables.reshape(0,grayMat.rows);
     
-    uchar whiteValue=0;
+    uchar whiteValue=255;
+    uchar blackValue=0;
+    uchar otherValue=128;
     
     double max,min;
     cv::Point min_loc, max_loc;
     cv::minMaxLoc(centers, &min, &max, &min_loc, &max_loc);
-    
+    //centers=otherValue;
     centers.at<uchar>(max_loc)=whiteValue;
+    centers.at<uchar>(min_loc)=blackValue;
     
     for(int row=0;row<bestLables.rows;row++){
         for(int col=0;col<bestLables.cols;col++){
             int centerIndex = bestLables.at<int>(row,col);
-            result.at<uchar>(row,col) = 255-centers.at<uchar>(centerIndex,0);
+            result.at<uchar>(row,col) = centers.at<uchar>(centerIndex,0);
+            //int gray =result.at<uchar>(row,col);
             //std::cout<<"gray:"<<gray<<std::endl;
             //result.at<int>(row,col)=255;
         }
     }
     
+    cv::Mat otherValueMask;
+    cv::inRange(result, cv::Scalar(1), cv::Scalar(254), otherValueMask);
+    
+    int laneWidth = result.cols/200;
+    cv::Mat otherValueMat(result.size(),result.type(),cv::Scalar(whiteValue));
+    for(int r=0;r<otherValueMat.rows;r++){
+        for(int c=0;c<otherValueMat.cols;c++){
+            if(((r+c)/laneWidth)%3==0){
+                otherValueMat.at<uchar>(r,c)=otherValue;
+            }
+        }
+    }
+    
+    otherValueMat.copyTo(result, otherValueMask);
+    
     cv::imwrite("/Users/kkppccdd/Documents/IdeaWork/result.png",result);
+}
+
+
+std::vector<cv::Vec3b> unique(cv::Mat input){
+    std::cout<<"Start caculate uniuqe color list"<<std::endl;
+    std::vector<cv::Vec3b> uniqueOut;
+    
+    for(int r=0;r<input.rows;r++){
+        for(int c=0;c<input.cols;c++){
+            cv::Vec3b value = input.at<cv::Vec3b>(r,c);
+            
+            if ( std::find(uniqueOut.begin(), uniqueOut.end(), value) == uniqueOut.end() ){
+                uniqueOut.push_back(value);
+            }
+        }
+    }
+    std::cout<<"Completed caculate uniuqe color list"<<std::endl;
+
+    return uniqueOut;
+}
+
+int nearTo(cv::Vec3b point,std::vector<cv::Vec3b> colorList){
+    int nearestIndex =0;
+    int minDistance= std::numeric_limits<int>::max();
+    
+    for(int index=0;index<colorList.size();index++){
+        cv::Vec3b color = colorList.at(index);
+        
+        int distance = std::sqrt(std::abs(color[0]-point[0])^2+std::abs(color[1]-point[1])^2+std::abs(color[2]-point[2])^2);
+        
+        if(distance<minDistance){
+            nearestIndex=index;
+            minDistance=distance;
+        }
+    }
+    
+    return nearestIndex;
+}
+
+void testCartoonize(){
+    cv::Mat inputMat = cv::imread("/Users/kkppccdd/Documents/IdeaWork/resources/23376054_1.jpg",-1);
+    
+    cv::Mat colorSetMat = cv::imread("/Users/kkppccdd/Documents/IdeaWork/resources/23376054_2.jpg",-1);
+
+
+    // 由于算法复杂，因此需减少图像尺寸
+    
+    cv::Size size = inputMat.size();
+    
+    cv::Size reduceSize;
+    
+    reduceSize.width = size.width / 2;
+    
+    reduceSize.height = size.height / 2;
+    
+    cv::Mat reduceImage = cv::Mat(reduceSize, CV_8UC3);
+    
+    
+    
+    cv::resize(inputMat, reduceImage, reduceSize);
+    
+    
+    
+    // 双边滤波器实现过程
+    /*
+    cv::Mat tmp = cv::Mat(size, CV_8UC3);
+    
+    int repetitions = 14;
+    
+    for (int i=0 ; i < repetitions; i++)
+    {
+        int kernelSize = 9;
+        double sigmaColor = 9;
+        double sigmaSpace = 7;
+        cv::bilateralFilter(reduceImage, tmp, kernelSize, sigmaColor, sigmaSpace);
+        cv::bilateralFilter(tmp, reduceImage, kernelSize, sigmaColor, sigmaSpace);
+    }*/
+    
+    std::vector<cv::Vec3b> colorMap(256*256*256);
+    
+    //std::vector<cv::Vec3b> colorList = unique(colorSetMat);
+    
+    uchar reduceLevel=64;
+    // generate test colormap
+    /*
+    for(int i=0;i<256;i++){
+        for(int j=0;j<256;j++){
+            for(int k=0;k<256;k++){
+                
+                int nearestIndex = nearTo(cv::Vec3b(i,j,k), colorList);
+                
+                colorMap[i*256*256+j*256+k]=colorList[nearestIndex];
+                
+                //colorMap[i*256*256+j*256+k]=cv::Vec3b((uchar)(i/reduceLevel),(uchar)(j/reduceLevel),(uchar)(k/reduceLevel));
+
+            }
+        }
+    }*/
+    
+    cv::Mat output = reduceImage.clone();
+    for(int r=0;r<reduceImage.rows;r++){
+        for(int c=0;c<reduceImage.cols;c++){
+            cv::Vec3b ele = reduceImage.at<cv::Vec3b>(r,c);
+            //int index = ele[0]*256*256+ele[1]*256+ele[2];
+            //cv::Vec3b color = colorMap[index];
+            cv::Vec3b color = cv::Vec3b((uchar)(ele[0]/reduceLevel*reduceLevel),(uchar)(ele[1]/reduceLevel*reduceLevel),(uchar)(ele[2]/reduceLevel*reduceLevel));
+            
+            output.at<cv::Vec3b>(r,c)=color;
+        }
+    }
+    
+    cv::imwrite("/Users/kkppccdd/Documents/IdeaWork/result.png",output);
+
 }
 
 int main(int argc, char **argv) {

@@ -318,37 +318,58 @@ cv::Mat padding(cv::Mat inputMat,int newRows,int newCols){
 +(UIImage *) cartoonizeFilter:(UIImage *)image{
     cv::Mat inputMat = cvMatFromUIImage(image);
     
+    
     cv::Mat grayMat;
     
     cv::cvtColor(inputMat, grayMat, cv::COLOR_RGBA2GRAY);
     cv::Mat sampleMat;
     cv::Mat result = cv::Mat(inputMat.size(),grayMat.type());
     
-    int k=4;
+    int k=3;
     cv::Mat bestLables;
     cv::Mat centers;
     sampleMat = grayMat.reshape(1,grayMat.rows*grayMat.cols);
     sampleMat.convertTo(sampleMat, CV_32F);
-    cv::kmeans(sampleMat, k, bestLables, cv::TermCriteria( CV_TERMCRIT_EPS+CV_TERMCRIT_ITER, 10, 1.0), 3,cv::KMEANS_PP_CENTERS,centers);
+    cv::kmeans(sampleMat, k, bestLables, cv::TermCriteria( CV_TERMCRIT_EPS+CV_TERMCRIT_ITER, 10, 1.0), 10,cv::KMEANS_PP_CENTERS,centers);
     bestLables = bestLables.reshape(0,grayMat.rows);
     
-    uchar whiteValue=0;
+    uchar whiteValue=255;
+    uchar blackValue=0;
+    uchar otherValue=128;
     
     double max,min;
     cv::Point min_loc, max_loc;
     cv::minMaxLoc(centers, &min, &max, &min_loc, &max_loc);
-    
+    //centers=otherValue;
     centers.at<uchar>(max_loc)=whiteValue;
+    centers.at<uchar>(min_loc)=blackValue;
     
     for(int row=0;row<bestLables.rows;row++){
         for(int col=0;col<bestLables.cols;col++){
             int centerIndex = bestLables.at<int>(row,col);
-            result.at<uchar>(row,col) = 255-centers.at<uchar>(centerIndex,0);
+            result.at<uchar>(row,col) = centers.at<uchar>(centerIndex,0);
+            //int gray =result.at<uchar>(row,col);
             //std::cout<<"gray:"<<gray<<std::endl;
             //result.at<int>(row,col)=255;
         }
     }
-    cv::cvtColor(result, result, CV_GRAY2BGRA);
+    
+    cv::Mat otherValueMask;
+    cv::inRange(result, cv::Scalar(1), cv::Scalar(254), otherValueMask);
+    
+    int laneWidth = result.cols/200;
+    cv::Mat otherValueMat(result.size(),result.type(),cv::Scalar(whiteValue));
+    for(int r=0;r<otherValueMat.rows;r++){
+        for(int c=0;c<otherValueMat.cols;c++){
+            if(((r+c)/laneWidth)%3==0){
+                otherValueMat.at<uchar>(r,c)=otherValue;
+            }
+        }
+    }
+    
+    otherValueMat.copyTo(result, otherValueMask);
+    
+    cv::cvtColor(result, result, cv::COLOR_GRAY2RGBA);
     UIImage* outputImage = UIImageFromCVMat(result);
     return outputImage;
 }

@@ -1,0 +1,10 @@
+PODS:
+  - CMPopTipView (2.2.0)
+
+DEPENDENCIES:
+  - CMPopTipView (~> 2.2.0)
+
+SPEC CHECKSUMS:
+  CMPopTipView: a0a88404b9f46a5cfc16ce54bdb1b9bf9acb9aff
+
+COCOAPODS: 0.37.2

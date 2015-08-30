@@ -1,0 +1,6 @@
+framework module CMPopTipView {
+  umbrella header "Pods-CMPopTipView-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "ideaworkTests.TransformOf.transformToJSON &lt;A, B&gt;(ideaworkTests.TransformOf&lt;A, B&gt;)(Swift.Optional&lt;A&gt;) -&gt; Swift.Optional&lt;B&gt;:TransformOf.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ideawork.ChooseBaseColorViewController.(doAddOrderItem (ideawork.ChooseBaseColorViewController) -&gt; (ObjectiveC.UIBarButtonItem) -&gt; ()).(closure #2):ChooseBaseColorViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ideawork.ChooseBaseColorViewController.(doAddOrderItem (ideawork.ChooseBaseColorViewController) -&gt; (ObjectiveC.UIBarButtonItem) -&gt; ()).(closure #1):ChooseBaseColorViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ideawork.ChooseBaseColorViewController.(doAddOrderItem (ideawork.ChooseBaseColorViewController) -&gt; (ObjectiveC.UIBarButtonItem) -&gt; ()).(closure #3):ChooseBaseColorViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ideawork.EditViewController.(doCartoonizeFilter (ideawork.EditViewController) -&gt; (ObjectiveC.UIBarButtonItem) -&gt; ()).(closure #1):EditViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ideawork.RestCursor.fetch &lt;A : ideawork.Mappable&gt;(ideawork.RestCursor&lt;A&gt;)((Swift.Array&lt;A&gt;) -&gt; ()) -&gt; ():RestCursor.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "NSURLComponents(string: queryUrl)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ideawork.ChooseBaseColorViewController.(loadConfig in _B8DC7BF5EFDCB1361DC02607E5EF5D78) (ideawork.ChooseBaseColorViewController)(Swift.Optional&lt;() -&gt; ()&gt;) -&gt; ():ChooseBaseColorViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "(configDict[&quot;item&quot;] as NSDictionary)[&quot;itemId&quot;]">
+            </PersistentString>
+            <PersistentString
+               value = "config[&quot;item&quot;][&quot;sku&quot;]">
+            </PersistentString>
+            <PersistentString
+               value = "colorSet[color.name]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ideawork.SKUColor.uiColor.getter : ObjectiveC.UIColor:SKUColor.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "256*256">
+            </PersistentString>
+            <PersistentString
+               value = "self.blue">
+            </PersistentString>
+            <PersistentString
+               value = "UInt(self.rgbHex,radix:16)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ideaworkTests.TestRestService.testExecute (ideaworkTests.TestRestService)() -&gt; ():TestRestService.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "NSURL(string: &quot;http://192.168.1.3:3000/data/testModel?criteria=12&quot;)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "static ideaworkTests.&lt;- infix &lt;A, B : ideaworkTests.TransformType&gt;(inout Swift.Optional&lt;A&gt;, (ideaworkTests.Map, B)) -&gt; ():Operators.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "value!">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ideawork.SKUColor.red.getter : Swift.UInt:SKUColor.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ideawork.DesignViewController.collectionView (ideawork.DesignViewController)(ObjectiveC.UICollectionView, cellForItemAtIndexPath : ObjectiveC.NSIndexPath) -&gt; ObjectiveC.UICollectionViewCell:DesignViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ideaworkTests.TestRestService.testReadPlist (ideaworkTests.TestRestService)() -&gt; ():TestRestService.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "NSBundle.mainBundle().objectForInfoDictionaryKey(&quot;UISupportedInterfaceOrientations&quot;)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ideawork.ChooseBaseColorViewController.(viewDidAppear (ideawork.ChooseBaseColorViewController) -&gt; (Swift.Bool) -&gt; ()).(closure #1):ChooseBaseColorViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ideawork.RestCursor.(fetch &lt;A : ideawork.Mappable&gt;(ideawork.RestCursor&lt;A&gt;) -&gt; ((Swift.Array&lt;A&gt;) -&gt; ()) -&gt; ()).(closure #1):RestCursor.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "items!">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ideawork.TutorialViewController.(contentViewOnIndex in _B8C5A86904059135D37788E065A9F30C) (ideawork.TutorialViewController)(Swift.Int) -&gt; ideawork.TutorialContentViewController:TutorialViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "UIImage(named:&quot;guide-import-image.png&quot;)!">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ideawork.JSON.init (ideawork.JSON.Type)(nsurl : ObjectiveC.NSURL) -&gt; ideawork.JSON:json.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ideawork.EditViewController.(doCartoonizeFilter (ideawork.EditViewController) -&gt; (ObjectiveC.UIBarButtonItem) -&gt; ()).(closure #1).(closure #1):EditViewController.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

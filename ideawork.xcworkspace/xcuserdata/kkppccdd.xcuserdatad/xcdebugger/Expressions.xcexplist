@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "testGray():main.mm">
+         <PersistentStrings>
+            <PersistentString
+               value = "centers.at&lt;int&gt;(0)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ideawork.DesignViewController.(showUserGuide in _3E057FB0485678552D7CA19C7F292152) (ideawork.DesignViewController)() -&gt; ():DesignViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "testMergeLayer():main.mm">
+      </ContextState>
+      <ContextState
+         contextName = "ideawork.AppDelegate.addSkipBackupAttributeToItemAtURL (ideawork.AppDelegate)(ObjectiveC.NSURL) -&gt; Swift.Bool:AppDelegate.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "URL.absoluteString">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

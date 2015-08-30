@@ -318,112 +318,59 @@ cv::Mat padding(cv::Mat inputMat,int newRows,int newCols){
 +(UIImage *) cartoonizeFilter:(UIImage *)image{
     cv::Mat inputMat = cvMatFromUIImage(image);
     
-    // extract the no transparent area as mask
-    cv::Mat channels[4];
-    cv::split(inputMat, channels);
-    cv::Mat noTransparentAreaMask=channels[3];
-
     
-
+    cv::Mat grayMat;
     
-    // 1. detecting and boldening the edges
-    // 1.1 gray scale the image
-    cv::Mat grayScaleMat;
-    cv::cvtColor(inputMat, grayScaleMat, cv::COLOR_RGB2GRAY);
+    cv::cvtColor(inputMat, grayMat, cv::COLOR_RGBA2GRAY);
+    cv::Mat sampleMat;
+    cv::Mat result = cv::Mat(inputMat.size(),grayMat.type());
     
-    // 1.2 median filter
-    cv::Mat medianFilteredMat;
-    int medianFilterKernelSize =7;
-    cv::medianBlur(grayScaleMat,medianFilteredMat,medianFilterKernelSize);
+    int k=3;
+    cv::Mat bestLables;
+    cv::Mat centers;
+    sampleMat = grayMat.reshape(1,grayMat.rows*grayMat.cols);
+    sampleMat.convertTo(sampleMat, CV_32F);
+    cv::kmeans(sampleMat, k, bestLables, cv::TermCriteria( CV_TERMCRIT_EPS+CV_TERMCRIT_ITER, 10, 1.0), 10,cv::KMEANS_PP_CENTERS,centers);
+    bestLables = bestLables.reshape(0,grayMat.rows);
     
-    // 1.3 edge detection
-    cv::Mat detectedEdgesMat;
-    double lowThreshold=100;
-    double highThreshold=300;
-    cv::Canny(medianFilteredMat, detectedEdgesMat, lowThreshold, highThreshold);
+    uchar whiteValue=255;
+    uchar blackValue=0;
+    uchar otherValue=128;
     
-    // 1.4 morphological operations
-    // TODO skip
-    cv::Mat boldenEdgesMat;
-    cv::morphologyEx(detectedEdgesMat, boldenEdgesMat, cv::MORPH_OPEN, cv::getStructuringElement(cv::MORPH_RECT, cv::Size(2,2)));
-    // 1.5 edge filter
-    // TODO skip
+    double max,min;
+    cv::Point min_loc, max_loc;
+    cv::minMaxLoc(centers, &min, &max, &min_loc, &max_loc);
+    //centers=otherValue;
+    centers.at<uchar>(max_loc)=whiteValue;
+    centers.at<uchar>(min_loc)=blackValue;
     
-    cv::Mat edgesMat = boldenEdgesMat;
-    
-    // 2 smoothing and quantizing colors
-    
-    // 2.1 Bilateral filter
-    
-    cv::Mat bilateralFilteredMat;
-    cv::cvtColor(inputMat, bilateralFilteredMat, CV_BGRA2RGB);
-    
-    for(int i=0;i<14;i++){
-        cv::Mat destMat =bilateralFilteredMat.clone();
-        cv::bilateralFilter(bilateralFilteredMat, destMat, 9, 9*2, 9/2);
-        
-        bilateralFilteredMat=destMat;
+    for(int row=0;row<bestLables.rows;row++){
+        for(int col=0;col<bestLables.cols;col++){
+            int centerIndex = bestLables.at<int>(row,col);
+            result.at<uchar>(row,col) = centers.at<uchar>(centerIndex,0);
+            //int gray =result.at<uchar>(row,col);
+            //std::cout<<"gray:"<<gray<<std::endl;
+            //result.at<int>(row,col)=255;
+        }
     }
     
-    cv::resize(bilateralFilteredMat, bilateralFilteredMat, cv::Size(inputMat.cols,inputMat.rows));
+    cv::Mat otherValueMask;
+    cv::inRange(result, cv::Scalar(1), cv::Scalar(254), otherValueMask);
     
+    int laneWidth = result.cols/200;
+    cv::Mat otherValueMat(result.size(),result.type(),cv::Scalar(whiteValue));
+    for(int r=0;r<otherValueMat.rows;r++){
+        for(int c=0;c<otherValueMat.cols;c++){
+            if(((r+c)/laneWidth)%3==0){
+                otherValueMat.at<uchar>(r,c)=otherValue;
+            }
+        }
+    }
     
-    // 2.2 median filter
-    cv::Mat medianFilteredColorMat;
-    int colorMedianFilterKernelSize =7;
-    cv::medianBlur(bilateralFilteredMat,medianFilteredColorMat,colorMedianFilterKernelSize);
+    otherValueMat.copyTo(result, otherValueMask);
     
-    // 2.3 quantize colors
-    /*
-    int originalWidth = medianFilteredColorMat.cols;
-    int originalHeight = medianFilteredColorMat.rows;
-    
-    cv::Mat quantizedMat =medianFilteredColorMat;
-    quantizedMat.reshape(-1,3);
-    quantizedMat.convertTo(quantizedMat, CV_32F);
-    int kernel = 4;
-    cv::TermCriteria criteria = cv::TermCriteria(CV_TERMCRIT_EPS + CV_TERMCRIT_ITER, 10, 1.0);
-    cv::Mat clusterMat = cvCreateMat(medianFilteredColorMat.cols*medianFilteredColorMat.rows, 1, CV_32SC1);
-    cv::Mat centerMat;
-    cv::kmeans(quantizedMat, kernel, clusterMat, criteria, 10, cv::KMEANS_RANDOM_CENTERS,centerMat);
-     clusterMat.reshape(0,originalHeight);
-     centerMat.reshape(0,originalHeight);
-     cv::convertScaleAbs(clusterMat, clusterMat,int(255/kernel));
-     cv::convertScaleAbs(centerMat, centerMat,int(255/kernel));
-    */
-    
-    int colorCount = 24;
-    
-    cv::Mat quantizedMat =medianFilteredColorMat;
-    quantizedMat.convertTo(quantizedMat, CV_8UC3);
-    quantizedMat = quantizedMat /colorCount;
-    quantizedMat = quantizedMat *colorCount;
-
-    
-    
-    
-    // 3 recombine
-    cv::Mat resultMat=quantizedMat.clone();
-    //cv::Mat mask = cv::Mat(edgesMat.size(),CV_8UC3,cv::Scalar(0));
-    //cv::drawContours(mask, edgesMat, -1, cv::Scalar(255));
-    //edgesMat.copyTo(resultMat,mask);
-    cv::Mat edgesPrint = cv::Mat(edgesMat.rows,edgesMat.cols,CV_8UC3,cv::Scalar(0,0,0));
-    edgesPrint.copyTo(resultMat, edgesMat);
-    
-    cv::cvtColor(resultMat, resultMat, CV_RGB2BGRA);
-    
-    // copy with notTransparentAreaMask
-    
-    cv::Mat outputMat=cv::Mat(resultMat.rows,resultMat.cols,CV_8UC4,transparentColor);
-    //outputMat=transparentColor;
-    
-    
-    resultMat.copyTo(outputMat,noTransparentAreaMask);
-    
-    //cv::cvtColor(noTransparentAreaMask, noTransparentAreaMask, CV_GRAY2BGRA);
-
-    //cv::cvtColor(quantizedMat, quantizedMat, CV_RGB2BGRA);
-    UIImage* outputImage = UIImageFromCVMat(outputMat);
+    cv::cvtColor(result, result, cv::COLOR_GRAY2RGBA);
+    UIImage* outputImage = UIImageFromCVMat(result);
     return outputImage;
 }
 
@@ -582,8 +529,6 @@ cv::Mat padding(cv::Mat inputMat,int newRows,int newCols){
     // process color
     cv::Mat colorMat = cvMatFromUIImage(colorImage);
 
-    cv::Mat colorMask;
-    cv::cvtColor(colorMat, colorMask, cv::COLOR_RGBA2GRAY);
     
     
     const CGFloat* colorComponents = CGColorGetComponents(baseColor.CGColor);
@@ -596,7 +541,7 @@ cv::Mat padding(cv::Mat inputMat,int newRows,int newCols){
     //cv::Scalar cvBaseColor= cv::Scalar(255,0,0,255);
     
     cv::Mat baseColorMat = cv::Mat(colorMat.rows,colorMat.cols,CV_8UC4,cvBaseColor);
-    baseColorMat.copyTo(backgroundMat, colorMask);
+    baseColorMat.copyTo(backgroundMat, colorMat);
     
     // process print
     cv::Mat printMat = cvMatFromUIImage(printImage);
@@ -642,7 +587,7 @@ cv::Mat performWrinkles(cv::Mat baseImage,cv::Mat wrinkles){
     
     cv::Mat resultChannels[4];
     
-    cv::Mat alphaRatio = wrinklesChannels[4].clone();
+    cv::Mat alphaRatio = wrinklesChannels[3].clone();
     
     cv::Mat fullAlphaMat = wrinklesChannels[3].clone();
     fullAlphaMat = cv::Scalar(255);

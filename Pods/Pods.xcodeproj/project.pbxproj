@@ -1,0 +1,1093 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0269B1891B24C226AC6C0306 /* CMPopTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1FCE644A0B45855B135CBA /* CMPopTipView.m */; };
+		1ED0AD71AA2EBECB36E82BB3 /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3CDF67DC1F2C38606C74A0 /* Pods-dummy.m */; };
+		21115D6FD602C5B6712BDEB6 /* CMPopTipView.h in Headers */ = {isa = PBXBuildFile; fileRef = C9C229AFA4D0D91C523DADEF /* CMPopTipView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2159C9260013D70D3F9F5F31 /* Pods-ideawork-CMPopTipView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A60830DBD14790DB1656807 /* Pods-ideawork-CMPopTipView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		29CAEE669F32E848851EB958 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADC5CB49FD5B876117A2390 /* Foundation.framework */; };
+		3DCD680E6834F84EAFB89B49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADC5CB49FD5B876117A2390 /* Foundation.framework */; };
+		454F3D4F085CCC0B43CD0DD9 /* CMPopTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1FCE644A0B45855B135CBA /* CMPopTipView.m */; };
+		55568F99801FFDDB4A0224CA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADC5CB49FD5B876117A2390 /* Foundation.framework */; };
+		572E93C474CA2E35C2F8B576 /* Pods-ideawork-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A32FCC8C15D5874D400921C4 /* Pods-ideawork-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		575E4CD49B91F6845BB1D2AD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADC5CB49FD5B876117A2390 /* Foundation.framework */; };
+		5F86A06B451A9D9747522A26 /* Pods-CMPopTipView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2298901D9FA8670D5EB5797D /* Pods-CMPopTipView-dummy.m */; };
+		68017A3E124AAE80CA87F65C /* Pods-CMPopTipView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 369EE70A2164B6CB563129D7 /* Pods-CMPopTipView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6A29F6560F10CAB8955262FC /* Pods-ideaworkTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 331F8A68E4D623CF011DD374 /* Pods-ideaworkTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6F0C4F61BE1F3F56B6EBF7AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F130402698B02577EBE98F /* UIKit.framework */; };
+		7412E9058476CE63CFB8E328 /* Pods-ideaworkTests-CMPopTipView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C1B5637F69588058604DB1E /* Pods-ideaworkTests-CMPopTipView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9F65219DB5A8434CB35912CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F130402698B02577EBE98F /* UIKit.framework */; };
+		A1DD1267D585558A0AC1F99A /* CMPopTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1FCE644A0B45855B135CBA /* CMPopTipView.m */; };
+		A4D2513C8D3956193B92FDC6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F130402698B02577EBE98F /* UIKit.framework */; };
+		A67A308C353885A8DD1585AB /* Pods-ideawork-CMPopTipView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A24FD25CBDC1F923E86079E1 /* Pods-ideawork-CMPopTipView-dummy.m */; };
+		B202D42AF544F1047C44047F /* Pods-ideaworkTests-CMPopTipView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC397411EDB0764114706D5 /* Pods-ideaworkTests-CMPopTipView-dummy.m */; };
+		C665828F5218368D10B38AA9 /* Pods-ideaworkTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 560654957C421AC7F04FADBE /* Pods-ideaworkTests-dummy.m */; };
+		D09067FF0BDD7B20CBB305EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADC5CB49FD5B876117A2390 /* Foundation.framework */; };
+		E24E66E6CCA6C52A49539076 /* CMPopTipView.h in Headers */ = {isa = PBXBuildFile; fileRef = C9C229AFA4D0D91C523DADEF /* CMPopTipView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E2E10EAB233446BC8DA794D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ADC5CB49FD5B876117A2390 /* Foundation.framework */; };
+		E3DF4FAB35943FB923680104 /* Pods-ideawork-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9142FDD82DAF1223873324FA /* Pods-ideawork-dummy.m */; };
+		EDF77D2FB6A460E5927A16F3 /* CMPopTipView.h in Headers */ = {isa = PBXBuildFile; fileRef = C9C229AFA4D0D91C523DADEF /* CMPopTipView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F08EB55D28FE4C2CDA3C155B /* Pods-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 651CB4CEA04E7949D65C3682 /* Pods-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0B8E0CC8C7145AC99F8BF27E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1BD080A5ADA7C1A661A70D01 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D61FB60EB33BD7C1B8D67D08;
+			remoteInfo = "Pods-ideaworkTests-CMPopTipView";
+		};
+		21B0D036A59351C6BA0FBCEF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1BD080A5ADA7C1A661A70D01 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C108BE6BB741C681D4A32479;
+			remoteInfo = "Pods-CMPopTipView";
+		};
+		647B05B4480D72C132ED3A76 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1BD080A5ADA7C1A661A70D01 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43A434C44EC40E60A8042C66;
+			remoteInfo = "Pods-ideawork-CMPopTipView";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		04F130402698B02577EBE98F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		0AB3ADE0CEE8E1EA7B222000 /* Pods-ideawork-CMPopTipView-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ideawork-CMPopTipView-Private.xcconfig"; path = "../Pods-ideawork-CMPopTipView/Pods-ideawork-CMPopTipView-Private.xcconfig"; sourceTree = "<group>"; };
+		127A2272E369C8E8A5B8E2D6 /* Pods_ideaworkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ideaworkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		16F37A9DF42EB542198558E6 /* Pods-ideaworkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ideaworkTests.release.xcconfig"; sourceTree = "<group>"; };
+		19F6F6CE7AA1CB0395551484 /* Pods-ideawork-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ideawork-frameworks.sh"; sourceTree = "<group>"; };
+		1D92A7844B5B5FCE995F1D5E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2298901D9FA8670D5EB5797D /* Pods-CMPopTipView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CMPopTipView-dummy.m"; sourceTree = "<group>"; };
+		2A76094832612451364B1AC1 /* CMPopTipView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CMPopTipView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B6EEF02602AF7C50AEA0BC7 /* CMPopTipView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CMPopTipView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		331F8A68E4D623CF011DD374 /* Pods-ideaworkTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ideaworkTests-umbrella.h"; sourceTree = "<group>"; };
+		35719CCBC900BF46F9483C2B /* Pods-ideawork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ideawork.debug.xcconfig"; sourceTree = "<group>"; };
+		369EE70A2164B6CB563129D7 /* Pods-CMPopTipView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CMPopTipView-umbrella.h"; sourceTree = "<group>"; };
+		3846EFF484688E10099B45EA /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
+		3BD6A1E73AE27E997AA65620 /* Pods-ideaworkTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ideaworkTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		3F4D3AC5D867344D98A83CC4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		461EE264698F773D3AA6E369 /* Pods-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-environment.h"; sourceTree = "<group>"; };
+		47DAB93A42C28D749A8ACBB6 /* Pods-ideaworkTests-CMPopTipView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ideaworkTests-CMPopTipView.xcconfig"; path = "../Pods-ideaworkTests-CMPopTipView/Pods-ideaworkTests-CMPopTipView.xcconfig"; sourceTree = "<group>"; };
+		4AB0F86A1DA455A11E0FA3F7 /* Pods_ideawork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ideawork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AC82C42292F4173D9E1241D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		560654957C421AC7F04FADBE /* Pods-ideaworkTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ideaworkTests-dummy.m"; sourceTree = "<group>"; };
+		571BFF7F1C174FEE0AE926CB /* Pods-ideaworkTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ideaworkTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		5986D484FFC2E4C26ACCD92B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
+		5C1B5637F69588058604DB1E /* Pods-ideaworkTests-CMPopTipView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-ideaworkTests-CMPopTipView-umbrella.h"; path = "../Pods-ideaworkTests-CMPopTipView/Pods-ideaworkTests-CMPopTipView-umbrella.h"; sourceTree = "<group>"; };
+		5E50121D7473614235C1D68C /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
+		651CB4CEA04E7949D65C3682 /* Pods-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-umbrella.h"; sourceTree = "<group>"; };
+		6566E90B645AB89E2DA8DF9E /* Pods-ideaworkTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ideaworkTests-resources.sh"; sourceTree = "<group>"; };
+		6A60830DBD14790DB1656807 /* Pods-ideawork-CMPopTipView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-ideawork-CMPopTipView-umbrella.h"; path = "../Pods-ideawork-CMPopTipView/Pods-ideawork-CMPopTipView-umbrella.h"; sourceTree = "<group>"; };
+		6AE47AA2BD13E935A3C7B876 /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
+		6BC93C2FEEB7A444C10A1D75 /* Pods-ideaworkTests-CMPopTipView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; name = "Pods-ideaworkTests-CMPopTipView.modulemap"; path = "../Pods-ideaworkTests-CMPopTipView/Pods-ideaworkTests-CMPopTipView.modulemap"; sourceTree = "<group>"; };
+		6FA1BE4673D4894D9669FD83 /* Pods-ideaworkTests-CMPopTipView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-ideaworkTests-CMPopTipView-prefix.pch"; path = "../Pods-ideaworkTests-CMPopTipView/Pods-ideaworkTests-CMPopTipView-prefix.pch"; sourceTree = "<group>"; };
+		701645BB072422694CD33044 /* Pods-ideawork-CMPopTipView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; name = "Pods-ideawork-CMPopTipView.modulemap"; path = "../Pods-ideawork-CMPopTipView/Pods-ideawork-CMPopTipView.modulemap"; sourceTree = "<group>"; };
+		71BB7BC35163C45F83B0A639 /* Pods-ideawork-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ideawork-environment.h"; sourceTree = "<group>"; };
+		74607BE0AC11BBED0D8C8188 /* Pods-CMPopTipView-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CMPopTipView-Private.xcconfig"; sourceTree = "<group>"; };
+		790FF3F1AAF0B5B25C4A4A29 /* Pods-ideaworkTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ideaworkTests-frameworks.sh"; sourceTree = "<group>"; };
+		79F3CEB41279E6AD67DE483C /* Pods-CMPopTipView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CMPopTipView-prefix.pch"; sourceTree = "<group>"; };
+		7ADC5CB49FD5B876117A2390 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		7E23BA41B516CF45A14C4694 /* Pods-ideawork.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-ideawork.modulemap"; sourceTree = "<group>"; };
+		7F2943E2C789BB6A8EA141D2 /* Pods.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Pods.modulemap; sourceTree = "<group>"; };
+		828A1AF0E23CAFEFF844E554 /* Pods-CMPopTipView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-CMPopTipView.modulemap"; sourceTree = "<group>"; };
+		850C3A06D8B4EDF44A8C9E55 /* Pods-ideawork-CMPopTipView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-ideawork-CMPopTipView-prefix.pch"; path = "../Pods-ideawork-CMPopTipView/Pods-ideawork-CMPopTipView-prefix.pch"; sourceTree = "<group>"; };
+		873E75C4FA0C6D23DE966BC6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
+		8CEE4754B75D87F3999EBAE4 /* Pods-ideaworkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ideaworkTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9142FDD82DAF1223873324FA /* Pods-ideawork-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ideawork-dummy.m"; sourceTree = "<group>"; };
+		99A408F2444312EC952B524A /* Pods-ideawork-CMPopTipView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ideawork-CMPopTipView.xcconfig"; path = "../Pods-ideawork-CMPopTipView/Pods-ideawork-CMPopTipView.xcconfig"; sourceTree = "<group>"; };
+		9EC397411EDB0764114706D5 /* Pods-ideaworkTests-CMPopTipView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-ideaworkTests-CMPopTipView-dummy.m"; path = "../Pods-ideaworkTests-CMPopTipView/Pods-ideaworkTests-CMPopTipView-dummy.m"; sourceTree = "<group>"; };
+		A183E870C2F9A22743F2A4B8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Pods-ideaworkTests-CMPopTipView/Info.plist"; sourceTree = "<group>"; };
+		A1C4917362AC6845DC477F24 /* Pods-ideawork-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ideawork-acknowledgements.plist"; sourceTree = "<group>"; };
+		A24FD25CBDC1F923E86079E1 /* Pods-ideawork-CMPopTipView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-ideawork-CMPopTipView-dummy.m"; path = "../Pods-ideawork-CMPopTipView/Pods-ideawork-CMPopTipView-dummy.m"; sourceTree = "<group>"; };
+		A32FCC8C15D5874D400921C4 /* Pods-ideawork-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ideawork-umbrella.h"; sourceTree = "<group>"; };
+		AB1FCE644A0B45855B135CBA /* CMPopTipView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CMPopTipView.m; path = CMPopTipView/CMPopTipView.m; sourceTree = "<group>"; };
+		B2BFA4C18C44A92495724300 /* Pods-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-frameworks.sh"; sourceTree = "<group>"; };
+		B60DE754CC3FDB49BB2ABDB5 /* Pods-ideaworkTests-CMPopTipView-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ideaworkTests-CMPopTipView-Private.xcconfig"; path = "../Pods-ideaworkTests-CMPopTipView/Pods-ideaworkTests-CMPopTipView-Private.xcconfig"; sourceTree = "<group>"; };
+		BCF5D62B8B712AA84F757424 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9C229AFA4D0D91C523DADEF /* CMPopTipView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CMPopTipView.h; path = CMPopTipView/CMPopTipView.h; sourceTree = "<group>"; };
+		CDC69B139B018D4A187C0D0D /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		D5811EAA8179B163A015F1BF /* Pods-ideawork-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ideawork-acknowledgements.markdown"; sourceTree = "<group>"; };
+		D819BE3AFB69714C302F5535 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Pods-ideawork-CMPopTipView/Info.plist"; sourceTree = "<group>"; };
+		DA062EBB2AE6AEF34DAFE095 /* Pods-ideawork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ideawork.release.xcconfig"; sourceTree = "<group>"; };
+		EB06B16E941E2FB378860CCE /* Pods-ideawork-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ideawork-resources.sh"; sourceTree = "<group>"; };
+		ED04C6DBA189E29F183C98B2 /* CMPopTipView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CMPopTipView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0EF697741A8FC08C960419F /* Pods-ideaworkTests-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ideaworkTests-environment.h"; sourceTree = "<group>"; };
+		F376B834536C1217434E36F8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA3CDF67DC1F2C38606C74A0 /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
+		FABC9EC31DBB18DD57274A7D /* Pods-ideaworkTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-ideaworkTests.modulemap"; sourceTree = "<group>"; };
+		FD68A51C0B27330E1D4BF801 /* Pods-CMPopTipView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CMPopTipView.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2C943A9334726B70A2C3CED9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DCD680E6834F84EAFB89B49 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3D87B0C0C916080A98911183 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55568F99801FFDDB4A0224CA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4BBF6C12945EE785369577C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2E10EAB233446BC8DA794D2 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		562BE7BA1FCED2419CBF4DC5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D09067FF0BDD7B20CBB305EE /* Foundation.framework in Frameworks */,
+				A4D2513C8D3956193B92FDC6 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B3E5F4D678DF5F457B9C75F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				575E4CD49B91F6845BB1D2AD /* Foundation.framework in Frameworks */,
+				6F0C4F61BE1F3F56B6EBF7AC /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8693548603789CED6807161 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29CAEE669F32E848851EB958 /* Foundation.framework in Frameworks */,
+				9F65219DB5A8434CB35912CF /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		09AFC0B375276F828DB2F8FC /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				7ADC5CB49FD5B876117A2390 /* Foundation.framework */,
+				04F130402698B02577EBE98F /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		1684110F2C38695154B9CBF8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4AC82C42292F4173D9E1241D /* Info.plist */,
+				7F2943E2C789BB6A8EA141D2 /* Pods.modulemap */,
+				5E50121D7473614235C1D68C /* Pods-acknowledgements.markdown */,
+				3846EFF484688E10099B45EA /* Pods-acknowledgements.plist */,
+				FA3CDF67DC1F2C38606C74A0 /* Pods-dummy.m */,
+				461EE264698F773D3AA6E369 /* Pods-environment.h */,
+				B2BFA4C18C44A92495724300 /* Pods-frameworks.sh */,
+				6AE47AA2BD13E935A3C7B876 /* Pods-resources.sh */,
+				651CB4CEA04E7949D65C3682 /* Pods-umbrella.h */,
+				873E75C4FA0C6D23DE966BC6 /* Pods.debug.xcconfig */,
+				5986D484FFC2E4C26ACCD92B /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			path = "Target Support Files/Pods";
+			sourceTree = "<group>";
+		};
+		34317A583A44B3E583502D1F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D65FECE8B0BF35BD5984B554 /* CMPopTipView */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		39BF8D23DA49CB80B3DC800D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				09AFC0B375276F828DB2F8FC /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4B2FDB07F13C36440AEB51A6 /* Pods-ideaworkTests */ = {
+			isa = PBXGroup;
+			children = (
+				F376B834536C1217434E36F8 /* Info.plist */,
+				FABC9EC31DBB18DD57274A7D /* Pods-ideaworkTests.modulemap */,
+				571BFF7F1C174FEE0AE926CB /* Pods-ideaworkTests-acknowledgements.markdown */,
+				3BD6A1E73AE27E997AA65620 /* Pods-ideaworkTests-acknowledgements.plist */,
+				560654957C421AC7F04FADBE /* Pods-ideaworkTests-dummy.m */,
+				F0EF697741A8FC08C960419F /* Pods-ideaworkTests-environment.h */,
+				790FF3F1AAF0B5B25C4A4A29 /* Pods-ideaworkTests-frameworks.sh */,
+				6566E90B645AB89E2DA8DF9E /* Pods-ideaworkTests-resources.sh */,
+				331F8A68E4D623CF011DD374 /* Pods-ideaworkTests-umbrella.h */,
+				8CEE4754B75D87F3999EBAE4 /* Pods-ideaworkTests.debug.xcconfig */,
+				16F37A9DF42EB542198558E6 /* Pods-ideaworkTests.release.xcconfig */,
+			);
+			name = "Pods-ideaworkTests";
+			path = "Target Support Files/Pods-ideaworkTests";
+			sourceTree = "<group>";
+		};
+		555C198769074D4AD7127386 /* Pods-ideawork */ = {
+			isa = PBXGroup;
+			children = (
+				1D92A7844B5B5FCE995F1D5E /* Info.plist */,
+				7E23BA41B516CF45A14C4694 /* Pods-ideawork.modulemap */,
+				D5811EAA8179B163A015F1BF /* Pods-ideawork-acknowledgements.markdown */,
+				A1C4917362AC6845DC477F24 /* Pods-ideawork-acknowledgements.plist */,
+				9142FDD82DAF1223873324FA /* Pods-ideawork-dummy.m */,
+				71BB7BC35163C45F83B0A639 /* Pods-ideawork-environment.h */,
+				19F6F6CE7AA1CB0395551484 /* Pods-ideawork-frameworks.sh */,
+				EB06B16E941E2FB378860CCE /* Pods-ideawork-resources.sh */,
+				A32FCC8C15D5874D400921C4 /* Pods-ideawork-umbrella.h */,
+				35719CCBC900BF46F9483C2B /* Pods-ideawork.debug.xcconfig */,
+				DA062EBB2AE6AEF34DAFE095 /* Pods-ideawork.release.xcconfig */,
+			);
+			name = "Pods-ideawork";
+			path = "Target Support Files/Pods-ideawork";
+			sourceTree = "<group>";
+		};
+		7C3A81DBACD5A3B0124C4CE9 = {
+			isa = PBXGroup;
+			children = (
+				CDC69B139B018D4A187C0D0D /* Podfile */,
+				39BF8D23DA49CB80B3DC800D /* Frameworks */,
+				34317A583A44B3E583502D1F /* Pods */,
+				807A89281EABBB29A6ACC1BD /* Products */,
+				D461FDD6923597F772D14D77 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		807A89281EABBB29A6ACC1BD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2B6EEF02602AF7C50AEA0BC7 /* CMPopTipView.framework */,
+				ED04C6DBA189E29F183C98B2 /* CMPopTipView.framework */,
+				2A76094832612451364B1AC1 /* CMPopTipView.framework */,
+				BCF5D62B8B712AA84F757424 /* Pods.framework */,
+				4AB0F86A1DA455A11E0FA3F7 /* Pods_ideawork.framework */,
+				127A2272E369C8E8A5B8E2D6 /* Pods_ideaworkTests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CDA1C6E4D9222EF6D722C8C5 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D819BE3AFB69714C302F5535 /* Info.plist */,
+				A183E870C2F9A22743F2A4B8 /* Info.plist */,
+				3F4D3AC5D867344D98A83CC4 /* Info.plist */,
+				828A1AF0E23CAFEFF844E554 /* Pods-CMPopTipView.modulemap */,
+				FD68A51C0B27330E1D4BF801 /* Pods-CMPopTipView.xcconfig */,
+				74607BE0AC11BBED0D8C8188 /* Pods-CMPopTipView-Private.xcconfig */,
+				2298901D9FA8670D5EB5797D /* Pods-CMPopTipView-dummy.m */,
+				79F3CEB41279E6AD67DE483C /* Pods-CMPopTipView-prefix.pch */,
+				369EE70A2164B6CB563129D7 /* Pods-CMPopTipView-umbrella.h */,
+				701645BB072422694CD33044 /* Pods-ideawork-CMPopTipView.modulemap */,
+				99A408F2444312EC952B524A /* Pods-ideawork-CMPopTipView.xcconfig */,
+				0AB3ADE0CEE8E1EA7B222000 /* Pods-ideawork-CMPopTipView-Private.xcconfig */,
+				A24FD25CBDC1F923E86079E1 /* Pods-ideawork-CMPopTipView-dummy.m */,
+				850C3A06D8B4EDF44A8C9E55 /* Pods-ideawork-CMPopTipView-prefix.pch */,
+				6A60830DBD14790DB1656807 /* Pods-ideawork-CMPopTipView-umbrella.h */,
+				6BC93C2FEEB7A444C10A1D75 /* Pods-ideaworkTests-CMPopTipView.modulemap */,
+				47DAB93A42C28D749A8ACBB6 /* Pods-ideaworkTests-CMPopTipView.xcconfig */,
+				B60DE754CC3FDB49BB2ABDB5 /* Pods-ideaworkTests-CMPopTipView-Private.xcconfig */,
+				9EC397411EDB0764114706D5 /* Pods-ideaworkTests-CMPopTipView-dummy.m */,
+				6FA1BE4673D4894D9669FD83 /* Pods-ideaworkTests-CMPopTipView-prefix.pch */,
+				5C1B5637F69588058604DB1E /* Pods-ideaworkTests-CMPopTipView-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-CMPopTipView";
+			sourceTree = "<group>";
+		};
+		D461FDD6923597F772D14D77 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				1684110F2C38695154B9CBF8 /* Pods */,
+				555C198769074D4AD7127386 /* Pods-ideawork */,
+				4B2FDB07F13C36440AEB51A6 /* Pods-ideaworkTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		D65FECE8B0BF35BD5984B554 /* CMPopTipView */ = {
+			isa = PBXGroup;
+			children = (
+				C9C229AFA4D0D91C523DADEF /* CMPopTipView.h */,
+				AB1FCE644A0B45855B135CBA /* CMPopTipView.m */,
+				CDA1C6E4D9222EF6D722C8C5 /* Support Files */,
+			);
+			path = CMPopTipView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		0A67AC5FD6DFC6436195F01A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E24E66E6CCA6C52A49539076 /* CMPopTipView.h in Headers */,
+				7412E9058476CE63CFB8E328 /* Pods-ideaworkTests-CMPopTipView-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13B04C85A2576A69206E386A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F08EB55D28FE4C2CDA3C155B /* Pods-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		720E309110C31552B080C548 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				572E93C474CA2E35C2F8B576 /* Pods-ideawork-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		830659CA8E27F712B1C46858 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21115D6FD602C5B6712BDEB6 /* CMPopTipView.h in Headers */,
+				2159C9260013D70D3F9F5F31 /* Pods-ideawork-CMPopTipView-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D61B8FFF1FF39B7FCC175177 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A29F6560F10CAB8955262FC /* Pods-ideaworkTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E23D0C004F00592D108E8082 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDF77D2FB6A460E5927A16F3 /* CMPopTipView.h in Headers */,
+				68017A3E124AAE80CA87F65C /* Pods-CMPopTipView-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		43A434C44EC40E60A8042C66 /* Pods-ideawork-CMPopTipView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F72522ADD2369C7D38E1A66C /* Build configuration list for PBXNativeTarget "Pods-ideawork-CMPopTipView" */;
+			buildPhases = (
+				91A178E0CC40CA088B66607C /* Sources */,
+				562BE7BA1FCED2419CBF4DC5 /* Frameworks */,
+				830659CA8E27F712B1C46858 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-ideawork-CMPopTipView";
+			productName = "Pods-ideawork-CMPopTipView";
+			productReference = ED04C6DBA189E29F183C98B2 /* CMPopTipView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		59E97C6381A3D336A043B65A /* Pods-ideaworkTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D21F5A878BD03A7AD7DB03D /* Build configuration list for PBXNativeTarget "Pods-ideaworkTests" */;
+			buildPhases = (
+				EC0CBD52D26250BB19C1B8E9 /* Sources */,
+				3D87B0C0C916080A98911183 /* Frameworks */,
+				D61B8FFF1FF39B7FCC175177 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E1054656EDD52AB9A8C43D97 /* PBXTargetDependency */,
+			);
+			name = "Pods-ideaworkTests";
+			productName = "Pods-ideaworkTests";
+			productReference = 127A2272E369C8E8A5B8E2D6 /* Pods_ideaworkTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C108BE6BB741C681D4A32479 /* Pods-CMPopTipView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0F56E1545EB845AF7D7FDD85 /* Build configuration list for PBXNativeTarget "Pods-CMPopTipView" */;
+			buildPhases = (
+				D65D48B313936767352DDE28 /* Sources */,
+				D8693548603789CED6807161 /* Frameworks */,
+				E23D0C004F00592D108E8082 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-CMPopTipView";
+			productName = "Pods-CMPopTipView";
+			productReference = 2B6EEF02602AF7C50AEA0BC7 /* CMPopTipView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D61FB60EB33BD7C1B8D67D08 /* Pods-ideaworkTests-CMPopTipView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 58ACC5C2A51FC15E5443A472 /* Build configuration list for PBXNativeTarget "Pods-ideaworkTests-CMPopTipView" */;
+			buildPhases = (
+				D388364A766BFC290E19CEBD /* Sources */,
+				B3E5F4D678DF5F457B9C75F6 /* Frameworks */,
+				0A67AC5FD6DFC6436195F01A /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-ideaworkTests-CMPopTipView";
+			productName = "Pods-ideaworkTests-CMPopTipView";
+			productReference = 2A76094832612451364B1AC1 /* CMPopTipView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E691E4516208CE79A6000641 /* Pods */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4DFD80780EA224BDA0C3D451 /* Build configuration list for PBXNativeTarget "Pods" */;
+			buildPhases = (
+				AADB28549BD1F2A53B8A210D /* Sources */,
+				2C943A9334726B70A2C3CED9 /* Frameworks */,
+				13B04C85A2576A69206E386A /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4865B05E08D9FF3BA69F7C19 /* PBXTargetDependency */,
+			);
+			name = Pods;
+			productName = Pods;
+			productReference = BCF5D62B8B712AA84F757424 /* Pods.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		FE24C16BB35F83497A8B2205 /* Pods-ideawork */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BD206753F3D719265B734B8F /* Build configuration list for PBXNativeTarget "Pods-ideawork" */;
+			buildPhases = (
+				CB79136394575CF0C86A0FB5 /* Sources */,
+				4BBF6C12945EE785369577C7 /* Frameworks */,
+				720E309110C31552B080C548 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				81CC293CF0D4A3951D968BC6 /* PBXTargetDependency */,
+			);
+			name = "Pods-ideawork";
+			productName = "Pods-ideawork";
+			productReference = 4AB0F86A1DA455A11E0FA3F7 /* Pods_ideawork.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1BD080A5ADA7C1A661A70D01 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+			};
+			buildConfigurationList = 85618BB315FD0E8C8238D9FE /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7C3A81DBACD5A3B0124C4CE9;
+			productRefGroup = 807A89281EABBB29A6ACC1BD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E691E4516208CE79A6000641 /* Pods */,
+				C108BE6BB741C681D4A32479 /* Pods-CMPopTipView */,
+				FE24C16BB35F83497A8B2205 /* Pods-ideawork */,
+				43A434C44EC40E60A8042C66 /* Pods-ideawork-CMPopTipView */,
+				59E97C6381A3D336A043B65A /* Pods-ideaworkTests */,
+				D61FB60EB33BD7C1B8D67D08 /* Pods-ideaworkTests-CMPopTipView */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		91A178E0CC40CA088B66607C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1DD1267D585558A0AC1F99A /* CMPopTipView.m in Sources */,
+				A67A308C353885A8DD1585AB /* Pods-ideawork-CMPopTipView-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AADB28549BD1F2A53B8A210D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1ED0AD71AA2EBECB36E82BB3 /* Pods-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB79136394575CF0C86A0FB5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3DF4FAB35943FB923680104 /* Pods-ideawork-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D388364A766BFC290E19CEBD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0269B1891B24C226AC6C0306 /* CMPopTipView.m in Sources */,
+				B202D42AF544F1047C44047F /* Pods-ideaworkTests-CMPopTipView-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D65D48B313936767352DDE28 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				454F3D4F085CCC0B43CD0DD9 /* CMPopTipView.m in Sources */,
+				5F86A06B451A9D9747522A26 /* Pods-CMPopTipView-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC0CBD52D26250BB19C1B8E9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C665828F5218368D10B38AA9 /* Pods-ideaworkTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4865B05E08D9FF3BA69F7C19 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-CMPopTipView";
+			target = C108BE6BB741C681D4A32479 /* Pods-CMPopTipView */;
+			targetProxy = 21B0D036A59351C6BA0FBCEF /* PBXContainerItemProxy */;
+		};
+		81CC293CF0D4A3951D968BC6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-ideawork-CMPopTipView";
+			target = 43A434C44EC40E60A8042C66 /* Pods-ideawork-CMPopTipView */;
+			targetProxy = 647B05B4480D72C132ED3A76 /* PBXContainerItemProxy */;
+		};
+		E1054656EDD52AB9A8C43D97 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-ideaworkTests-CMPopTipView";
+			target = D61FB60EB33BD7C1B8D67D08 /* Pods-ideaworkTests-CMPopTipView */;
+			targetProxy = 0B8E0CC8C7145AC99F8BF27E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		199A5CC97E1C9D618701CA47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 74607BE0AC11BBED0D8C8188 /* Pods-CMPopTipView-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-CMPopTipView/Pods-CMPopTipView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-CMPopTipView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-CMPopTipView/Pods-CMPopTipView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = CMPopTipView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		30B3C0A6A173E111E77D21D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 74607BE0AC11BBED0D8C8188 /* Pods-CMPopTipView-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-CMPopTipView/Pods-CMPopTipView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-CMPopTipView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-CMPopTipView/Pods-CMPopTipView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = CMPopTipView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		559B05DDF967E1EF5D7A14BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B60DE754CC3FDB49BB2ABDB5 /* Pods-ideaworkTests-CMPopTipView-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-ideaworkTests-CMPopTipView/Pods-ideaworkTests-CMPopTipView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-ideaworkTests-CMPopTipView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-ideaworkTests-CMPopTipView/Pods-ideaworkTests-CMPopTipView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = CMPopTipView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		63B6D7427A0CA6C6F4A597D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5986D484FFC2E4C26ACCD92B /* Pods.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods/Pods.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		696C0ACF3488308A5B0AA4D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B60DE754CC3FDB49BB2ABDB5 /* Pods-ideaworkTests-CMPopTipView-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-ideaworkTests-CMPopTipView/Pods-ideaworkTests-CMPopTipView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-ideaworkTests-CMPopTipView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-ideaworkTests-CMPopTipView/Pods-ideaworkTests-CMPopTipView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = CMPopTipView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7A0EA2DDE0368F2510CA95A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		7A1B142E9696636CCBC463E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 35719CCBC900BF46F9483C2B /* Pods-ideawork.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-ideawork/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-ideawork/Pods-ideawork.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_ideawork;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8AD4AF077D2A85C7D10CBE5B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0AB3ADE0CEE8E1EA7B222000 /* Pods-ideawork-CMPopTipView-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-ideawork-CMPopTipView/Pods-ideawork-CMPopTipView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-ideawork-CMPopTipView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-ideawork-CMPopTipView/Pods-ideawork-CMPopTipView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = CMPopTipView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8E3007CE0B1FCCAED27DA9D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 873E75C4FA0C6D23DE966BC6 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods/Pods.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B82A4AF7103D7778DEF78C39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DA062EBB2AE6AEF34DAFE095 /* Pods-ideawork.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-ideawork/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-ideawork/Pods-ideawork.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_ideawork;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B86B340518283364BBB38347 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 16F37A9DF42EB542198558E6 /* Pods-ideaworkTests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-ideaworkTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-ideaworkTests/Pods-ideaworkTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_ideaworkTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D069110CCE2894F01DA3149A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D1AE24E3F3AF9BD379677108 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0AB3ADE0CEE8E1EA7B222000 /* Pods-ideawork-CMPopTipView-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-ideawork-CMPopTipView/Pods-ideawork-CMPopTipView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-ideawork-CMPopTipView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-ideawork-CMPopTipView/Pods-ideawork-CMPopTipView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = CMPopTipView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F2C69A1A21E55F106D321044 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8CEE4754B75D87F3999EBAE4 /* Pods-ideaworkTests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-ideaworkTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-ideaworkTests/Pods-ideaworkTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_ideaworkTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0F56E1545EB845AF7D7FDD85 /* Build configuration list for PBXNativeTarget "Pods-CMPopTipView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30B3C0A6A173E111E77D21D3 /* Debug */,
+				199A5CC97E1C9D618701CA47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1D21F5A878BD03A7AD7DB03D /* Build configuration list for PBXNativeTarget "Pods-ideaworkTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2C69A1A21E55F106D321044 /* Debug */,
+				B86B340518283364BBB38347 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4DFD80780EA224BDA0C3D451 /* Build configuration list for PBXNativeTarget "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E3007CE0B1FCCAED27DA9D8 /* Debug */,
+				63B6D7427A0CA6C6F4A597D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		58ACC5C2A51FC15E5443A472 /* Build configuration list for PBXNativeTarget "Pods-ideaworkTests-CMPopTipView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				696C0ACF3488308A5B0AA4D8 /* Debug */,
+				559B05DDF967E1EF5D7A14BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		85618BB315FD0E8C8238D9FE /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A0EA2DDE0368F2510CA95A5 /* Debug */,
+				D069110CCE2894F01DA3149A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BD206753F3D719265B734B8F /* Build configuration list for PBXNativeTarget "Pods-ideawork" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A1B142E9696636CCBC463E3 /* Debug */,
+				B82A4AF7103D7778DEF78C39 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F72522ADD2369C7D38E1A66C /* Build configuration list for PBXNativeTarget "Pods-ideawork-CMPopTipView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8AD4AF077D2A85C7D10CBE5B /* Debug */,
+				D1AE24E3F3AF9BD379677108 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1BD080A5ADA7C1A661A70D01 /* Project object */;
+}

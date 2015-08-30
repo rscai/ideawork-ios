@@ -468,11 +468,46 @@ cv::Mat padding(cv::Mat inputMat,int newRows,int newCols){
     
     
     inputMat.copyTo(result,mask);
-
+    result = cutTransparentBorder(result);
     
     UIImage* outputImage = UIImageFromCVMat(result);
     return outputImage;
 }
+
++(UIImage *) extractActor:(UIImage *)image{
+    cv::Mat originalMat = cvMatFromUIImage(image);
+    cv::Mat inputMat;
+    int originalChannelNum = originalMat.channels();
+    if(originalChannelNum==3){
+        //add alpha channel
+        cv::Mat originalChannels[4];
+        cv::split(originalMat,originalChannels);
+        
+        cv::Mat alphaChannel = cv::Mat(originalMat.rows,originalMat.cols,CV_8U,cvScalar(255));
+        
+        originalChannels[3]=alphaChannel;
+        // merge
+        cv::merge(originalChannels,4,inputMat);
+    }else{
+        inputMat=originalMat;
+    }
+    
+    
+    cv::Mat grayMat;
+    
+    cv::cvtColor(inputMat, grayMat, CV_RGBA2GRAY);
+    
+    
+    cv::Mat result = cv::Mat(inputMat.rows,inputMat.cols,CV_8UC4,cv::Scalar(255,255,255,0));
+    cv::Mat mask = detectPrimitiveActor(grayMat);
+    
+    inputMat.copyTo(result,mask);
+    result = cutTransparentBorder(result);
+    
+    UIImage* outputImage = UIImageFromCVMat(result);
+    return outputImage;
+}
+
 
 +(UIImage *) removeWhiteBackground:(UIImage *)image{
     
@@ -677,6 +712,107 @@ int determineBackgroundColor(int borderWidth, cv::Mat& bestLables) {
     
     return max;
 }
+
+// support for extract actor
+cv::Mat detectShape(cv::Mat grayMat){
+    std::vector<std::vector<cv::Point> > contours;
+    std::vector<cv::Vec4i> hierarchy;
+    cv::Mat result = cv::Mat(grayMat.rows,grayMat.cols,CV_8UC1,cv::Scalar(0));
+    
+    cv::findContours(grayMat, contours, hierarchy, cv::RETR_EXTERNAL,
+                     cv::CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
+    std::cout << "Detected contours number: " << contours.size() << std::endl;
+    
+    
+    for (int idx = 0; idx >= 0 && idx < contours.size(); idx =
+         hierarchy[idx][0]) {
+        
+        if (hierarchy[idx][2] < 0) //Check if there is a child contour
+        {
+            // opened contours
+            
+        } else {
+            //closed contours
+            
+        }
+        
+        cv::Scalar color(255);
+        cv::drawContours(result, contours, idx, color, CV_FILLED, 8, hierarchy, 0,
+                         cv::Point());
+    }
+    
+    return result;
+}
+
+cv::Mat detectPrimitiveActor(cv::Mat grayMat){
+    cv::Mat edgeMat;
+    std::vector<std::vector<cv::Point> > contours;
+    std::vector<cv::Vec4i> hierarchy;
+    cv::Mat result = cv::Mat(grayMat.rows,grayMat.cols,CV_8UC1,cv::Scalar(0));
+    
+    int thresh = 100;
+    
+    cv::Canny( grayMat, edgeMat, thresh, thresh*2, 3 );
+    
+    
+    result = detectShape(edgeMat);
+    
+    int erosionSize=0;
+    int erosionType=cv::MORPH_ELLIPSE;
+    cv::Mat erosionElement = getStructuringElement( erosionType,
+                                                   cv::Size( 2*erosionSize + 1, 2*erosionSize+1 ),
+                                                   cv::Point( erosionSize, erosionSize ) );
+    //cv::erode( edgeMat, edgeMat, erosionElement );
+    
+    int dilationSize=2;
+    int dilationType=cv::MORPH_ELLIPSE;
+    cv::Mat dilationElement = getStructuringElement( dilationType,
+                                                    cv::Size( 2*dilationSize + 1, 2*dilationSize+1 ),
+                                                    cv::Point( dilationSize, dilationSize ) );
+    cv::dilate( result, result, dilationElement );
+    //cv::dilate( result, result, dilationElement );
+    //cv::dilate( result, result, dilationElement );
+    result = detectShape(result);
+    
+    return result;
+}
+
+// crop transparent border out
+cv::Mat cutTransparentBorder(cv::Mat input){
+    int left=input.cols-1;
+    int top=input.rows-1;
+    int right=0;
+    int bottom=0;
+    
+    int transparentAlpha=0;
+    
+    for(int r=0;r<input.rows;r++){
+        for(int c=0;c<input.cols;c++){
+            cv::Vec4b ele = input.at<cv::Vec4b>(r,c);
+            //std::cout<<"alpha:"<<int(ele[3])<<std::endl;
+            if(int(ele[3])>transparentAlpha){
+                if(r<top){
+                    top=r;
+                }
+                if(r>bottom){
+                    bottom=r;
+                }
+                if(c<left){
+                    left=c;
+                }
+                
+                if(c>right){
+                    right=c;
+                }
+            }
+        }
+    }
+    cv::Rect rect(left,top,right-left,bottom-top);
+    cv::Mat result = input(rect).clone();
+    
+    return result;
+}
+
 //type converter
 
 cv::Mat cvMatFromUIImage(UIImage* image)

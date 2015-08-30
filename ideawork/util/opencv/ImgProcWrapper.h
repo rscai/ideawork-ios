@@ -55,6 +55,13 @@
 
 +(UIImage *) removeBackground:(UIImage *)image;
 
+/************
+ * extract actor
+ *
+ *
+ */
++(UIImage *) extractActor:(UIImage *)image;
+
 /*********
  * remove white background
  *

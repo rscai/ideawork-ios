@@ -187,6 +187,11 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
             self.doRemoveBackground()
 
         }
+        var extractActor = UIAlertAction(title:"提取人物⻆色",style:UIAlertActionStyle.Default){
+            UIAlertAction in
+            self.doExtractActor()
+            
+        }
         
         var cartoonize = UIAlertAction(title:"漫画化",style:UIAlertActionStyle.Default){
             UIAlertAction in
@@ -202,6 +207,7 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
         
         // add actions
         alert.addAction(removeBackground)
+        alert.addAction(extractActor)
         // cartoonize filter has not ready
         alert.addAction(cartoonize)
         alert.addAction(cancelAction)
@@ -249,6 +255,23 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
         dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)){
             let filteredImage = ImgProcWrapper.removeBackground(self.modifiedImage!)
            
+            // all UI operation should be performed in main queue
+            dispatch_async(dispatch_get_main_queue()){
+                
+                self.modifyImage(filteredImage)
+                SwiftSpinner.hide()
+                
+            }
+        }
+        
+    }
+    
+    private func doExtractActor() {
+        SwiftSpinner.show("提取人物⻆色...", animated: true)
+        
+        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)){
+            let filteredImage = ImgProcWrapper.extractActor(self.modifiedImage!)
+            
             // all UI operation should be performed in main queue
             dispatch_async(dispatch_get_main_queue()){
                 

@@ -29,7 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
         // init WeCaht api
         WXApi.registerApp("wx81c20cec3acf58b0")
         //showTutorial()
-        initManagedObjectContext()
+        initManagedObjectContext({
+            Void -> Void in
+            self.startUI()
+        })
         
         return true
     }
@@ -46,7 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
         println("application will resign active")
-        self.closeManagedDocument()
+        //self.closeManagedDocument()
+        self.saveManagedDocument()
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
@@ -59,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
         println("application will enter foreground")
-        initManagedObjectContext()
+        //initManagedObjectContext(nil)
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
@@ -118,7 +122,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
         alert.show()
     }
 
-    private func initManagedObjectContext(){
+    func initManagedObjectContext(completionHandler:((Void) -> Void)?){
         let fileManager = NSFileManager.defaultManager()
         let documentDirectories = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         
@@ -130,6 +134,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
         
         println("document path: \(url.path!), if existed: \(fileManager.fileExistsAtPath(url.path!))")
         
+        let documentIsReady:((Void)->Void)={
+            (Void)->Void in
+            println("document state: \(self.document!.documentState.rawValue)")
+            if let designFile = self.document?.fileURL{
+                if self.addSkipBackupAttributeToItemAtURL(designFile) == true {
+                    print("Excluded \(designFile) from backup.")
+                }
+            }
+            
+            if self.document!.documentState == UIDocumentState.Normal {
+                self.managedObjectContext = self.document!.managedObjectContext
+                
+                completionHandler?()
+            }
+        }
+        
         // check if document exist
         if fileManager.fileExistsAtPath(url.path!) == true {
             // open it
@@ -138,7 +158,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
                 (result:Bool) in
                 
                 println("open document result: \(result)")
-                self.documentIsReady()
+                documentIsReady()
                 
             })
         }else{
@@ -147,23 +167,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WXApiDelegate {
             self.document!.saveToURL(url, forSaveOperation:UIDocumentSaveOperation.ForCreating, completionHandler: {
                 (result:Bool) in
                 println("create document result: \(result)")
-                self.documentIsReady()
+                documentIsReady()
                 
             })
         }
     }
-    private func documentIsReady(){
-        println("document state: \(self.document!.documentState.rawValue)")
-        if let designFile = self.document?.fileURL{
-            if self.addSkipBackupAttributeToItemAtURL(designFile) == true {
-                print("Excluded \(designFile) from backup.")
-            }
-        }
-        
-        if self.document!.documentState == UIDocumentState.Normal {
-            self.managedObjectContext = self.document!.managedObjectContext
+    
+    private func saveManagedDocument(){
+        if let openedDocument = self.document {
+            self.document?.savePresentedItemChangesWithCompletionHandler({
+                (error:NSError!) -> Void in
+                if error == nil {
+                    println("save document result: success")
 
-            startUI()
+                }else{
+                    println("save document fail: \(error)")
+
+                }
+            })
         }
     }
     

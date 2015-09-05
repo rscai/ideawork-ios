@@ -40,6 +40,9 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
     @IBOutlet weak var uiFilterBarButtonItem:UIBarButtonItem!
     @IBOutlet weak var uiPreviewBarButtonItem:UIBarButtonItem!
     
+    @IBOutlet weak var uiUndoBarButtonItem:UIBarButtonItem!
+    @IBOutlet weak var uiRedoBarButtonItem:UIBarButtonItem!
+    
     
     // MARK: - Support members
     var picker:UIImagePickerController?=UIImagePickerController()
@@ -68,6 +71,10 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
         let imageCloudStorageConfiguration = NSBundle.mainBundle().objectForInfoDictionaryKey("ImageCloudStorageConfiguration") as! NSDictionary
         
         self.cloudBucket = imageCloudStorageConfiguration.objectForKey("bucket") as! String
+        
+        // init undo manager
+        
+        undoManager?.levelsOfUndo = 20 
         
         // init UI outlets
         
@@ -180,6 +187,11 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
             self.doRemoveBackground()
 
         }
+        var extractActor = UIAlertAction(title:"提取人物⻆色",style:UIAlertActionStyle.Default){
+            UIAlertAction in
+            self.doExtractActor()
+            
+        }
         
         var cartoonize = UIAlertAction(title:"漫画化",style:UIAlertActionStyle.Default){
             UIAlertAction in
@@ -195,6 +207,7 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
         
         // add actions
         alert.addAction(removeBackground)
+        alert.addAction(extractActor)
         // cartoonize filter has not ready
         alert.addAction(cartoonize)
         alert.addAction(cancelAction)
@@ -209,6 +222,27 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
         performSegueWithIdentifier("chooseBaseColor",sender:sender)
     }
     
+    // undo
+    @IBAction func doUndo(sender: UIBarButtonItem){
+        if let isCanUndo = undoManager?.canUndo {
+            if(isCanUndo == true){
+                undoManager?.undo()
+            }
+        }
+        
+        updateUndoRedoButtonStatus()
+    }
+    // redo
+    @IBAction func doRedo(sender: UIBarButtonItem){
+        if let isCanRedo = undoManager?.canRedo {
+            if(isCanRedo == true){
+                undoManager?.redo()
+            }
+        }
+        
+        updateUndoRedoButtonStatus()
+
+    }
 
     
     // MARK: - Support functions
@@ -224,7 +258,24 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
             // all UI operation should be performed in main queue
             dispatch_async(dispatch_get_main_queue()){
                 
-                self.modifiedImage=filteredImage
+                self.modifyImage(filteredImage)
+                SwiftSpinner.hide()
+                
+            }
+        }
+        
+    }
+    
+    private func doExtractActor() {
+        SwiftSpinner.show("提取人物⻆色...", animated: true)
+        
+        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)){
+            let filteredImage = ImgProcWrapper.extractActor(self.modifiedImage!)
+            
+            // all UI operation should be performed in main queue
+            dispatch_async(dispatch_get_main_queue()){
+                
+                self.modifyImage(filteredImage)
                 SwiftSpinner.hide()
                 
             }
@@ -241,7 +292,7 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
             // all UI operation should be performed in main queue
             dispatch_async(dispatch_get_main_queue()){
                 
-                self.modifiedImage=filteredImage
+                self.modifyImage(filteredImage)
                 SwiftSpinner.hide()
                 
             }
@@ -277,7 +328,8 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
         }
         
         // show image on canvas
-        modifiedImage = ImgProcWrapper.resize(image, width: Int32(newWidth), height: Int32(newHeight))
+        let processedImage = ImgProcWrapper.resize(image, width: Int32(newWidth), height: Int32(newHeight))
+        self.modifyImage(processedImage)
         // route to importImageViewController 
         
         //performSegueWithIdentifier("importImage", sender: image)
@@ -299,7 +351,7 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
         //originalImage=image
         
 
-        modifiedImage=image
+        self.modifyImage(image)
         
     }
     
@@ -473,4 +525,32 @@ class EditViewController: UIViewController,UIAlertViewDelegate,UIImagePickerCont
             })
         
     }
+    
+    func modifyImage(newImage:UIImage){
+        // 
+        undoManager?.prepareWithInvocationTarget(self).modifyImage(modifiedImage!)
+        modifiedImage = newImage
+        
+        updateUndoRedoButtonStatus()
+
+        
+    }
+    
+    private func updateUndoRedoButtonStatus(){
+        self.uiUndoBarButtonItem.enabled = false
+        self.uiRedoBarButtonItem.enabled = false
+        
+        if let isCanUndo = undoManager?.canUndo {
+            if(isCanUndo == true){
+                self.uiUndoBarButtonItem.enabled = true
+            }
+        }
+        
+        if let isCanRedo = undoManager?.canRedo {
+            if(isCanRedo == true){
+                self.uiRedoBarButtonItem.enabled = true
+            }
+        }
+    }
+
 }

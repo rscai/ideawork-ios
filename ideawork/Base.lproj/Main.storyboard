@@ -115,6 +115,16 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="uGv-Pv-vZ8"/>
+                                    <barButtonItem enabled="NO" image="undo" id="VPG-2L-1iM">
+                                        <connections>
+                                            <action selector="doUndo:" destination="G9P-bJ-1Ia" id="y4R-0r-mDM"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem enabled="NO" image="redo" id="2mT-47-d4R">
+                                        <connections>
+                                            <action selector="doRedo:" destination="G9P-bJ-1Ia" id="2eJ-wf-Di5"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem image="visible" id="kal-rR-0nK">
                                         <connections>
                                             <action selector="doPreview:" destination="G9P-bJ-1Ia" id="9Ou-Mv-Kko"/>
@@ -164,6 +174,8 @@
                         <outlet property="uiFilterBarButtonItem" destination="OGk-bD-zOC" id="cCp-P2-dwR"/>
                         <outlet property="uiImportImageBarButtonItem" destination="Rlm-0B-iW0" id="eiV-Kd-oO4"/>
                         <outlet property="uiPreviewBarButtonItem" destination="kal-rR-0nK" id="fJr-Px-Xlo"/>
+                        <outlet property="uiRedoBarButtonItem" destination="2mT-47-d4R" id="qTt-JF-m66"/>
+                        <outlet property="uiUndoBarButtonItem" destination="VPG-2L-1iM" id="QqA-qc-klY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ggu-qZ-rdn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -484,7 +496,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hOF-15-gMu">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hOF-15-gMu">
                                 <rect key="frame" x="6" y="74" width="308" height="400"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
@@ -622,7 +634,9 @@
         <image name="fantasy" width="25" height="25"/>
         <image name="guide-import-image.png" width="400" height="500"/>
         <image name="put_in" width="25" height="25"/>
+        <image name="redo" width="25" height="25"/>
         <image name="share" width="25" height="25"/>
+        <image name="undo" width="25" height="25"/>
         <image name="visible" width="25" height="25"/>
     </resources>
 </document>

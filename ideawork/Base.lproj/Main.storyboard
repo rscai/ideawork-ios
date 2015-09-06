@@ -1,11 +1,47 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MiY-fo-ENa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MiY-fo-ENa">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--素材库-->
+        <scene sceneID="Y7Q-Dq-cAd">
+            <objects>
+                <viewController id="nfe-kj-tI0" customClass="GalleryViewController" customModule="ideawork" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ofU-s2-fE2"/>
+                        <viewControllerLayoutGuide type="bottom" id="Mfl-Bk-aPU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EWS-yg-ip1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lxA-p5-uiG">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Mfl-Bk-aPU" firstAttribute="top" secondItem="lxA-p5-uiG" secondAttribute="bottom" id="3Jh-TL-QgH"/>
+                            <constraint firstItem="lxA-p5-uiG" firstAttribute="top" secondItem="ofU-s2-fE2" secondAttribute="bottom" constant="-64" id="KdM-zI-A9B"/>
+                            <constraint firstItem="lxA-p5-uiG" firstAttribute="leading" secondItem="EWS-yg-ip1" secondAttribute="leadingMargin" constant="-16" id="YUo-mf-Nqp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lxA-p5-uiG" secondAttribute="trailing" constant="-16" id="tGS-Dr-9A6"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="素材库" id="v51-zr-apa"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="webView" destination="lxA-p5-uiG" id="beQ-KR-Bak"/>
+                        <segue destination="G9P-bJ-1Ia" kind="show" identifier="openDesign" id="EB9-IZ-hZQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="py8-lQ-Rfk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1284" y="-1333"/>
+        </scene>
         <!--Design View Controller-->
         <scene sceneID="NhE-CZ-BIt">
             <objects>
@@ -80,6 +116,7 @@
                         <outlet property="designCollectionView" destination="8bq-kp-fvK" id="lPn-YT-rAG"/>
                         <outlet property="uiAddDesignBarButtonItem" destination="9xE-xY-GzN" id="fzb-gp-Fo3"/>
                         <segue destination="G9P-bJ-1Ia" kind="show" identifier="openDesign" id="Jfk-Rt-M58"/>
+                        <segue destination="nfe-kj-tI0" kind="show" identifier="viewGallery" id="m4s-G2-cFc"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bN5-Qm-k8d" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -639,4 +676,7 @@
         <image name="undo" width="25" height="25"/>
         <image name="visible" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="EB9-IZ-hZQ"/>
+    </inferredMetricsTieBreakers>
 </document>

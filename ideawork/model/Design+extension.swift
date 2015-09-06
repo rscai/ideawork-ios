@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension Design{
     var print:UIImage?{

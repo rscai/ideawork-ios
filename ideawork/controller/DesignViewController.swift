@@ -74,11 +74,41 @@ class DesignViewController: UICollectionViewController,UICollectionViewDataSourc
     @IBAction func addDesign(sender: UIBarButtonItem) {
         println("click addDesign button")
         
-        let design = doNewDesign()
+        // show options, add empty design or pick one from gallery
         
-        // open design edit 
+        var optionChooser:UIAlertController=UIAlertController(title: "请选择", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         
-        performSegueWithIdentifier("openDesign", sender: design)
+        var newEmptyDesign = UIAlertAction(title:"新建空白设计",style:UIAlertActionStyle.Default){
+            UIAlertAction in
+            let design = self.doNewDesign()
+        
+            // open design edit
+        
+            self.performSegueWithIdentifier("openDesign", sender: design)
+            
+        }
+        var pickFromGallery = UIAlertAction(title:"从素材库中选取",style:UIAlertActionStyle.Default){
+            UIAlertAction in
+            self.performSegueWithIdentifier("viewGallery", sender: self)
+
+        }
+
+        
+        var cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel)
+            {
+                UIAlertAction in
+                
+        }
+        
+        // add actions
+        optionChooser.addAction(newEmptyDesign)
+        optionChooser.addAction(pickFromGallery)
+
+        optionChooser.addAction(cancelAction)
+        
+        self.presentViewController(optionChooser, animated: true, completion: nil)
+        
+        
         
 
     }
@@ -189,7 +219,7 @@ class DesignViewController: UICollectionViewController,UICollectionViewDataSourc
                 let managedObjectContext = appDelegate.managedObjectContext
                 design = NSEntityDescription.insertNewObjectForEntityForName("Design", inManagedObjectContext: managedObjectContext!) as? Design
                 design?.print=ImgProcWrapper.createImage(210, height: 297)
-                design?.designTemplate=template
+                //design?.designTemplate=template
             }else if let theDesign = abstractDesign as? Design{
                 design = theDesign
             }

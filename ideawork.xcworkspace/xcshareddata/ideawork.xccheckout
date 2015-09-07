@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>422D8BDC-C894-4266-8D9E-CBB7031027DB</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ideawork</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C39364B47E06D494D7A4611572DA0843D3B6EE55</key>
+		<string>https://github.com/kkppccdd/ideawork-ios.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ideawork.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C39364B47E06D494D7A4611572DA0843D3B6EE55</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/kkppccdd/ideawork-ios.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C39364B47E06D494D7A4611572DA0843D3B6EE55</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C39364B47E06D494D7A4611572DA0843D3B6EE55</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ideawork</string>
+		</dict>
+	</array>
+</dict>
+</plist>

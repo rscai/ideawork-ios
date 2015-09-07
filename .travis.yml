@@ -2,6 +2,5 @@ branches:
   only:
     - phase_1_2
 language: objective-c
-script:
-    - xcodebuild -workspace ideawork.xcworkspace -scheme ideawork -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
-    - xcodebuild test -workspace ideawork.xcworkspace -scheme ideawork -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+xcode_workspace: ideawork.xcworkspace
+xcode_scheme: ideawork

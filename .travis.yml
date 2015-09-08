@@ -2,6 +2,7 @@ branches:
   only:
   - phase_1_2
 language: objective-c
+osx_image: xcode6.4
 xcode_workspace: ideawork.xcworkspace
 xcode_scheme: ideawork
 before_script:

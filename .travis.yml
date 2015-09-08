@@ -1,6 +1,21 @@
 branches:
   only:
-    - phase_1_2
+  - phase_1_2
 language: objective-c
 xcode_workspace: ideawork.xcworkspace
 xcode_scheme: ideawork
+
+before_script:
+  - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/iOSTeam_Provisioning_Profile_.mobileprovision.enc -d -a -out scripts/profile/iOSTeam_Provisioning_Profile_.mobileprovision
+  - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.cer.enc -d -a -out scripts/certs/dist.cer
+  - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
+after_script:
+  - ./scripts/remove-key.sh
+
+env:
+  global:
+  - APP_NAME="ideawork"
+  - 'DEVELOPER_NAME="iPhone Distribution: Leilei Cai"'
+  - PROFILE_NAME="iOSTeam_Provisioning_Profile_"
+  - secure: obUEH3RfJ3v0+VvVKJsNB9RSqAxCeO0JlRQTBxvtqIi6FgGo9wfjS7UIiK7KNSpS5ApSIiWkUUMzUFdPmxGeUVabHNUKa6KruTRQoAAHC/0FBbv5gkyEmVfD+UPwKmwi/hW+Vj1ImOpz1U/BNnJNWxbIoejLb3Km5OFFGw52YWL3T1dBIUzyp0DV/z7Jhj3iD/PxtUQwzh69Dcrj0W+q3ne7a6vzr5Zb/7tL0GlYcYei8DumqpaKjbg2d0hmrT29yVXIAgO8JgoobrgC0SjMqwB10kEooU3z5yzyXUr5kJvDq34T34F5uihWfDFJy/58jh0SC5/2xsdKBVG/TK0AIsdtSE6ZPAT1CkMK6PaFN3epqZYyEWLC3jQ2/kNs+WQtnvKZ/LZsLi+wuphWrCaUzfy+wRdt/ROY3bpnBY1ZUMyW+7oIfQWFKqKye1GoKOy+zdtGnPcXPBtnNWlYKglIFcw330+VGcmTTVq7NWxRKyOV1A5q79rW2QFAaRFIDWlm4dzB8dlhGued/TieKU+Q5uvarjFcb1feV1cY4DDLhLRKWXZqw/SEDehrIe7kbcGgldrVy+nCqljWEfEhFoVPcJMOOqGh2A8y45or3q11bAgp7UCOVIbsXqP3K9NDzHk0G9BgPbg0hHTsovfpjIMfrCY8lENJn1U1IEOuVgV0Q14=
+  - secure: XbqCrETo6KfEhK3qLqp8bLcJcvMxt7vPqNytWVM3KsOPqE60P+5xViGoI5KTOLQ2XiYZyUYSTgvRcAxT6ohDkq6hPe2KvcUKMAToB+u5wG4Nqz2QjcNHP5j+ZT8Hzs/99vEiEMw8ndniSX3L2JbM3wfvsDqqBWjOuH2lKX5gjb3i8xI8aAQ6SXUDhTqLzoL0gQhiQriTN4McG78/Iqc6Ht6bR4wbSaEVD/RE5mLIKb49EcQzQyKIxR8fH141v9ggOxzNSQSLz7Vu4TxW3vihFpWVhFxYc3402C8sxsX2whZWMVjWNTZ/dZzcap2pB+/4izx3DyPeVIt/gXA45TXUKuQQSA9soMKikEjHXgD8jxjInEmZfCddUWYDKisW7nIpV4xenWyy8eb05Mm00CWtAXW/Rb1s2ZiB4wMnF2yjav0/x+Xgjh2ZsVWhAMNibzijBTPXCIXEHkt4DRG+ZQ3Rf0PHvQGrxaRjx8d/jNkWPBLEdhsKYKSVPeQ6zO2tWJ08w5JL/fQdsXWctv1oyWXEA5GbV/wgryyr9e4PL0fS9+fe6Dpen+wDaePKeENMDR8+kwsLhoZprvI6JLJkQUEfh1FntoetorcAIAs2w0Camk25SfD1rAkumvv6c6PEnG7jTdTRb6X9p2knxNMOhSSF3++G9nUkbW6P8Tej7MlfvTk=

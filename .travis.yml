@@ -7,7 +7,7 @@ xcode_scheme: ideawork
 before_script:
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/iOSTeam_Provisioning_Profile_.mobileprovision.enc
   -d -a -out scripts/profile/iOSTeam_Provisioning_Profile_.mobileprovision
-- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/distt.cer.enc -d -a
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.cer.enc -d -a
   -out scripts/certs/.cer
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a
   -out scripts/certs/dist.p12

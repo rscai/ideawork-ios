@@ -6,8 +6,8 @@ osx_image: xcode6.4
 xcode_workspace: ideawork.xcworkspace
 xcode_scheme: ideawork
 script:
-  - xctool -workspace ideawork.xcworkspace -scheme ideawork -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
-  - xctool test -workspace ideawork.xcworkspace -scheme ideawork -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+  - xcodebuild -workspace ideawork.xcworkspace -scheme ideawork -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+  - xcodebuild test -workspace ideawork.xcworkspace -scheme ideawork -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
 before_script:
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/iOSTeam_Provisioning_Profile_.mobileprovision.enc
   -d -a -out scripts/profile/iOSTeam_Provisioning_Profile_.mobileprovision
